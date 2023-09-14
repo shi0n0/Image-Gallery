@@ -9,3 +9,22 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+// ユーザー情報を格納するテーブル
+model User {
+  id       Int       @id @default(autoincrement())
+  username String    @unique
+  email    String    @unique
+  password String    // パスワードはハッシュ化することをおすすめします
+  images   Image[]   // ユーザーがアップロードした画像を関連付ける
+}
+
+// 画像情報を格納するテーブル
+model Image {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String?
+  url         String   // 画像ファイルへのパスやURLを格納
+  userId      Int      // どのユーザーがアップロードしたかを関連付ける
+  user        User     @relation(fields: [userId], references: [id])
+}
