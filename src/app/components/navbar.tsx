@@ -17,7 +17,12 @@ export default function Navbar() {
       <nav className="bg-white shadow-lg">
         <div className="container mx-auto px-1">
           <div className="flex justify-between items-center py-4">
-            <div className="text-2xl font-bold">ImageGallery</div>
+            <Link
+            href={"/"}
+            className="text-2xl font-bold"
+            >
+              ImageGallery
+            </Link>
             <div className="flex items-center space-x-4"> {/* ユーザーアイコンを含む flex コンテナ */}
               <Link
               href={"/"}
@@ -43,9 +48,19 @@ export default function Navbar() {
                 </div>
               )}
               {!session && (
-                <button onClick={() => signIn()} className="text-gray-600 hover:text-gray-800 px-4 py-2">
-                  ログイン
-                </button>
+                <div className="relative">
+                <Link
+                href={"/profile"}
+                >
+                  <Image
+                    src={'https://kotonohaworks.com/free-icons/wp-content/uploads/kkrn_icon_user_1.png'}
+                    alt="ユーザーアイコン"
+                    width={40}
+                    height={40}
+                    className="rounded-full"
+                />
+                </Link>
+              </div>
               )}
             </div>
           </div>
