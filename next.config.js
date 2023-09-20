@@ -8,7 +8,8 @@ module.exports = {
     domains: [
       'lh3.googleusercontent.com',
       'avatars.githubusercontent.com',
-      'kotonohaworks.com'
+      'kotonohaworks.com',
+      'cdn-common.skima.jp'
     ],
   },
 };
