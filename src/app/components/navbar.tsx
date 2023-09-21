@@ -7,10 +7,6 @@ import Link from 'next/link'
 export default function Navbar() {
   const { data: session } = useSession()
 
-  const log = () => {
-    console.log(session)
-  }
-
   return (
     <div className="bg-gray-100 font-sans">
       <nav className="bg-white shadow-lg">
