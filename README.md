@@ -6,7 +6,7 @@ Next.js - 13.4を使用したイメージギャラリーです。
 言語・フレームワーク - TypeScript,Next.js13.4  
 デプロイ - Vercel  
 データベース - Supabase(Postgresql)  
-ストレージ - Supabase
+ストレージ - Supabase  
 認証機能 - Auth.js(旧NextAuth.js)  
 
 ### 認証機能について  
