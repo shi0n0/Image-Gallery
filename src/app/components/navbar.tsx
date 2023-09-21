@@ -13,7 +13,6 @@ export default function Navbar() {
 
   return (
     <div className="bg-gray-100 font-sans">
-      {/* ナビゲーションバー */}
       <nav className="bg-white shadow-lg">
         <div className="container mx-auto px-1">
           <div className="flex justify-between items-center py-4">
@@ -23,13 +22,12 @@ export default function Navbar() {
             >
               ImageGallery
             </Link>
-            <div className="flex items-center space-x-4"> {/* ユーザーアイコンを含む flex コンテナ */}
-              <Link
-              href={"/"}
-              className='text-gray-600 hover:text-gray-800 px-4 py-2'
-              >
+            <div className="flex items-center space-x-4">
+            <Link 
+            href={"/"} 
+            className='text-gray-600 hover:text-gray-800 px-4 py-2'>
               ホーム
-              </Link>
+            </Link>
               <a href="#" className="text-gray-600 hover:text-gray-800 px-4 py-2">投稿する</a>
               <a href="#" className="text-gray-600 hover:text-gray-800 px-4 py-2">お気に入り</a>
               {session && ( // セッションが存在する場合にユーザーアイコンを表示
@@ -42,7 +40,7 @@ export default function Navbar() {
                       alt="ユーザーアイコン"
                       width={40}
                       height={40}
-                      className="rounded-full"
+                      className="rounded-full transition duration-300 transform hover:scale-110"
                   />
                   </Link>
                 </div>
@@ -57,7 +55,7 @@ export default function Navbar() {
                     alt="ユーザーアイコン"
                     width={40}
                     height={40}
-                    className="rounded-full"
+                    className="rounded-full transition duration-300 transform hover:scale-110"
                 />
                 </Link>
               </div>
