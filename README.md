@@ -4,8 +4,9 @@ Next.js - 13.4を使用したイメージギャラリーです。
 
 ## 技術スタック  
 言語・フレームワーク - TypeScript,Next.js13.4  
-デプロイ - Vercel
+デプロイ - Vercel  
 データベース - Supabase(Postgresql)  
+ストレージ - Supabase
 認証機能 - Auth.js(旧NextAuth.js)  
 
 ### 認証機能について  
