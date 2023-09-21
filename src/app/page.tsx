@@ -7,13 +7,10 @@ import Link from 'next/link'
 export default function Home() {
   const { data: session } = useSession()
 
-  const log = () => {
-    console.log(session)
-  }
 
   return (
     <main>
-
+      
     </main>
   )
 }
