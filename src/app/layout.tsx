@@ -17,7 +17,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={inter.className}>
         <NextAuthProvider>
           <Navbar />
-          {children}
+          <main className='px-16 py-10'>
+            {children}
+          </main>
         </NextAuthProvider>
       </body>
     </html>
