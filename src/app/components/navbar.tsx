@@ -24,7 +24,11 @@ export default function Navbar() {
             className='text-gray-600 hover:text-gray-800 px-4 py-2'>
               ホーム
             </Link>
-              <a href="#" className="text-gray-600 hover:text-gray-800 px-4 py-2">投稿する</a>
+            <Link
+              href={"/upload"}
+              className="text-gray-600 hover:text-gray-800 px-4 py-2">
+                投稿する
+            </Link>
               <a href="#" className="text-gray-600 hover:text-gray-800 px-4 py-2">お気に入り</a>
               {session && ( // セッションが存在する場合にユーザーアイコンを表示
                 <div className="relative">
