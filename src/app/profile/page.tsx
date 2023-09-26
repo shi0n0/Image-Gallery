@@ -8,7 +8,7 @@ export default function Profile() {
   const { data: session } = useSession()
 
     return(
-        <>
+        <div>
             <div className='flex items-end'>
               <Image
                 src={session?.user?.image || 'https://kotonohaworks.com/free-icons/wp-content/uploads/kkrn_icon_user_1.png'}
@@ -23,8 +23,11 @@ export default function Profile() {
               <button onClick={() => signOut()}>ログアウト</button>
             )}
             {!session && (
-              <button onClick={() => signIn()} className="text-gray-600 hover:text-gray-800 px-4 py-2">ログイン</button>
+              <div>
+                <p>ログインすると「いいね」「お気に入り」などの機能が開放されます👏</p>
+                <button onClick={() => signIn()} className="text-gray-600 hover:text-gray-800 px-4 py-2">ログイン</button>
+              </div>
             )} 
-        </>
+        </div>
     )
 }
