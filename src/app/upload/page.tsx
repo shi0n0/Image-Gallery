@@ -11,15 +11,22 @@ export default function Profile() {
       file = e.target.files[0];
     }
 
-    const { data, error } = await supabase.storage
+    const { error } = await supabase.storage
       .from("Images")
       .upload("Public-" + file?.name, file as File)
     
-    if (data) {
-      console.log(data)
-    } else if (error) {
+    if (error) {
       console.log(error)
     }
+
+    // 画像のURLを取得
+    const { data } = supabase.storage.from('Images').getPublicUrl(filePath)
+    const imageUrl = data.publicUrl
+    
+    // 画像のURLをDBに保存
+    const { error: databaseError } = await supabase
+      .from('Images')
+      .insert({ imageUrl: imageUrl })
   };
 
   return (
