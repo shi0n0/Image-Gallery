@@ -10,6 +10,7 @@ export default function Profile() {
     if (e.target.files){
       file = e.target.files[0];
     }
+    const filePath = `Images/${file.name}`
 
     const { error } = await supabase.storage
       .from("Images")
