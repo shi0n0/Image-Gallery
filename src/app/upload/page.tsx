@@ -1,9 +1,10 @@
 "use client"
 import { ChangeEvent, useEffect, useState } from "react";
 import supabase from "../utils/supabase";
-import { log } from "console";
+import { useSession } from "next-auth/react";
 
 export default function Profile() {
+  const { data: session } = useSession()
 
 const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -41,11 +42,13 @@ const [title, setTitle] = useState("");
     const { data } = await supabase.storage.from('Images').getPublicUrl(filePath);
     const imageUrl = data.publicUrl;
 
+    const userId = session?.user?.id
+
     // 画像のURL、タイトル、および概要をDBに保存
     const { error: databaseError } = await supabase
       .from('Image')
       .insert([
-        { url: imageUrl, title: title, description: description }
+        { url: imageUrl, userId: userId, title: title, description: description }
       ]);
 
     if (databaseError) {
