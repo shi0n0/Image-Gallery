@@ -2,9 +2,13 @@
 import { ChangeEvent, useEffect, useState } from "react";
 import supabase from "../utils/supabase";
 import { useSession } from "next-auth/react";
+import { useRouter } from 'next/navigation'
+import { Router } from "next/router";
 
 export default function Profile() {
   const { data: session } = useSession()
+  const router = useRouter()
+
 
 const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -55,7 +59,10 @@ const [title, setTitle] = useState("");
       console.error('データベースエラー:', databaseError.message);
     } else {
       console.log('データベースにデータを挿入しました。');
+      router.push("/")
     }
+
+    
   };
 
   return (
