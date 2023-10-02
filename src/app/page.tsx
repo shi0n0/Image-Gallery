@@ -12,15 +12,19 @@ export default function Home() {
 
   useEffect(() => {
     async function fetchUserImages() {
-      const { data, error } = await supabase
-        .from('Image')
-        .select('image_url')
-        .eq('user_id', userId); // ユーザーIDに基づいてフィルタリング
+      if (userId) {
+        // ユーザーIDが存在する場合のみクエリを実行
+        const { data, error } = await supabase
+          .from('Image')
+          .select('*')
+          .eq('userId', userId);
 
-      if (error) {
-        console.error('Error fetching user images:', error);
-      } else {
-        setUserImages(data);
+        if (error) {
+          console.error('Error fetching user images:', error);
+          console.log(data)
+        } else {
+          setUserImages(data);
+        }
       }
     }
 
@@ -37,6 +41,7 @@ export default function Home() {
             width={500}
             height={300}
           />
+          <p>{image.image_url}</p>
         </div>
       ))}
     </main>
