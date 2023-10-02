@@ -7,9 +7,9 @@ import { useSession } from "next-auth/react";
 
 export default function Home() {
   const { data: session } = useSession()
-  const [userImages, setUserImages] = useState([]);
+  const [userImages, setUserImages] = useState<{ image_url: string }[]>([]);
   const userId = session?.user?.id
-  
+
   useEffect(() => {
     async function fetchUserImages() {
       const { data, error } = await supabase
