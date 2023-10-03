@@ -7,7 +7,7 @@ import { useSession } from "next-auth/react";
 
 export default function Home() {
   const { data: session } = useSession()
-  const [userImages, setUserImages] = useState<{ image_url: string }[]>([]);
+  const [userImages, setUserImages] = useState<{ url: string, title: string }[]>([]);
   const userId = session?.user?.id
 
   useEffect(() => {
@@ -16,7 +16,7 @@ export default function Home() {
         // ユーザーIDが存在する場合のみクエリを実行
         const { data, error } = await supabase
           .from('Image')
-          .select('url')
+          .select('url,title')
           .eq('userId', userId);
 
         if (error) {
@@ -35,12 +35,12 @@ export default function Home() {
       {userImages.map((image, index) => (
         <div key={index}>
           <Image
-            src={image.image_url}
+            src={image.url}
             alt={`User Image ${index}`}
             width={500}
             height={300}
           />
-          <p>{image.image_url}</p>
+          <p>{image.title}</p>
         </div>
       ))}
     </main>
