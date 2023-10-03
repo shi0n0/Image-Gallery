@@ -16,12 +16,11 @@ export default function Home() {
         // ユーザーIDが存在する場合のみクエリを実行
         const { data, error } = await supabase
           .from('Image')
-          .select('*')
+          .select('url')
           .eq('userId', userId);
 
         if (error) {
           console.error('Error fetching user images:', error);
-          console.log(data)
         } else {
           setUserImages(data);
         }
