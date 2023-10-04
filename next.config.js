@@ -10,7 +10,7 @@ module.exports = {
       'avatars.githubusercontent.com',
       'kotonohaworks.com',
       'cdn-common.skima.jp',
-      'snzxdohhjfctqauufnli.supabase.co'
+      'manobwjepjqodaznaott.supabase.co'
     ],
   },
 };
