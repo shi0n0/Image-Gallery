@@ -6,7 +6,7 @@ import Image from "next/image";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 
-export default function Card() {
+export default function ProfileCard() {
   const { data: session } = useSession();
   const [userImages, setUserImages] = useState<
     { url: string; title: string }[]
