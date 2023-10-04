@@ -1,10 +1,9 @@
 "use client";
 
-import ProfileCard from "./components/profileCard";
-import Profile from "./profile/page";
+import TopUserCard from "./components/topUserCard";
 
 export default function Home() {
   return (
-    <ProfileCard />
+    <TopUserCard />
   )
 }
