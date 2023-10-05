@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { FileUploader } from "react-drag-drop-files";
 import Image from "next/image";
 import Auth from "./auth";
 
