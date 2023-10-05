@@ -8,7 +8,7 @@ export default function Navbar() {
   const { data: session } = useSession()
 
   return (
-      <nav className="bg-white shadow-lg sticky top-0 z-10 font-sans">
+      <nav className="bg-white shadow-lg sticky top-0 z-50 font-sans">
         <div className="container mx-auto px-1">
           <div className="flex justify-between items-center py-4">
             <Link href={"/"} className="text-2xl font-bold">
