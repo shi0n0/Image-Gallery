@@ -3,12 +3,14 @@ import Link from "next/link";
 import Image from "next/image";
 import { signIn, signOut, useSession } from "next-auth/react";
 import ProfileCard from "../components/profileCard";
+import DragDrop from "../components/dragDrop";
 
 export default function Profile() {
   const { data: session } = useSession();
 
   return (
     <div>
+      <DragDrop />
       <div className="flex items-end">
         <Image
           src={
@@ -36,6 +38,7 @@ export default function Profile() {
           </button>
         </div>
       )}
+      
       <ProfileCard />
     </div>
   );
