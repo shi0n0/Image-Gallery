@@ -44,9 +44,9 @@ export default function TopUserCard() {
     fetchUserImages();
   }, []);
 
-  
+
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+    <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 p-10">
       {userImages.map((image, index) => {
         const matchingUser = userProps.find((user) => user.id === image.userId);
 
@@ -59,6 +59,7 @@ export default function TopUserCard() {
                   alt={`User Image ${index}`}
                   layout="fill"
                   objectFit="cover"
+                  quality={50}
                   className="transition duration-300 hover:scale-110"
                 />
               </div>

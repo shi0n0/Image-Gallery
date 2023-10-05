@@ -34,7 +34,7 @@ export default function ProfileCard() {
   }, [userId]);
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+    <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 p-10">
       {userImages.map((image, index) => (
         <div key={index} className="bg-white shadow-md">
           <Link
@@ -46,6 +46,7 @@ export default function ProfileCard() {
                 alt={`User Image ${index}`}
                 layout="fill"
                 objectFit="cover"
+                quality={50}
                 className="transition duration-300 hover:scale-110"
               />
             </div>
