@@ -16,6 +16,13 @@ model Image {
   user        User   @relation(fields: [userId], references: [id])
 }
 
+model Header {
+  id     String @id @default(dbgenerated("uuid_generate_v4()"))
+  url    String
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+}
+
 model Account {
   id                String  @id @default(cuid())
   userId            String
@@ -47,9 +54,9 @@ model User {
   name          String?
   email         String?   @unique
   emailVerified DateTime?
-  header        String?
   image         String?
   accounts      Account[]
+  headers       Header[]
   images        Image[]
   sessions      Session[]
 }

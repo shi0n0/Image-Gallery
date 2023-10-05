@@ -10,6 +10,15 @@ CREATE TABLE "Image" (
 );
 
 -- CreateTable
+CREATE TABLE "Header" (
+    "id" TEXT NOT NULL DEFAULT uuid_generate_v4(),
+    "url" TEXT NOT NULL,
+    "userId" TEXT NOT NULL,
+
+    CONSTRAINT "Header_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "Account" (
     "id" TEXT NOT NULL,
     "userId" TEXT NOT NULL,
@@ -43,7 +52,6 @@ CREATE TABLE "User" (
     "name" TEXT,
     "email" TEXT,
     "emailVerified" TIMESTAMP(3),
-    "header" TEXT,
     "image" TEXT,
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("id")
@@ -75,7 +83,13 @@ CREATE UNIQUE INDEX "VerificationToken_identifier_token_key" ON "VerificationTok
 ALTER TABLE "Image" ADD CONSTRAINT "Image_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
+ALTER TABLE "Header" ADD CONSTRAINT "Header_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
 ALTER TABLE "Account" ADD CONSTRAINT "Account_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Session" ADD CONSTRAINT "Session_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- Delete[header]column
+ALTER TABLE "User" DROP COLUMN "header";
