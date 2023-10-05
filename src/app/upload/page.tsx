@@ -5,7 +5,7 @@ import { useSession } from "next-auth/react";
 import { useRouter } from 'next/navigation'
 import { Router } from "next/router";
 
-export default function Profile() {
+export default function Upload() {
   const { data: session } = useSession()
   const router = useRouter()
 
