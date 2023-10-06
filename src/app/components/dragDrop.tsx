@@ -5,9 +5,7 @@ import Image from "next/image";
 import Auth from "./auth";
 import { useSession } from "next-auth/react";
 import supabase from "../utils/supabase";
-import router from "next/router";
 
-const fileTypes = ["JPG", "PNG", "GIF"];
 
 function DragDrop() {
   const { data: session } = useSession();
