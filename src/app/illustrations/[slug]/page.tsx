@@ -1,4 +1,8 @@
+import ImageDetail from '@/app/components/illustrations';
+
 export default function illustrations() {
 
-  return <h1>sdfghjk</h1>
+  return (
+  <ImageDetail />
+  )
 }
