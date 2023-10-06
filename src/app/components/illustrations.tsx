@@ -17,6 +17,10 @@ const ImageDetail = () => {
       description: string;
     }[]
   >([]);
+  const [userProps, setUserProps] = useState<
+    { id: string; image: string; name: string }[]
+  >([]);
+  const matchingUser = userProps.find((user) => user.id === imageData[0].userId);
 
   useEffect(() => {
     async function fetchUserImages() {
@@ -27,11 +31,20 @@ const ImageDetail = () => {
           .select("url,userId,title,description")
           .eq("id", pagePath);
 
+        const { data: userData, error: userError } = await supabase
+          .from("User")
+          .select("id,image,name");
+
         if (error) {
           console.error("Error fetching user images:", error);
         } else {
           setImageData(data);
-          console.log(imageData);
+        }
+
+        if (userError) {
+          console.error("Error fetching data from users:", userError);
+        } else {
+          setUserProps(userData);
         }
       }
     }
@@ -44,7 +57,7 @@ const ImageDetail = () => {
   }
 
   return (
-    <div className="p-20">
+    <div className="p-10">
       <div className="relative w-3/5 h-[70vh] bg-gray-300">
         <Image
           src={imageData.length > 0 ? imageData[0].url : "/ImageGallery-30.png"}
@@ -53,9 +66,26 @@ const ImageDetail = () => {
           fill
         />
       </div>
-      <div className="p-10">
-        <p className="text-5xl pb-1">{imageData.length > 0 ? imageData[0].title : "貴様！見ているなッ！"}</p>
-        <p className="text-2xl text-gray-800 px-1">{imageData.length > 0 ? imageData[0].description : "ロードローラーだぁああああああああ！！！！！！！"}</p>
+      <div className="p-5">
+        <p className="text-3xl font-bold mb-4">
+          {imageData.length > 0 ? imageData[0].title : "ダミータイトル"}
+        </p>
+        <p className="text-xl text-gray-800 mb-6">
+          {imageData.length > 0
+            ? imageData[0].description
+            : "ディスクリプションの文章がここに入ります"}
+        </p>
+        <div className="flex items-center space-x-4">
+          <div className="w-16 h-16 relative">
+            <Image
+              src={matchingUser?.image as string}
+              alt="ユーザーのアイコン"
+              className="rounded-full"
+              layout="fill"
+            />
+          </div>
+          <p className="text-lg font-semibold">{matchingUser?.name}</p>
+        </div>
       </div>
     </div>
   );
