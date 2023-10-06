@@ -9,7 +9,7 @@ import Link from "next/link";
 export default function TopUserCard() {
   const { data: session } = useSession();
   const [userImages, setUserImages] = useState<
-    { url: string; title: string; userId: string }[]
+    { id: string; url: string; title: string; userId: string }[]
   >([]);
   const [userProps, setUserProps] = useState<
     { id: string; image: string; name: string }[]
@@ -20,7 +20,7 @@ export default function TopUserCard() {
     async function fetchUserImages() {
         const { data:imagesData, error:imagesError } = await supabase
           .from("Image")
-          .select("url,title,userId")
+          .select("id,url,title,userId")
 
         const { data:usersData, error:usersError} = await supabase
           .from("User")
@@ -52,7 +52,7 @@ export default function TopUserCard() {
 
         return (
           <div key={index} className="bg-white shadow-md">
-            <Link href="/profile">
+            <Link href={`illustrations/${image.id}`}>
               <div className="relative rounded-none md:h-0 pb-[75%] overflow-hidden rounded-t-lg">
                 <Image
                   src={image.url}
