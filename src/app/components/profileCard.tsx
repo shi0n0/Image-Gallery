@@ -19,11 +19,11 @@ export default function ProfileCard() {
         // ユーザーIDが存在する場合のみクエリを実行
         const { data, error } = await supabase
           .from("Image")
-          .select("url,title")
+          .select("url, title")
           .eq("userId", userId);
 
         if (error) {
-          console.error("Error fetching user images:", error);
+          console.error("ユーザー画像の取得エラー:", error);
         } else {
           setUserImages(data);
         }
@@ -36,11 +36,9 @@ export default function ProfileCard() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 p-10">
       {userImages.map((image, index) => (
-        <div key={index} className="bg-white shadow-md">
-          <Link
-          href="/profile" //詳細ページ未作成のため仮に/profileとする
-          >
-            <div className="relative rounded-none md:h-0 pb-[75%] overflow-hidden rounded-t-lg">
+        <div key={index} className="bg-white shadow-md rounded-lg overflow-hidden">
+          <Link href="/profile"> {/* 仮に/profileとしています */}
+            <div className="relative pb-[75%]">
               <Image
                 src={image.url}
                 alt={`User Image ${index}`}
@@ -50,21 +48,22 @@ export default function ProfileCard() {
                 className="transition duration-300 hover:scale-110"
               />
             </div>
-            <div className="relative p-4">
-              <p className="text-3xl font-semibold">
-              {image.title}
-              </p>
-                <div className="flex justify-end items-center">
-                  <Image
-                  src={session?.user?.image || 'https://kotonohaworks.com/free-icons/wp-content/uploads/kkrn_icon_user_1.png'}
-                  alt="User Icon" 
+            <div className="p-4">
+              <p className="text-2xl font-semibold">{image.title}</p>
+              <div className="flex justify-end items-center mt-2">
+                <Image
+                  src={
+                    session?.user?.image ||
+                    "https://kotonohaworks.com/free-icons/wp-content/uploads/kkrn_icon_user_1.png"
+                  }
+                  alt="User Icon"
                   objectFit="cover"
-                  className="rounded-none md:rounded-full mr-1"
+                  className="rounded-full mr-2"
                   width={40}
                   height={40}
-                  />
-                  <p className="text-2xl">{session?.user?.name}</p>
-                </div>
+                />
+                <p className="text-xl">{session?.user?.name}</p>
+              </div>
             </div>
           </Link>
         </div>
