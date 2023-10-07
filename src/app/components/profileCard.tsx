@@ -9,7 +9,7 @@ import Link from "next/link";
 export default function ProfileCard() {
   const { data: session } = useSession();
   const [userImages, setUserImages] = useState<
-    { url: string; title: string }[]
+    { id: string; url: string; title: string }[]
   >([]);
   const userId = session?.user?.id;
 
@@ -19,7 +19,7 @@ export default function ProfileCard() {
         // ユーザーIDが存在する場合のみクエリを実行
         const { data, error } = await supabase
           .from("Image")
-          .select("url, title")
+          .select("id,url, title")
           .eq("userId", userId);
 
         if (error) {
@@ -37,7 +37,7 @@ export default function ProfileCard() {
     <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 p-10">
       {userImages.map((image, index) => (
         <div key={index} className="bg-white shadow-md rounded-lg overflow-hidden">
-          <Link href="/profile"> {/* 仮に/profileとしています */}
+          <Link href={`illustrations/${image.id}`}>
             <div className="relative pb-[75%]">
               <Image
                 src={image.url}
