@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import supabase from "../utils/supabase";
+import Link from "next/link";
 
 const ImageDetail = () => {
   const getPagePath = usePathname();
@@ -58,7 +59,7 @@ const ImageDetail = () => {
 
   return (
     <div className="p-10">
-      <div className="relative w-3/5 h-[70vh] bg-gray-300">
+      <div className="relative w-4/6 h-[60vh] bg-gray-300">
         <Image
           src={imageData.length > 0 ? imageData[0].url : "/ImageGallery-30.png"}
           alt="ユーザーが投稿した画像"
@@ -77,12 +78,14 @@ const ImageDetail = () => {
         </p>
         <div className="flex items-center space-x-4">
           <div className="w-16 h-16 relative">
-            <Image
-              src={matchingUser?.image as string}
-              alt="ユーザーのアイコン"
-              className="rounded-full"
-              layout="fill"
-            />
+            <Link href={`userprofile/${matchingUser?.id}`}>
+              <Image
+                src={matchingUser?.image as string}
+                alt="ユーザーのアイコン"
+                className="rounded-full"
+                layout="fill"
+              />
+            </Link>
           </div>
           <p className="text-lg font-semibold">{matchingUser?.name}</p>
         </div>
