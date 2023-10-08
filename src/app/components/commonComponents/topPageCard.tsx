@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import supabase from "../utils/supabase";
+import supabase from "../../utils/supabase";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
 import Link from "next/link";

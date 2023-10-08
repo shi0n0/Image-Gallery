@@ -4,15 +4,12 @@ import React, { ChangeEvent, useEffect, useState } from "react";
 import Image from "next/image";
 import Auth from "./auth";
 import { useSession } from "next-auth/react";
-import supabase from "../utils/supabase";
-
+import supabase from "../../utils/supabase";
 
 function DragDrop() {
   const { data: session } = useSession();
   const [header, setHeader] = useState<File | null>(null);
-  const [userHeaders, setUserHeaders] = useState<
-    { url: string }[]
-  >([]);
+  const [userHeaders, setUserHeaders] = useState<{ url: string }[]>([]);
   const userId = session?.user?.id;
 
   useEffect(() => {
@@ -52,19 +49,18 @@ function DragDrop() {
     const userId = session?.user?.id;
 
     // 画像のURLをDBに保存
-    const { error: databaseError } = await supabase
-      .from("Header")
-      .insert([
-        {
-          url: imageUrl,
-          userId: userId,
-        },
-      ]);
+    const { error: databaseError } = await supabase.from("Header").insert([
+      {
+        url: imageUrl,
+        userId: userId,
+      },
+    ]);
 
     if (databaseError) {
       console.error("データベースエラー:", databaseError.message);
     } else {
-      console.log("データベースにデータを挿入しました。");    }
+      console.log("データベースにデータを挿入しました。");
+    }
   };
 
   useEffect(() => {
@@ -80,7 +76,7 @@ function DragDrop() {
           console.error("Error fetching user images:", error);
         } else {
           setUserHeaders(data);
-          console.log(userHeaders)
+          console.log(userHeaders);
         }
       }
     }
@@ -91,7 +87,9 @@ function DragDrop() {
   return (
     <div className="relative w-full h-60 flex justify-center z-0">
       <Image
-        src={userHeaders.length > 0 ? userHeaders[0].url : "/ImageGallery-30.png"}
+        src={
+          userHeaders.length > 0 ? userHeaders[0].url : "/ImageGallery-30.png"
+        }
         alt="デフォルトヘッダー"
         objectFit="cover"
         className="opacity-50"

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import supabase from "../utils/supabase";
+import supabase from "../../utils/supabase";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
@@ -36,7 +36,10 @@ export default function ProfileCard() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 p-10">
       {userImages.map((image, index) => (
-        <div key={index} className="bg-white shadow-md rounded-lg overflow-hidden">
+        <div
+          key={index}
+          className="bg-white shadow-md rounded-lg overflow-hidden"
+        >
           <Link href={`illustrations/${image.id}`}>
             <div className="relative pb-[75%]">
               <Image

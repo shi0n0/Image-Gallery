@@ -4,7 +4,7 @@ import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import supabase from "../utils/supabase";
+import supabase from "../../utils/supabase";
 import Link from "next/link";
 
 const ImageDetail = () => {
@@ -21,7 +21,9 @@ const ImageDetail = () => {
   const [userProps, setUserProps] = useState<
     { id: string; image: string; name: string }[]
   >([]);
-  const matchingUser = userProps.find((user) => user.id === imageData[0].userId);
+  const matchingUser = userProps.find(
+    (user) => user.id === imageData[0].userId
+  );
 
   useEffect(() => {
     async function fetchUserImages() {
