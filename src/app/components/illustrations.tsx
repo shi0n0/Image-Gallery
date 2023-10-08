@@ -78,7 +78,7 @@ const ImageDetail = () => {
         </p>
         <div className="flex items-center space-x-4">
           <div className="w-16 h-16 relative">
-            <Link href={`userprofile/${matchingUser?.id}`}>
+            <Link href={`/userprofile/${matchingUser?.id}`}>
               <Image
                 src={matchingUser?.image as string}
                 alt="ユーザーのアイコン"
