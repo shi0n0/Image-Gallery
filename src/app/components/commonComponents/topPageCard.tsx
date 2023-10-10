@@ -74,7 +74,7 @@ export default function TopUserCard() {
                       width={40}
                       height={40}
                     />
-                    <p className="text-xl">{matchingUser?.name || "Unknown"}</p>
+                    <p className="text-xl text-gray-500 duration-100 hover:text-gray-900">{matchingUser?.name || "Unknown"}</p>
                   </div>
                 </Link>
               </div>
