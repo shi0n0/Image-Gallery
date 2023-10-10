@@ -61,20 +61,22 @@ export default function TopUserCard() {
               </div>
               <div className="p-4">
                 <p className="text-2xl font-semibold">{image.title}</p>
-                <div className="flex justify-end items-center mt-2">
-                  <Image
-                    src={
-                      matchingUser?.image ||
-                      "https://kotonohaworks.com/free-icons/wp-content/uploads/kkrn_icon_user_1.png"
-                    }
-                    alt="ユーザーアイコン"
-                    objectFit="cover"
-                    className="rounded-full mr-2"
-                    width={40}
-                    height={40}
-                  />
-                  <p className="text-xl">{matchingUser?.name || "Unknown"}</p>
-                </div>
+                <Link href={`/userprofile/${matchingUser?.id}`}>
+                  <div className="flex justify-end items-center mt-2">
+                    <Image
+                      src={
+                        matchingUser?.image ||
+                        "https://kotonohaworks.com/free-icons/wp-content/uploads/kkrn_icon_user_1.png"
+                      }
+                      alt="ユーザーアイコン"
+                      objectFit="cover"
+                      className="rounded-full mr-2"
+                      width={40}
+                      height={40}
+                    />
+                    <p className="text-xl">{matchingUser?.name || "Unknown"}</p>
+                  </div>
+                </Link>
               </div>
             </Link>
           </div>
