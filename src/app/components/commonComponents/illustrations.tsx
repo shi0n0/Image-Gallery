@@ -56,12 +56,12 @@ const ImageDetail = () => {
   }, [pagePath]);
 
   if (!imageData) {
-    return <div>Loading now...</div>;
+    return <div className="p-10">Loading now...</div>;
   }
 
   return (
     <div className="p-10">
-      <div className="relative w-4/6 h-[60vh] bg-gray-300">
+      <div className="relative w-4/6 h-[60vh] bg-gray-300 rounded-lg overflow-hidden">
         <Image
           src={imageData.length > 0 ? imageData[0].url : "/ImageGallery-30.png"}
           alt="ユーザーが投稿した画像"
@@ -79,20 +79,21 @@ const ImageDetail = () => {
             : "ディスクリプションの文章がここに入ります"}
         </p>
         <div className="flex items-center space-x-4">
-          <div className="w-16 h-16 relative">
-            <Link href={`/userprofile/${matchingUser?.id}`}>
+          <Link href={`/userprofile/${matchingUser?.id}`} className="flex items-center p-2 hover:bg-gray-800 hover:bg-opacity-10 hover:rounded-lg">
+            <div className="w-16 h-16 relative rounded-full overflow-hidden">
               <Image
                 src={matchingUser?.image as string}
                 alt="ユーザーのアイコン"
-                className="rounded-full"
+                className="object-cover w-full h-full"
                 layout="fill"
               />
-            </Link>
-          </div>
-          <p className="text-lg font-semibold">{matchingUser?.name}</p>
+            </div>
+            <p className="text-lg font-semibold px-2">{matchingUser?.name}</p>
+          </Link>
         </div>
       </div>
     </div>
   );
 };
+
 export default ImageDetail;

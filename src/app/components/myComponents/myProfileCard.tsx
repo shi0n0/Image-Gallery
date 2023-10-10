@@ -9,7 +9,7 @@ import Link from "next/link";
 export default function ProfileCard() {
   const { data: session } = useSession();
   const [userImages, setUserImages] = useState<
-    { id: string; url: string; title: string }[]
+    { id: string; url: string; title: string; userId: string }[]
   >([]);
   const userId = session?.user?.id;
 
@@ -19,7 +19,7 @@ export default function ProfileCard() {
         // ユーザーIDが存在する場合のみクエリを実行
         const { data, error } = await supabase
           .from("Image")
-          .select("id,url, title")
+          .select("id,url, title, userId")
           .eq("userId", userId);
 
         if (error) {
@@ -53,20 +53,22 @@ export default function ProfileCard() {
             </div>
             <div className="p-4">
               <p className="text-2xl font-semibold">{image.title}</p>
-              <div className="flex justify-end items-center mt-2">
-                <Image
-                  src={
-                    session?.user?.image ||
-                    "https://kotonohaworks.com/free-icons/wp-content/uploads/kkrn_icon_user_1.png"
-                  }
-                  alt="User Icon"
-                  objectFit="cover"
-                  className="rounded-full mr-2"
-                  width={40}
-                  height={40}
-                />
-                <p className="text-xl">{session?.user?.name}</p>
-              </div>
+              <Link href={`/userprofile/${image.userId}`}>
+                <div className="flex justify-end items-center mt-2">
+                  <Image
+                    src={
+                      session?.user?.image ||
+                      "https://kotonohaworks.com/free-icons/wp-content/uploads/kkrn_icon_user_1.png"
+                    }
+                    alt="User Icon"
+                    objectFit="cover"
+                    className="rounded-full mr-2"
+                    width={40}
+                    height={40}
+                  />
+                  <p className="text-xl">{session?.user?.name}</p>
+                </div>
+              </Link>
             </div>
           </Link>
         </div>

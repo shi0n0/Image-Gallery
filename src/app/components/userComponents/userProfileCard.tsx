@@ -72,17 +72,19 @@ export default function UserProfileCard() {
               </div>
               <div className="p-4">
                 <p className="text-2xl font-semibold">{image.title}</p>
-                <div className="flex justify-end items-center mt-2">
-                  <Image
-                    src={userAccount?.image || "デフォルトのアイコンURL"}
-                    alt="User Icon"
-                    objectFit="cover"
-                    className="rounded-full mr-2"
-                    width={40}
-                    height={40}
-                  />
-                  <p className="text-xl">{userAccount?.name || "Unknown"}</p>
-                </div>
+                <Link href={`/userprofile/${userAccount?.id}`}>
+                  <div className="flex justify-end items-center mt-2">
+                    <Image
+                      src={userAccount?.image || "デフォルトのアイコンURL"}
+                      alt="User Icon"
+                      objectFit="cover"
+                      className="rounded-full mr-2"
+                      width={40}
+                      height={40}
+                    />
+                    <p className="text-xl">{userAccount?.name || "Unknown"}</p>
+                  </div>
+                </Link>
               </div>
             </Link>
           </div>

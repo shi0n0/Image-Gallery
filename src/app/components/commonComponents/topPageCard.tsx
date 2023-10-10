@@ -1,5 +1,3 @@
-"use client";
-
 import { useEffect, useState } from "react";
 import supabase from "../../utils/supabase";
 import Image from "next/image";
@@ -47,7 +45,7 @@ export default function TopUserCard() {
         const matchingUser = userProps.find((user) => user.id === image.userId);
 
         return (
-          <div key={index} className="bg-white shadow-md rounded-lg overflow-hidden">
+          <div key={index} className="bg-white shadow-md rounded-lg overflow-hidden transition-transform transform hover:scale-105 hover:shadow-lg">
             <Link href={`illustrations/${image.id}`}>
               <div className="relative pb-[75%]">
                 <Image
@@ -56,7 +54,6 @@ export default function TopUserCard() {
                   layout="fill"
                   objectFit="cover"
                   quality={50}
-                  className="transition duration-300 hover:scale-110"
                 />
               </div>
               <div className="p-4">
@@ -74,7 +71,9 @@ export default function TopUserCard() {
                       width={40}
                       height={40}
                     />
-                    <p className="text-xl text-gray-500 duration-100 hover:text-gray-900">{matchingUser?.name || "Unknown"}</p>
+                    <p className="text-xl text-gray-700 duration-100 hover:text-gray-900">
+                      {matchingUser?.name || "Unknown"}
+                    </p>
                   </div>
                 </Link>
               </div>
