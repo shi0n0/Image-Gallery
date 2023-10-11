@@ -66,7 +66,7 @@ const ImageDetail = () => {
   return (
     <div className="p-10 flex">
       <div className="w-4/6 pr-5">
-        <div className="relative h-[60vh] bg-gray-300 rounded-lg overflow-hidden">
+        <div className="relative h-[60vh] bg-gray-200 rounded-lg overflow-hidden">
           <Image
             src={image.url || "/ImageGallery-30.png"}
             alt="ユーザーが投稿した画像"
@@ -76,7 +76,7 @@ const ImageDetail = () => {
         </div>
       </div>
 
-      <div className="w-2/6">
+      <div className="w-2/6 bg-white rounded-lg">
         <div className="p-5">
           <p className="text-3xl font-bold mb-4">{image.title || "ダミータイトル"}</p>
           <p className="text-xl text-gray-800 mb-6">
