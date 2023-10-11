@@ -10,25 +10,26 @@ import Link from "next/link";
 const ImageDetail = () => {
   const getPagePath = usePathname();
   const pagePath = getPagePath.replace("/illustrations/", "");
-  const [imageData, setImageData] = useState<
+  const [imageData, setImageData] = useState([
     {
-      url: string;
-      userId: string;
-      title: string;
-      description: string;
-    }[]
-  >([]);
-  const [userProps, setUserProps] = useState<
-    { id: string; image: string; name: string }[]
-  >([]);
-  const matchingUser = userProps.find(
-    (user) => user.id === imageData[0].userId
-  );
+      url: "",
+      userId: "",
+      title: "",
+      description: "",
+    },
+  ]);
+  const [userProps, setUserProps] = useState([
+    {
+      id: "",
+      image: "",
+      name: "",
+    },
+  ]);
+  const matchingUser = userProps.find((user) => user.id === imageData[0]?.userId);
 
   useEffect(() => {
     async function fetchUserImages() {
       if (pagePath) {
-        // pagePathが存在する場合のみクエリを実行
         const { data, error } = await supabase
           .from("Image")
           .select("url,userId,title,description")
@@ -39,13 +40,13 @@ const ImageDetail = () => {
           .select("id,image,name");
 
         if (error) {
-          console.error("Error fetching user images:", error);
+          console.error("画像の取得にエラーが発生しました:", error);
         } else {
           setImageData(data);
         }
 
         if (userError) {
-          console.error("Error fetching data from users:", userError);
+          console.error("ユーザーデータの取得にエラーが発生しました:", userError);
         } else {
           setUserProps(userData);
         }
@@ -55,41 +56,48 @@ const ImageDetail = () => {
     fetchUserImages();
   }, [pagePath]);
 
-  if (!imageData) {
-    return <div className="p-10">Loading now...</div>;
+  if (!imageData || imageData.length === 0) {
+    return <div className="p-10">読み込み中...</div>;
   }
 
+  const image = imageData[0];
+  const user = matchingUser;
+
   return (
-    <div className="p-10">
-      <div className="relative w-4/6 h-[60vh] bg-gray-300 rounded-lg overflow-hidden">
-        <Image
-          src={imageData.length > 0 ? imageData[0].url : "/ImageGallery-30.png"}
-          alt="ユーザーが投稿した画像"
-          className="object-contain w-full h-full"
-          fill
-        />
+    <div className="p-10 flex">
+      <div className="w-4/6 pr-5">
+        <div className="relative h-[60vh] bg-gray-300 rounded-lg overflow-hidden">
+          <Image
+            src={image.url || "/ImageGallery-30.png"}
+            alt="ユーザーが投稿した画像"
+            className="object-contain w-full h-full"
+            fill
+          />
+        </div>
       </div>
-      <div className="p-5">
-        <p className="text-3xl font-bold mb-4">
-          {imageData.length > 0 ? imageData[0].title : "ダミータイトル"}
-        </p>
-        <p className="text-xl text-gray-800 mb-6">
-          {imageData.length > 0
-            ? imageData[0].description
-            : "ディスクリプションの文章がここに入ります"}
-        </p>
-        <div className="flex items-center space-x-4">
-          <Link href={`/userprofile/${matchingUser?.id}`} className="flex items-center p-2 hover:bg-gray-800 hover:bg-opacity-10 hover:rounded-lg">
-            <div className="w-16 h-16 relative rounded-full overflow-hidden">
-              <Image
-                src={matchingUser?.image as string}
-                alt="ユーザーのアイコン"
-                className="object-cover w-full h-full"
-                layout="fill"
-              />
+
+      <div className="w-2/6">
+        <div className="p-5">
+          <p className="text-3xl font-bold mb-4">{image.title || "ダミータイトル"}</p>
+          <p className="text-xl text-gray-800 mb-6">
+            {image.description || "ディスクリプションの文章がここに入ります"}
+          </p>
+
+          {user && (
+            <div className="flex items-center space-x-4">
+              <Link href={`/userprofile/${user.id}`} className="flex items-center p-2 hover:bg-gray-800 hover:bg-opacity-10 hover:rounded-lg">
+                <div className="w-16 h-16 relative rounded-full overflow-hidden">
+                  <Image
+                    src={user.image}
+                    alt="ユーザーのアイコン"
+                    className="object-cover w-full h-full"
+                    layout="fill"
+                  />
+                </div>
+                <p className="text-lg font-semibold px-2">{user.name}</p>
+              </Link>
             </div>
-            <p className="text-lg font-semibold px-2">{matchingUser?.name}</p>
-          </Link>
+          )}
         </div>
       </div>
     </div>
