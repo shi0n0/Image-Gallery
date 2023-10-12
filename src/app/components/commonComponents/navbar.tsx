@@ -1,56 +1,65 @@
 "use client"
 
-import { signIn, signOut, useSession } from 'next-auth/react'
-import Image from 'next/image'
-import Link from 'next/link'
+import { useSession } from 'next-auth/react';
+import Image from 'next/image';
+import Link from 'next/link';
+
+interface NavLinkProps {
+  href: string;
+  text: string;
+}
+
+interface UserLinkProps {
+  href: string;
+  src: string;
+}
 
 export default function Navbar() {
-  const { data: session } = useSession()
+  const { data: session } = useSession();
+  const userImage = session?.user?.image || 'https://kotonohaworks.com/free-icons/wp-content/uploads/kkrn_icon_user_1.png';
 
   return (
-      <nav className="bg-white shadow-lg sticky top-0 z-50 font-sans">
-        <div className="container mx-auto px-1">
-          <div className="flex justify-between items-center py-4">
-            <Link href={"/"} className="text-2xl font-bold">
+    <nav className="bg-white shadow-lg sticky top-0 z-50 font-sans">
+      <div className="container mx-auto px-4">
+        <div className="flex justify-between items-center py-4">
+          <Link href={"/"} passHref>
+            <p className="text-2xl font-bold">
               ImageGallery
-            </Link>
-            <div className="flex items-center space-x-4">
-              <Link href={"/"} className='text-gray-600 hover:text-gray-800 px-4 py-2'>
-                ホーム
-              </Link>
-              <Link href={"/upload"} className="text-gray-600 hover:text-gray-800 px-4 py-2">
-                投稿する
-              </Link>
-              <a href="settings" className="text-gray-600 hover:text-gray-800 px-4 py-2">設定</a>
-              {session && (
-                <div className="relative">
-                  <Link href={"/myprofile"}>
-                    <Image
-                      src={session?.user?.image || 'https://kotonohaworks.com/free-icons/wp-content/uploads/kkrn_icon_user_1.png'}
-                      alt="ユーザーアイコン"
-                      width={40}
-                      height={40}
-                      className="rounded-full transition duration-300 transform hover:scale-110"
-                    />
-                  </Link>
-                </div>
-              )}
-              {!session && (
-                <div className="relative">
-                  <Link href={"/myprofile"}>
-                    <Image
-                      src={'https://kotonohaworks.com/free-icons/wp-content/uploads/kkrn_icon_user_1.png'}
-                      alt="ユーザーアイコン"
-                      width={40}
-                      height={40}
-                      className="rounded-full transition duration-300 transform hover:scale-110"
-                    />
-                  </Link>
-                </div>
-              )}
-            </div>
+            </p>
+          </Link>
+          <div className="flex items-center space-x-4">
+            <NavLink href={"/"} text="ホーム" />
+            <NavLink href={"/upload"} text="投稿する" />
+            <NavLink href="/settings" text="設定" />
+            {session && <UserLink href="/myprofile" src={userImage} />}
+            {!session && <UserLink href="/myprofile" src={userImage} />}
           </div>
         </div>
-      </nav>
-  )
+      </div>
+    </nav>
+  );
+}
+
+function NavLink({ href, text }: NavLinkProps) {
+  return (
+    <Link href={href} passHref>
+      <p className="text-gray-600 hover:text-gray-800 px-4 py-2">{text}</p>
+    </Link>
+  );
+}
+
+function UserLink({ href, src }: UserLinkProps) {
+  return (
+    <Link href={href} passHref>
+      <p className="relative">
+        <Image
+          src={src}
+          alt="ユーザーアイコン"
+          width={40}
+          height={40}
+          className="rounded-full transition duration-300 transform hover:scale-110"
+        />
+      </p>
+    </Link>
+  );
 }
