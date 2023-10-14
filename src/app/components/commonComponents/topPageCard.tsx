@@ -65,6 +65,7 @@ export default function TopUserCard() {
                   </span>
                 </div>
               </div>
+            </Link>
 
               <div className="mt-4">
                 <h2 className="text-xl font-semibold text-gray-800">
@@ -87,7 +88,7 @@ export default function TopUserCard() {
                       {matchingUser?.name || "Unknown"}
                     </p>
                   </div>
-
+                </Link>
                   <div className="flex items-center text-gray-600 text-sm mt-2">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -122,9 +123,7 @@ export default function TopUserCard() {
                     </svg>
                     <span>ねこ / 自然 / 動物</span>
                   </div>
-                </Link>
               </div>
-            </Link>
           </div>
         );
       })}
