@@ -34,11 +34,11 @@ export default function ProfileCard() {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-10">
       {userImages.map((image, index) => (
+       <Link href={`illustrations/${image.id}`}>
         <div
           key={index}
-          className="bg-white rounded-lg shadow-md p-4 duration-150 hover:-translate-y-1.5"
+          className="bg-white rounded-lg shadow-md p-4 duration-150 hover:-translate-y-1.5 active:bg-gray-100  active:duration-0"
         >
-          <Link href={`illustrations/${image.id}`}>
             <div className="relative w-full h-48">
               <Image
                 src={image.url}
@@ -55,9 +55,6 @@ export default function ProfileCard() {
               </div>
             </div>
 
-            
-
-          </Link>
           <div className="mt-4">
             <h2 className="text-xl font-semibold text-gray-800">
               {image.title}
@@ -117,7 +114,8 @@ export default function ProfileCard() {
                   </div>
           </div>
         </div>
-      ))}
+      </Link>
+    ))}
     </div>
   );
 }

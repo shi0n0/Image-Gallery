@@ -45,18 +45,19 @@ export default function TopUserCard() {
         const matchingUser = userProps.find((user) => user.id === image.userId);
 
         return (
+          <Link href={`illustrations/${image.id}`}>
           <div
             key={index}
-            className="bg-white rounded-lg shadow-md p-4 duration-150 hover:-translate-y-1.5 "
+            className="bg-white rounded-lg shadow-md p-4 duration-150 hover:-translate-y-1.5 active:bg-gray-100  active:duration-0"
           >
-            <Link href={`illustrations/${image.id}`}>
-              <div className="relative w-full h-48">
+
+              <div className="relative w-full h-48 ">
                 <Image
                   src={image.url}
                   alt={`ユーザー画像 ${index}`}
                   objectFit="cover"
                   quality={10}
-                  className="w-full h-full rounded-lg"
+                  className="w-full h-full rounded-lg hover:opacity-95 transition-opacity"
                   fill
                 />
                 <div className="absolute top-2 right-2">
@@ -65,7 +66,6 @@ export default function TopUserCard() {
                   </span>
                 </div>
               </div>
-            </Link>
 
               <div className="mt-4">
                 <h2 className="text-xl font-semibold text-gray-800">
@@ -125,6 +125,7 @@ export default function TopUserCard() {
                   </div>
               </div>
           </div>
+        </Link>
         );
       })}
     </div>
