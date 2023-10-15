@@ -3,7 +3,7 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import ProfileCard from "../../components/myComponents/myProfileCard";
 import DragDrop from "../../components/myComponents/myHeader";
 
-export default function MyProfile() {
+export default function Works() {
   const { data: session } = useSession();
 
   return (
