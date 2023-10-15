@@ -6,7 +6,7 @@ import Auth from "./auth";
 import { useSession } from "next-auth/react";
 import supabase from "../../utils/supabase";
 
-function DragDrop() {
+function MyHeader() {
   const { data: session } = useSession();
   const [header, setHeader] = useState<File | null>(null);
   const [userHeaders, setUserHeaders] = useState<{ url: string }[]>([]);
@@ -116,4 +116,4 @@ function DragDrop() {
   );
 }
 
-export default DragDrop;
+export default MyHeader;
