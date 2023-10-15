@@ -1,6 +1,11 @@
+import MyHeader from "../components/myComponents/myHeader"
+
 export default function Home() {
 
   return(
-    <div>ホーム</div>
+    <>
+      <MyHeader />
+      <div>ホーム</div>
+    </>
   )
 }
