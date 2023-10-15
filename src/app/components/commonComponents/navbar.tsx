@@ -1,8 +1,8 @@
-"use client"
+"use client";
 
-import { useSession } from 'next-auth/react';
-import Image from 'next/image';
-import Link from 'next/link';
+import { useSession } from "next-auth/react";
+import Image from "next/image";
+import Link from "next/link";
 
 interface NavLinkProps {
   href: string;
@@ -16,23 +16,23 @@ interface UserLinkProps {
 
 export default function Navbar() {
   const { data: session } = useSession();
-  const userImage = session?.user?.image || 'https://kotonohaworks.com/free-icons/wp-content/uploads/kkrn_icon_user_1.png';
+  const userImage =
+    session?.user?.image ||
+    "https://kotonohaworks.com/free-icons/wp-content/uploads/kkrn_icon_user_1.png";
 
   return (
     <nav className="bg-white shadow-lg sticky top-0 z-50 font-sans">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center py-4">
           <Link href={"/"} passHref>
-            <p className="text-2xl font-bold">
-              ImageGallery
-            </p>
+            <p className="text-2xl font-bold">ImageGallery</p>
           </Link>
           <div className="flex items-center space-x-4">
             <NavLink href={"/"} text="ホーム" />
             <NavLink href={"/upload"} text="投稿する" />
             <NavLink href="/settings" text="設定" />
-            {session && <UserLink href="/myprofile" src={userImage} />}
-            {!session && <UserLink href="/myprofile" src={userImage} />}
+            {session && <UserLink href="/dashboard" src={userImage} />}
+            {!session && <UserLink href="/dashboard" src={userImage} />}
           </div>
         </div>
       </div>
