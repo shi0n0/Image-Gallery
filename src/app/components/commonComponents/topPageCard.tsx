@@ -6,7 +6,6 @@ import Link from "next/link";
 import PaddingContainer from "./paddingCotainer";
 
 export default function TopUserCard() {
-  const { data: session } = useSession();
   const [userImages, setUserImages] = useState<
     { id: string; url: string; title: string; userId: string }[]
   >([]);
