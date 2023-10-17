@@ -3,6 +3,7 @@ import supabase from "../../utils/supabase";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
+import PaddingContainer from "./paddingCotainer";
 
 export default function TopUserCard() {
   const { data: session } = useSession();
@@ -40,55 +41,57 @@ export default function TopUserCard() {
   }, []);
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-10">
-      {userImages.map((image, index) => {
-        const matchingUser = userProps.find((user) => user.id === image.userId);
+    <PaddingContainer>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        {userImages.map((image) => {
+          const matchingUser = userProps.find(
+            (user) => user.id === image.userId
+          );
 
-        return (
-          <Link href={`illustrations/${image.id}`}>
-          <div
-            key={index}
-            className="bg-white rounded-lg shadow-md p-4 duration-150 hover:-translate-y-1.5 active:bg-gray-100  active:duration-0"
-          >
-
-              <div className="relative w-full h-48 ">
-                <Image
-                  src={image.url}
-                  alt={`ユーザー画像 ${index}`}
-                  objectFit="cover"
-                  quality={10}
-                  className="w-full h-full rounded-lg hover:opacity-95 transition-opacity"
-                  fill
-                />
-                <div className="absolute top-2 right-2">
-                  <span className="bg-red-500 text-white py-1 px-2 rounded-full text-xs">
-                    New
-                  </span>
-                </div>
-              </div>
-
-              <div className="mt-4">
-                <h2 className="text-xl font-semibold text-gray-800">
-                  {image.title}
-                </h2>
-                <Link href={`/userprofile/${matchingUser?.id}`}>
-                  <div className="flex items-center mt-2">
-                    <Image
-                      src={
-                        matchingUser?.image ||
-                        "https://kotonohaworks.com/free-icons/wp-content/uploads/kkrn_icon_user_1.png"
-                      }
-                      alt="ユーザーアイコン"
-                      objectFit="cover"
-                      className="w-8 h-8 rounded-full"
-                      width={40}
-                      height={40}
-                    />
-                    <p className="text-gray-600 ml-2">
-                      {matchingUser?.name || "Unknown"}
-                    </p>
+          return (
+            <Link href={`illustrations/${image.id}`}>
+              <div
+                key={image.id}
+                className="bg-white rounded-lg shadow-md p-4 duration-150 hover:-translate-y-1.5 active:bg-gray-100  active:duration-0"
+              >
+                <div className="relative w-full h-48 ">
+                  <Image
+                    src={image.url}
+                    alt={`ユーザー画像 | ${image.id}`}
+                    objectFit="cover"
+                    quality={10}
+                    className="w-full h-full rounded-lg hover:opacity-95 transition-opacity"
+                    fill
+                  />
+                  <div className="absolute top-2 right-2">
+                    <span className="bg-red-500 text-white py-1 px-2 rounded-full text-xs">
+                      New
+                    </span>
                   </div>
-                </Link>
+                </div>
+
+                <div className="mt-4">
+                  <h2 className="text-xl font-semibold text-gray-800">
+                    {image.title}
+                  </h2>
+                  <Link href={`/userprofile/${matchingUser?.id}`}>
+                    <div className="flex items-center mt-2">
+                      <Image
+                        src={
+                          matchingUser?.image ||
+                          "https://kotonohaworks.com/free-icons/wp-content/uploads/kkrn_icon_user_1.png"
+                        }
+                        alt="ユーザーアイコン"
+                        objectFit="cover"
+                        className="w-8 h-8 rounded-full"
+                        width={40}
+                        height={40}
+                      />
+                      <p className="text-gray-600 ml-2">
+                        {matchingUser?.name || "Unknown"}
+                      </p>
+                    </div>
+                  </Link>
                   <div className="flex items-center text-gray-600 text-sm mt-2">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -123,11 +126,12 @@ export default function TopUserCard() {
                     </svg>
                     <span>ねこ / 自然 / 動物</span>
                   </div>
+                </div>
               </div>
-          </div>
-        </Link>
-        );
-      })}
-    </div>
+            </Link>
+          );
+        })}
+      </div>
+    </PaddingContainer>
   );
 }
