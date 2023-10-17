@@ -48,9 +48,8 @@ export default function TopUserCard() {
           );
 
           return (
-            <Link href={`illustrations/${image.id}`}>
+            <Link key={image.id} href={`illustrations/${image.id}`}>
               <div
-                key={image.id}
                 className="bg-white rounded-lg shadow-md p-4 duration-150 hover:-translate-y-1.5 active:bg-gray-100  active:duration-0"
               >
                 <div className="relative w-full h-48 ">
