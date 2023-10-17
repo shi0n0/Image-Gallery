@@ -1,14 +1,14 @@
 "use client";
 import { signIn, signOut, useSession } from "next-auth/react";
 import ProfileCard from "../../components/myComponents/myProfileCard";
-import DragDrop from "../../components/myComponents/myHeader";
+import MyHeader from "../../components/myComponents/myHeader";
 
 export default function Works() {
   const { data: session } = useSession();
 
   return (
     <div>
-      <DragDrop />
+      <MyHeader />
       <ProfileCard />
     </div>
   );
