@@ -3,6 +3,7 @@ import supabase from "../../utils/supabase";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
+import TabSwitch from "./tabSwitch";
 
 export default function ProfileCard() {
   const { data: session } = useSession();
@@ -32,7 +33,10 @@ export default function ProfileCard() {
   }, [userId]);
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-10">
+  <div className="p-10">
+    <p className="text-2xl mb-5 font-semibold text-gray-700">ダッシュボード</p>
+    <TabSwitch></TabSwitch>
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
       {userImages.map((image, index) => (
       <Link href={`/illustrations/${image.id}`}>
         <div
@@ -117,5 +121,6 @@ export default function ProfileCard() {
       </Link>
     ))}
     </div>
+  </div>
   );
 }
