@@ -50,10 +50,8 @@ export default function TopUserCard() {
 
           return (
             <Link key={image.id} href={`illustrations/${image.id}`}>
-              <div
-                className="bg-white rounded-lg shadow-md p-4 duration-150 hover:-translate-y-1.5 active:bg-gray-100  active:duration-0"
-              >
-                <div className="relative w-full h-48 ">
+              <div className="bg-white rounded-lg shadow-md p-4 duration-150 hover:-translate-y-1.5 active:bg-gray-100  active:duration-0">
+                <div className="relative w-full h-0 pb-[100%]">
                   <Image
                     src={image.url}
                     alt={`ユーザー画像 | ${image.id}`}
@@ -69,12 +67,13 @@ export default function TopUserCard() {
                   </div>
                 </div>
 
-                <div className="mt-4">
-                  <h2 className="text-xl font-semibold text-gray-800">
+                <div className="mt-1">
+                  <h2 className="text-lg font-semibold text-gray-800">
                     {image.title}
                   </h2>
+
                   <Link href={`/userprofile/${matchingUser?.id}`}>
-                    <div className="flex items-center mt-2">
+                    <div className="flex items-center">
                       <Image
                         src={
                           matchingUser?.image ||
@@ -82,49 +81,15 @@ export default function TopUserCard() {
                         }
                         alt="ユーザーアイコン"
                         objectFit="cover"
-                        className="w-8 h-8 rounded-full"
-                        width={40}
-                        height={40}
+                        className="w-6 h-6 rounded-full"
+                        width={20}
+                        height={20}
                       />
-                      <p className="text-gray-600 ml-2">
+                      <p className="text-gray-600 text-sm ml-1">
                         {matchingUser?.name || "Unknown"}
                       </p>
                     </div>
                   </Link>
-                  <div className="flex items-center text-gray-600 text-sm mt-2">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-4 w-4 mr-1"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-                      />
-                    </svg>
-                    <span>2023/10/14</span>
-                  </div>
-                  <div className="flex items-center text-gray-600 text-sm mt-2">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-4 w-4 mr-1"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M4 6h16M4 10h16M4 14h16M4 18h16"
-                      />
-                    </svg>
-                    <span>ねこ / 自然 / 動物</span>
-                  </div>
                 </div>
               </div>
             </Link>
