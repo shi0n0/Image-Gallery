@@ -85,7 +85,7 @@ export default function TopUserCard() {
                         width={20}
                         height={20}
                       />
-                      <p className="text-gray-600 text-sm ml-1">
+                      <p className="text-gray-600 text-sm ml-1 hover:text-black">
                         {matchingUser?.name || "Unknown"}
                       </p>
                     </div>

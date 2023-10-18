@@ -75,12 +75,12 @@ export default function UserProfileCard() {
                   </div>
                 </div>
 
-                <div className="mt-4">
-                  <h2 className="text-xl font-semibold text-gray-800">
+                <div className="mt-1">
+                  <h2 className="text-lg font-semibold text-gray-800">
                     {image.title}
                   </h2>
                   <Link href={`/userprofile/${userAccount?.id}`}>
-                    <div className="flex items-center mt-2">
+                    <div className="flex items-center">
                       <Image
                         src={
                           userAccount?.image ||
@@ -88,11 +88,11 @@ export default function UserProfileCard() {
                         }
                         alt="ユーザーアイコン"
                         objectFit="cover"
-                        className="w-8 h-8 rounded-full"
-                        width={40}
-                        height={40}
+                        className="w-6 h-6 rounded-full"
+                        width={20}
+                        height={20}
                       />
-                      <p className="text-gray-600 ml-2">
+                      <p className="text-gray-600 text-sm ml-1 hover:text-black">
                         {userAccount?.name || "Unknown"}
                       </p>
                     </div>
