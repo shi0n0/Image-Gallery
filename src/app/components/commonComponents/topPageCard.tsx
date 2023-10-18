@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import PaddingContainer from "./paddingCotainer";
+import GridContainer from "./gridContainer";
 
 export default function TopUserCard() {
   const [userImages, setUserImages] = useState<
@@ -41,7 +42,7 @@ export default function TopUserCard() {
 
   return (
     <PaddingContainer>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <GridContainer>
         {userImages.map((image) => {
           const matchingUser = userProps.find(
             (user) => user.id === image.userId
@@ -129,7 +130,7 @@ export default function TopUserCard() {
             </Link>
           );
         })}
-      </div>
+      </GridContainer>
     </PaddingContainer>
   );
 }

@@ -7,6 +7,7 @@ import { useSession } from "next-auth/react";
 import Link from "next/link";
 import TabSwitch from "./tabSwitch";
 import PaddingContainer from "../commonComponents/paddingCotainer";
+import GridContainer from "../commonComponents/gridContainer";
 
 export default function ProfileCard() {
   const { data: session } = useSession();
@@ -41,7 +42,7 @@ export default function ProfileCard() {
         ダッシュボード
       </p>
       <TabSwitch />
-      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2 px-24">
+      <GridContainer>
         {userImages.map((image, index) => (
           <Link key={image.id} href={`/illustrations/${image.id}`}>
             <div className="bg-white rounded-lg shadow-md p-4 duration-150 hover:-translate-y-1.5 active:bg-gray-100  active:duration-0">
@@ -61,13 +62,13 @@ export default function ProfileCard() {
                 </div>
               </div>
 
-              <div className="mt-4">
-                <h2 className="text-xl font-semibold text-gray-800">
+              <div className="mt-1">
+                <h2 className="text-lg font-semibold text-gray-800">
                   {image.title}
                 </h2>
 
                 <Link href={`/userprofile/${image.userId}`}>
-                  <div className="flex items-center mt-2">
+                  <div className="flex items-center">
                     <Image
                       src={
                         session?.user?.image ||
@@ -75,11 +76,11 @@ export default function ProfileCard() {
                       }
                       alt="ユーザーアイコン"
                       objectFit="cover"
-                      className="w-8 h-8 rounded-full"
-                      width={40}
-                      height={40}
+                      className="w-6 h-6 rounded-full"
+                      width={20}
+                      height={20}
                     />
-                    <p className="text-gray-600 ml-2">
+                    <p className="text-gray-600 text-sm">
                       {session?.user?.name || "Unknown"}
                     </p>
                   </div>
@@ -88,7 +89,7 @@ export default function ProfileCard() {
             </div>
           </Link>
         ))}
-      </div>
+      </GridContainer>
     </PaddingContainer>
   );
 }
