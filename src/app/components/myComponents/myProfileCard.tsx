@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useState } from "react";
 import supabase from "../../utils/supabase";
 import Image from "next/image";
@@ -39,13 +41,11 @@ export default function ProfileCard() {
         ダッシュボード
       </p>
       <TabSwitch />
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2 px-24">
         {userImages.map((image, index) => (
           <Link key={image.id} href={`/illustrations/${image.id}`}>
-            <div
-              className="bg-white rounded-lg shadow-md p-4 duration-150 hover:-translate-y-1.5 active:bg-gray-100  active:duration-0"
-            >
-              <div className="relative w-full h-48">
+            <div className="bg-white rounded-lg shadow-md p-4 duration-150 hover:-translate-y-1.5 active:bg-gray-100  active:duration-0">
+              <div className="relative w-full h-0 pb-[100%]">
                 <Image
                   src={image.url}
                   alt={`ユーザー画像 ${index}`}
@@ -84,41 +84,6 @@ export default function ProfileCard() {
                     </p>
                   </div>
                 </Link>
-
-                <div className="flex items-center text-gray-600 text-sm mt-2">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-4 w-4 mr-1"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-                    />
-                  </svg>
-                  <span>2023/10/14</span>
-                </div>
-                <div className="flex items-center text-gray-600 text-sm mt-2">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-4 w-4 mr-1"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M4 6h16M4 10h16M4 14h16M4 18h16"
-                    />
-                  </svg>
-                  <span>ねこ / 自然 / 動物</span>
-                </div>
               </div>
             </div>
           </Link>
