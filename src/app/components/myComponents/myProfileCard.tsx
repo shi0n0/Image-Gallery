@@ -80,7 +80,7 @@ export default function ProfileCard() {
                       width={20}
                       height={20}
                     />
-                    <p className="text-gray-600 text-sm">
+                    <p className="text-gray-600 text-sm ml-1">
                       {session?.user?.name || "Unknown"}
                     </p>
                   </div>
