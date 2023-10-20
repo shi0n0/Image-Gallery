@@ -60,6 +60,16 @@ export default function ProfileCard() {
                     New
                   </span>
                 </div>
+                <Link href={`/dashboard/edit/${image.id}}`}>
+                    <button className="absolute bottom-2 right-2 bg-gray-400 opacity-70 text-white p-3 rounded-full hover:opacity-100">
+                      <Image
+                        src="/pen-solid.svg"
+                        alt="編集"
+                        width={20}
+                        height={20}
+                      />
+                    </button>
+                  </Link>
               </div>
 
               <div className="mt-1">
