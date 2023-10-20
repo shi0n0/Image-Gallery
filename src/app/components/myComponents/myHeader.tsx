@@ -76,13 +76,12 @@ function MyHeader() {
           console.error("Error fetching user images:", error);
         } else {
           setUserHeaders(data);
-          console.log(userHeaders);
         }
       }
     }
 
     fetchUserHeaders();
-  }, [userId]);
+  }, [userHeaders, userId]);
 
   return (
     <div className="relative w-full h-60 flex justify-center z-0">
