@@ -12,10 +12,27 @@ function MyHeader() {
   const [userHeaders, setUserHeaders] = useState<{ url: string }[]>([]);
   const userId = session?.user?.id;
 
+  // Fetch user headers on initial render
   useEffect(() => {
-    // クライアントサイドでのみ実行する初期化コードをここに配置
-    setHeader(new File([], ""));
-  }, []);
+    async function fetchUserHeaders() {
+      if (userId) {
+        // ユーザーIDが存在する場合のみクエリを実行
+        const { data, error } = await supabase
+          .from("Header")
+          .select("url")
+          .eq("userId", userId);
+
+        if (error) {
+          console.error("Error fetching user images:", error);
+        } else {
+          setUserHeaders(data);
+        }
+      }
+    }
+
+    fetchUserHeaders();
+  }, [userId]);
+
   const handleHeaderChange = (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
       setHeader(event.target.files[0]);
@@ -29,6 +46,33 @@ function MyHeader() {
     }
 
     const filePath = `${header.name}`;
+
+    // 既存のヘッダー画像を削除
+  for (const userHeader of userHeaders) {
+    const headerUrl = userHeader.url;
+
+    if (headerUrl) {
+      const headerFileName = headerUrl.split("/").pop();
+      if (headerFileName) {
+        const { error: deleteStorageError } = await supabase.storage
+          .from("Headers")
+          .remove([headerFileName]);
+
+        const { error: deleteDatabaseError } = await supabase
+          .from("Header")
+          .delete()
+          .eq("url", headerUrl)
+
+          console.log(headerFileName)
+        if (deleteStorageError) {
+          console.error("ヘッダー画像のストレージ削除エラー:", deleteStorageError.message);
+        }
+        if (deleteDatabaseError) {
+          console.log("ヘッダー画像のデータベース削除エラー:", deleteDatabaseError)
+        }
+      }
+    }
+  }
 
     // 画像をストレージにアップロード
     const { error: storageError } = await supabase.storage
@@ -63,26 +107,6 @@ function MyHeader() {
     }
   };
 
-  useEffect(() => {
-    async function fetchUserHeaders() {
-      if (userId) {
-        // ユーザーIDが存在する場合のみクエリを実行
-        const { data, error } = await supabase
-          .from("Header")
-          .select("url")
-          .eq("userId", userId);
-
-        if (error) {
-          console.error("Error fetching user images:", error);
-        } else {
-          setUserHeaders(data);
-        }
-      }
-    }
-
-    fetchUserHeaders();
-  }, [userHeaders, userId]);
-
   return (
     <div className="relative w-full h-60 flex justify-center z-0">
       <Image
@@ -99,7 +123,6 @@ function MyHeader() {
         <label
           htmlFor="fileInput"
           className="px-4 py-3.5 text-white bg-black rounded-full cursor-pointer opacity-10 transition-opacity duration-150 hover:opacity-50"
-          onChange={handleSave}
         >
           ＋
           <input
@@ -110,6 +133,7 @@ function MyHeader() {
             onChange={handleHeaderChange}
           />
         </label>
+        <button onClick={handleSave}>Save</button>
       </div>
     </div>
   );
