@@ -12,7 +12,6 @@ export default function Edit() {
           ダッシュボード
         </p>
         <TabSwitch />
-        <EditCard />
       </PaddingContainer>
     </div>
   );
