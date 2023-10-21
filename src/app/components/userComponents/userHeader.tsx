@@ -6,11 +6,15 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Auth from "../myComponents/auth";
 
+
 export default function UserHeader() {
   const [userHeader, setUserHeader] = useState("");
-  const [userProps, setUserProps] = useState<{ id: string; image: string; name: string }[]>([]);
+  const [userProps, setUserProps] = useState<
+    { id: string; image: string; name: string }[]
+  >([]);
   const getPagePath = usePathname();
   const userId = getPagePath.replace("/userprofile/", "");
+  
 
   useEffect(() => {
     async function fetchuserHeader() {
@@ -18,12 +22,12 @@ export default function UserHeader() {
         .from("Header")
         .select("url")
         .eq("userId", userId);
-  
+
       const { data: userData, error: userError } = await supabase
         .from("User")
         .select("id, image, name")
         .eq("id", userId);
-  
+
       if (headerError) {
         console.error("ヘッダー画像の取得エラー:", headerError);
       } else {
@@ -31,7 +35,7 @@ export default function UserHeader() {
           headerData.length > 0 ? headerData[0].url : "/ImageGallery-30.png";
         setUserHeader(headerImageUrl);
       }
-  
+
       if (userError) {
         console.error("ユーザー情報の取得エラー:", userError);
       } else {
@@ -40,8 +44,7 @@ export default function UserHeader() {
     }
     fetchuserHeader();
   }, [userId]);
-  
-  
+
   return (
     <div>
       <div className="relative w-full h-60 flex justify-center z-0">
@@ -55,14 +58,18 @@ export default function UserHeader() {
         <div className="z-10 p-3 flex items-center flex-col">
           <div className="relative w-[100px] h-[100px]">
             <Image
-              src={userProps.length > 0 ? userProps[0].image : "/default-image.png"}
+              src={
+                userProps.length > 0 ? userProps[0].image : "/default-image.png"
+              }
               alt="ユーザーアイコン"
               objectFit="cover"
               className="rounded-full"
               fill
             />
           </div>
-          <p className="text-5xl font-midium">{userProps.length > 0 ? userProps[0].name : "名無し"}</p>
+          <p className="text-5xl font-midium">
+            {userProps.length > 0 ? userProps[0].name : "名無し"}
+          </p>
         </div>
       </div>
     </div>

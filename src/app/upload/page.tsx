@@ -1,9 +1,9 @@
 "use client"
+
 import { ChangeEvent, useEffect, useState } from "react";
 import supabase from "../utils/supabase";
 import { useSession } from "next-auth/react";
 import { useRouter } from 'next/navigation'
-import { Router } from "next/router";
 
 export default function Upload() {
   const { data: session } = useSession()

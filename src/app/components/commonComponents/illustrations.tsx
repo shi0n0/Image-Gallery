@@ -25,7 +25,9 @@ const ImageDetail = () => {
       name: "",
     },
   ]);
-  const matchingUser = userProps.find((user) => user.id === imageData[0]?.userId);
+  const matchingUser = userProps.find(
+    (user) => user.id === imageData[0]?.userId
+  );
 
   useEffect(() => {
     async function fetchUserImages() {
@@ -46,7 +48,10 @@ const ImageDetail = () => {
         }
 
         if (userError) {
-          console.error("ユーザーデータの取得にエラーが発生しました:", userError);
+          console.error(
+            "ユーザーデータの取得にエラーが発生しました:",
+            userError
+          );
         } else {
           setUserProps(userData);
         }
@@ -78,14 +83,19 @@ const ImageDetail = () => {
 
       <div className="w-2/6 bg-white rounded-lg">
         <div className="p-5">
-          <p className="text-3xl font-bold mb-4">{image.title || "ダミータイトル"}</p>
+          <p className="text-3xl font-bold mb-4">
+            {image.title || "ダミータイトル"}
+          </p>
           <p className="text-xl text-gray-800 mb-6">
             {image.description || "ディスクリプションの文章がここに入ります"}
           </p>
 
           {user && (
             <div className="flex items-center space-x-4">
-              <Link href={`/userprofile/${user.id}`} className="flex items-center p-2 hover:bg-gray-800 hover:bg-opacity-10 hover:rounded-lg">
+              <Link
+                href={`/userprofile/${user.id}`}
+                className="flex items-center p-2 hover:bg-gray-800 hover:bg-opacity-10 hover:rounded-lg"
+              >
                 <div className="w-16 h-16 relative rounded-full overflow-hidden">
                   <Image
                     src={user.image}
