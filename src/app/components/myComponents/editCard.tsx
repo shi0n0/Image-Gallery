@@ -60,7 +60,7 @@ const EditImagePage: React.FC = () => {
     if (error) {
       console.error("削除に失敗:", error);
     } else {
-      console.log(imageId);
+      console.log("削除に成功");
       // 削除に成功した場合editページに飛ぶ
       await router.push("/dashboard/edit");
     }
