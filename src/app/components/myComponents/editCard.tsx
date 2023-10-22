@@ -8,8 +8,7 @@ import { useRouter, usePathname } from "next/navigation";
 const EditImagePage: React.FC = () => {
   const { data: session } = useSession();
   const router = useRouter();
-  const getPagePath = usePathname();
-  const imageId = getPagePath.replace("/dashboard/edit/", "");
+  const imageId = usePathname().split("/dashboard/edit/")[1]?.replace(/%7D/g, '');
   const [imageData, setImageData] = useState({
     id: "",
     title: "",
@@ -37,7 +36,7 @@ const EditImagePage: React.FC = () => {
   const handleSave = async () => {
     const { title, description } = imageData;
 
-    // Update image data in Supabase
+    // Supabaseに画像データをアップデート
     const { error } = await supabase
       .from("Image")
       .update({
@@ -53,16 +52,17 @@ const EditImagePage: React.FC = () => {
     }
   };
 
+
   const handleDelete = async () => {
-    // Delete image data in Supabase
-    const { error } = await supabase.from("Image").delete().eq("id", imageId);
+    // Supabaseから画像データを削除
+    const { error } = await supabase.from("Image").delete().eq("id",imageId);
 
     if (error) {
       console.error("削除に失敗:", error);
     } else {
-      console.log("削除に成功");
-      // Redirect to a different page after deletion
-      router.push("/dashboard/edit");
+      console.log(imageId);
+      // 削除に成功した場合editページに飛ぶ
+      await router.push("/dashboard/edit");
     }
   };
 
