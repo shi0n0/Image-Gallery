@@ -49,6 +49,7 @@ const EditImagePage: React.FC = () => {
       console.error("アップデートに失敗:", error);
     } else {
       console.log("アップデートに成功");
+      await router.push("/dashboard/edit");
     }
   };
 
