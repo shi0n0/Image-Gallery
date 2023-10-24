@@ -8,7 +8,6 @@ import Link from "next/link";
 import TabSwitch from "./tabSwitch";
 import PaddingContainer from "../commonComponents/paddingCotainer";
 import GridContainer from "../commonComponents/gridContainer";
-import HeaderPopUp from "./headerPopUp";
 
 export default function ProfileCard() {
   const { data: session } = useSession();
