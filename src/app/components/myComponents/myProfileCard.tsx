@@ -8,6 +8,7 @@ import Link from "next/link";
 import TabSwitch from "./tabSwitch";
 import PaddingContainer from "../commonComponents/paddingCotainer";
 import GridContainer from "../commonComponents/gridContainer";
+import HeaderPopUp from "./headerPopUp";
 
 export default function ProfileCard() {
   const { data: session } = useSession();
@@ -61,7 +62,7 @@ export default function ProfileCard() {
                   </span>
                 </div>
                 <Link href={`/dashboard/edit/${image.id}}`}>
-                    <button className="absolute bottom-2 right-2 bg-gray-400 opacity-70 text-white p-3 rounded-full hover:opacity-100">
+                    <button className="absolute bottom-2 right-2 bg-gray-300 opacity-30 text-white p-3 rounded-full hover:opacity-60">
                       <Image
                         src="/pen-solid.svg"
                         alt="編集"
