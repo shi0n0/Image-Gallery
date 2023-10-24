@@ -21,7 +21,6 @@ export default function Home() {
           <Top3Content />
         </div>
         <CurrentIllust />
-        <HeaderPopUp></HeaderPopUp>
       </PaddingContainer>
     </>
   );
