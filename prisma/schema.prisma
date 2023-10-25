@@ -13,6 +13,7 @@ model Image {
   userId      String
   title       String
   description String
+  postedAt     DateTime  @default(now())
   user        User   @relation(fields: [userId], references: [id])
 }
 
@@ -55,6 +56,7 @@ model User {
   email         String?   @unique
   emailVerified DateTime?
   image         String?
+  createdAt     DateTime  @default(now())
   accounts      Account[]
   headers       Header[]
   images        Image[]
