@@ -5,7 +5,6 @@ import PaddingContainer from "../components/commonComponents/paddingCotainer";
 import Stats from "../components/myComponents/Stats";
 import Top3Content from "../components/myComponents/top3Content";
 import CurrentIllust from "../components/myComponents/currentIllust";
-import HeaderPopUp from "../components/myComponents/headerPopUp";
 
 export default function Home() {
   return (
