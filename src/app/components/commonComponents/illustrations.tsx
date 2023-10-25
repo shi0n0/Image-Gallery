@@ -63,11 +63,24 @@ const ImageDetail = () => {
   }, [pagePath]);
 
   if (!imageData || imageData.length === 0) {
-    return <div className="p-10">読み込み中...</div>;
+    return (
+      <div className="p-10">
+        イラストを探しています。1分以上この画面が表示されている場合リロードするか、URLを見直してください。
+      </div>
+    );
   }
 
   const image = imageData[0];
   const user = matchingUser;
+
+  const originalDateTime = new Date(image.postedAt); // 指定された日付と時刻
+  const year = originalDateTime.getFullYear(); // 年
+  const month = (originalDateTime.getMonth() + 1).toString().padStart(2, "0"); // 月
+  const day = originalDateTime.getDate().toString().padStart(2, "0"); // 日
+  const hours = originalDateTime.getHours().toString().padStart(2, "0") // 時
+  const minutes = originalDateTime.getMinutes().toString().padStart(2, "0") //　分
+
+  const formattedDate = `${year}年${month}月${day}日 ${hours}:${minutes}`;
 
   return (
     <div className="p-10 flex">
@@ -85,14 +98,14 @@ const ImageDetail = () => {
 
       <div className="w-2/6 bg-white rounded-lg">
         <div className="p-5">
-          <p className="text-3xl font-bold mb-4">
+          <p className="text-3xl font-bold mb-1">
             {image.title || "ダミータイトル"}
           </p>
           <p className="text-xl text-gray-800 mb-6">
             {image.description || "ディスクリプションの文章がここに入ります"}
           </p>
           <p className="text-lg text-gray-500 mb-6">
-            {image.postedAt || "◯◯◯◯年◯◯月◯◯日 "}
+            {formattedDate || "◯◯◯◯年◯◯月◯◯日 "}
           </p>
 
           {user && (
