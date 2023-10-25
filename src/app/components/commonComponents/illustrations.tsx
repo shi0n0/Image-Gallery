@@ -16,6 +16,7 @@ const ImageDetail = () => {
       userId: "",
       title: "",
       description: "",
+      postedAt: "",
     },
   ]);
   const [userProps, setUserProps] = useState([
@@ -34,7 +35,7 @@ const ImageDetail = () => {
       if (pagePath) {
         const { data, error } = await supabase
           .from("Image")
-          .select("url,userId,title,description")
+          .select("url,userId,title,description,postedAt")
           .eq("id", pagePath);
 
         const { data: userData, error: userError } = await supabase
@@ -76,6 +77,7 @@ const ImageDetail = () => {
             src={image.url || "/ImageGallery-30.png"}
             alt="ユーザーが投稿した画像"
             className="object-contain w-full h-full"
+            quality={80}
             fill
           />
         </div>
@@ -88,6 +90,9 @@ const ImageDetail = () => {
           </p>
           <p className="text-xl text-gray-800 mb-6">
             {image.description || "ディスクリプションの文章がここに入ります"}
+          </p>
+          <p className="text-lg text-gray-500 mb-6">
+            {image.postedAt || "◯◯◯◯年◯◯月◯◯日 "}
           </p>
 
           {user && (
