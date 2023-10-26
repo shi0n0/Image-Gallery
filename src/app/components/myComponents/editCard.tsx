@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 import React, { useState, useEffect } from "react";
 import supabase from "@/app/utils/supabase";
@@ -17,6 +17,7 @@ const EditImagePage: React.FC = () => {
     title: "",
     description: "",
     url: "",
+    tags: "Tag1, Tag2", // プレースホルダータグ
   });
 
   useEffect(() => {
@@ -73,30 +74,33 @@ const EditImagePage: React.FC = () => {
   return (
     <div className="p-4">
       <h1 className="text-2xl mb-4">Edit Image Page</h1>
-      <div className="mb-4">
-        <div className="relative w-2/4 h-96 bg-gray-200 rounded-lg">
-          <Image src={imageData.url} alt="プレビュー" objectFit="contain" fill />
+      <div className="mb-4 flex items-center">
+        <div className="w-1/4 relative h-96">
+          <Image src={imageData.url} alt="プレビュー" objectFit="contain" fill/>
         </div>
-        <label className="block">Title:</label>
-        <input
-          type="text"
-          value={imageData.title}
-          onChange={(e) =>
-            setImageData({ ...imageData, title: e.target.value })
-          }
-          className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
-        />
+        <div className="w-3/4 ml-4">
+          <label className="block">Title:</label>
+          <input
+            type="text"
+            value={imageData.title}
+            onChange={(e) => setImageData({ ...imageData, title: e.target.value })}
+            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
+          />
+          <label className="block mt-2">Tags:</label>
+          <input
+            type="text"
+            value={imageData.tags}
+            onChange={(e) => setImageData({ ...imageData, tags: e.target.value })}
+            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
+          />
+        </div>
       </div>
-      <div className="mb-4">
-        <label className="block">Description:</label>
-        <textarea
-          value={imageData.description}
-          onChange={(e) =>
-            setImageData({ ...imageData, description: e.target.value })
-          }
-          className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
-        />
-      </div>
+      <label className="block mt-4">Description:</label>
+      <textarea
+        value={imageData.description}
+        onChange={(e) => setImageData({ ...imageData, description: e.target.value })}
+        className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
+      />
       <button
         onClick={handleSave}
         className="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg mr-2 transition duration-300 ease-in-out transform hover:scale-105"
@@ -105,7 +109,7 @@ const EditImagePage: React.FC = () => {
       </button>
       <button
         onClick={handleDelete}
-        className="bg-red-500 hover:bg-red-700 text-white font-semibold py-2 px-6 rounded-lg transition duration-300 ease-in-out transform hover:scale-105"
+        className="bg-red-500 hover.bg-red-700 text-white font-semibold py-2 px-6 rounded-lg transition duration-300 ease-in-out transform hover:scale-105"
       >
         Delete
       </button>
