@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React, { useState, useEffect } from "react";
 import supabase from "@/app/utils/supabase";
@@ -75,22 +75,31 @@ const EditImagePage: React.FC = () => {
     <div className="p-4">
       <h1 className="text-2xl mb-4">Edit Image Page</h1>
       <div className="mb-4 flex items-center">
-        <div className="w-1/4 relative h-96">
-          <Image src={imageData.url} alt="プレビュー" objectFit="contain" fill/>
+        <div className="w-1/4 relative aspect-square">
+          <Image
+            src={imageData.url}
+            alt="プレビュー"
+            className="object-contain"
+            fill
+          />
         </div>
         <div className="w-3/4 ml-4">
           <label className="block">Title:</label>
           <input
             type="text"
             value={imageData.title}
-            onChange={(e) => setImageData({ ...imageData, title: e.target.value })}
+            onChange={(e) =>
+              setImageData({ ...imageData, title: e.target.value })
+            }
             className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
           />
           <label className="block mt-2">Tags:</label>
           <input
             type="text"
             value={imageData.tags}
-            onChange={(e) => setImageData({ ...imageData, tags: e.target.value })}
+            onChange={(e) =>
+              setImageData({ ...imageData, tags: e.target.value })
+            }
             className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
           />
         </div>
@@ -98,7 +107,9 @@ const EditImagePage: React.FC = () => {
       <label className="block mt-4">Description:</label>
       <textarea
         value={imageData.description}
-        onChange={(e) => setImageData({ ...imageData, description: e.target.value })}
+        onChange={(e) =>
+          setImageData({ ...imageData, description: e.target.value })
+        }
         className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
       />
       <button
