@@ -4,15 +4,19 @@ import React, { useState, useEffect } from "react";
 import supabase from "@/app/utils/supabase";
 import { useSession } from "next-auth/react";
 import { useRouter, usePathname } from "next/navigation";
+import Image from "next/image";
 
 const EditImagePage: React.FC = () => {
   const { data: session } = useSession();
   const router = useRouter();
-  const imageId = usePathname().split("/dashboard/edit/")[1]?.replace(/%7D/g, '');
+  const imageId = usePathname()
+    .split("/dashboard/edit/")[1]
+    ?.replace(/%7D/g, "");
   const [imageData, setImageData] = useState({
     id: "",
     title: "",
     description: "",
+    url: "",
   });
 
   useEffect(() => {
@@ -53,10 +57,9 @@ const EditImagePage: React.FC = () => {
     }
   };
 
-
   const handleDelete = async () => {
     // Supabaseから画像データを削除
-    const { error } = await supabase.from("Image").delete().eq("id",imageId);
+    const { error } = await supabase.from("Image").delete().eq("id", imageId);
 
     if (error) {
       console.error("削除に失敗:", error);
@@ -71,6 +74,9 @@ const EditImagePage: React.FC = () => {
     <div className="p-4">
       <h1 className="text-2xl mb-4">Edit Image Page</h1>
       <div className="mb-4">
+        <div className="relative w-2/4 h-96 bg-gray-200 rounded-lg">
+          <Image src={imageData.url} alt="プレビュー" objectFit="contain" fill />
+        </div>
         <label className="block">Title:</label>
         <input
           type="text"
