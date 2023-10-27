@@ -76,7 +76,7 @@ export default function UserProfileCard() {
                 </div>
 
                 <div className="mt-1">
-                  <h2 className="text-lg font-semibold text-gray-800">
+                  <h2 className="text-lg font-semibold text-gray-800 truncate">
                     {image.title}
                   </h2>
                   <Link href={`/userprofile/${userAccount?.id}`}>
