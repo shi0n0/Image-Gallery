@@ -8,8 +8,8 @@ import Image from "next/image";
 export default function TopPageSlider() {
   return (
     <div className="bg-yellow-100 p-3">
-      <p className="text-2xl text-center py-5 font-bold">🔥ホットなイラスト🔥</p>
-      <div className="w-full h-[30vh]">
+      <p className="text-sm sm:text-sm md:text-lg lg:text-2xl text-center py-1 sm:py-2 md:py-3 lg:py-5 font-bold">🔥ホットなイラスト🔥</p>
+      <div className="w-full h-[5vh] sm:h-[10vh] md:h-[20vh] lg:h-[30vh]">
         <Swiper
           modules={[Navigation, Pagination, Autoplay]}
           spaceBetween={10}
@@ -25,7 +25,7 @@ export default function TopPageSlider() {
             delay: 2500,
             disableOnInteraction: false,
           }}
-          className="!h-full"
+          className="h-full"
         >
           <SwiperSlide className="relative w-full h-full">
             <Image
