@@ -46,7 +46,7 @@ export default function TopUserCard() {
         {userImages.map((image) => {
           const matchingUser = userProps.find(
             (user) => user.id === image.userId
-          );
+          );  
 
           return (
             <Link key={image.id} href={`illustrations/${image.id}`}>

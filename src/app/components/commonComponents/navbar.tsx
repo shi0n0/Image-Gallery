@@ -33,17 +33,17 @@ export default function Navbar() {
           </Link>
           <div className="flex items-center space-x-4">
             <Link href={"/"}>
-              <p className={`text-gray-600 hover:text-gray-800 px-4 py-2 ${pagePath == '/' ? "border-b-4 border-custom-pink" : ""}`}>
+              <p className={`text-gray-600 hover:text-gray-800 px-4 py-1 ${pagePath == '/' ? "border-b-4 border-custom-pink" : ""}`}>
                 ホーム
               </p>
             </Link>
             <Link href={"/upload"}>
-              <p className={`text-gray-600 hover:text-gray-800 px-4 py-2 ${pagePath == '/upload' ? "border-b-4 border-custom-pink" : ""}`}>
+              <p className={`text-gray-600 hover:text-gray-800 px-4 py-1 ${pagePath == '/upload' ? "border-b-4 border-custom-pink" : ""}`}>
                 投稿する
               </p>
             </Link>
             <Link href={"/settings"}>
-            <p className={`text-gray-600 hover:text-gray-800 px-4 py-2 ${pagePath == '/settings' ? "border-b-4 border-custom-pink" : ""}`}>
+            <p className={`text-gray-600 hover:text-gray-800 px-4 py-1 ${pagePath == '/settings' ? "border-b-4 border-custom-pink" : ""}`}>
                 設定
               </p>
             </Link>
@@ -65,7 +65,7 @@ function UserLink({ href, src }: UserLinkProps) {
           alt="ユーザーアイコン"
           width={40}
           height={40}
-          className="rounded-full transition duration-300 transform hover:scale-110"
+          className={`rounded-full transition duration-300 transform hover:scale-110`}
         />
       </p>
     </Link>
