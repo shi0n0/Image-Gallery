@@ -73,8 +73,8 @@ const EditImagePage: React.FC = () => {
 
   return (
     <div className="p-4">
-      <h1 className="text-2xl mb-4">Edit Image Page</h1>
-      <div className="mb-4 flex items-center">
+      <h1 className="text-2xl">Edit Image Page</h1>
+      <div className="flex items-center">
         <div className="w-1/4 relative aspect-square">
           <Image
             src={imageData.url}
