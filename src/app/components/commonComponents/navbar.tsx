@@ -3,6 +3,7 @@
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 interface NavLinkProps {
   href: string;
@@ -15,6 +16,7 @@ interface UserLinkProps {
 }
 
 export default function Navbar() {
+  const pagePath = usePathname();
   const { data: session } = useSession();
   const userImage =
     session?.user?.image ||
@@ -25,26 +27,32 @@ export default function Navbar() {
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center py-4">
           <Link href={"/"} passHref>
-            <p className="text-2xl font-bold">ImageGallery</p>
+            <p className="text-2xl font-bold rounded text-white bg-custom-pink px-3 py-1">
+              ImageGallery
+            </p>
           </Link>
           <div className="flex items-center space-x-4">
-            <NavLink href={"/"} text="ホーム" />
-            <NavLink href={"/upload"} text="投稿する" />
-            <NavLink href="/settings" text="設定" />
+            <Link href={"/"}>
+              <p className={`text-gray-600 hover:text-gray-800 px-4 py-2 ${pagePath == '/' ? "border-b-4 border-custom-pink" : ""}`}>
+                ホーム
+              </p>
+            </Link>
+            <Link href={"/upload"}>
+              <p className={`text-gray-600 hover:text-gray-800 px-4 py-2 ${pagePath == '/upload' ? "border-b-4 border-custom-pink" : ""}`}>
+                投稿する
+              </p>
+            </Link>
+            <Link href={"/settings"}>
+            <p className={`text-gray-600 hover:text-gray-800 px-4 py-2 ${pagePath == '/settings' ? "border-b-4 border-custom-pink" : ""}`}>
+                設定
+              </p>
+            </Link>
             {session && <UserLink href="/dashboard" src={userImage} />}
             {!session && <UserLink href="/dashboard" src={userImage} />}
           </div>
         </div>
       </div>
     </nav>
-  );
-}
-
-function NavLink({ href, text }: NavLinkProps) {
-  return (
-    <Link href={href} passHref>
-      <p className="text-gray-600 hover:text-gray-800 px-4 py-2">{text}</p>
-    </Link>
   );
 }
 
