@@ -2,7 +2,6 @@ import './globals.css'
 import type { Metadata } from 'next'
 import NextAuthProvider from '@/providers/NextAuth'
 import Navbar from './components/commonComponents/navbar'
-import Sidebar from './components/commonComponents/sidebar'
 
 
 export const metadata: Metadata = {
