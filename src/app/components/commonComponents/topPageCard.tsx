@@ -42,22 +42,30 @@ export default function TopUserCard() {
 
   return (
     <PaddingContainer>
+      <div className="sm:px-12 sm:py-3 w-fit h-fit flex justify-between">
+        <p className="text-lg px-3 py-2 sm:text-xl sm:pr-2 font-semibold text-gray-700 inline-block">
+          最近投稿されたイラスト
+        </p>
+        <p className="text-md sm:text-lg font-semibold text-custom-pink hidden sm:inline-block">
+          もっと見る ＞
+        </p>
+      </div>
       <GridContainer>
         {userImages.map((image) => {
           const matchingUser = userProps.find(
             (user) => user.id === image.userId
-          );  
+          );
 
           return (
             <Link key={image.id} href={`illustrations/${image.id}`}>
-              <div className="bg-white rounded-lg shadow-md p-4 duration-150 hover:-translate-y-1.5 active:bg-gray-100  active:duration-0">
-                <div className="relative w-full h-0 pb-[100%]">
+              <div className="sm:rounded-lg sm:p-2 duration-150 hover:-translate-y-1.5 active:bg-gray-100  active:duration-0">
+                <div className="relative aspect-square">
                   <Image
                     src={image.url}
                     alt={`ユーザー画像 | ${image.id}`}
                     objectFit="cover"
                     quality={10}
-                    className="w-full h-full rounded-lg hover:opacity-95 transition-opacity"
+                    className="sm:rounded-lg hover:opacity-95 transition-opacity"
                     fill
                   />
                   <div className="absolute top-2 right-2">
@@ -68,7 +76,7 @@ export default function TopUserCard() {
                 </div>
 
                 <div className="mt-1">
-                  <h2 className="text-lg font-semibold text-gray-800 truncate">
+                  <h2 className="font-semibold text-gray-800 truncate">
                     {image.title}
                   </h2>
 
