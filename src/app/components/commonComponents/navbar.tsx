@@ -102,7 +102,7 @@ export default function Navbar() {
             ></div>
             <div className="sm:hidden w-2/3 h-screen fixed top-0 right-0 bg-white transition-transform transform translate-x-0 z-50">
               <div className="sm:hidden flex items-center justify-end px-4 py-5">
-                <button onClick={toggleMobileMenu}>
+                <button onClick={toggleMobileMenuClose}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-6 w-6"
