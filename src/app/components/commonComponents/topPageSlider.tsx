@@ -7,12 +7,18 @@ import Image from "next/image";
 
 export default function TopPageSlider() {
   return (
-    <div className="bg-gray-100 p-3 relative">
-      <div className="w-full h-[5vh] sm:h-[10vh] md:h-[20vh] lg:h-[30vh]">
+    <div className="bg-gray-100 md:p-2 relative">
+      <div className="w-full h-[30vh] md:h-[20vh] lg:h-[30vh]">
         <Swiper
           modules={[Navigation, Pagination, Autoplay]}
           spaceBetween={10}
-          slidesPerView={3.5}
+          slidesPerView="auto"
+          breakpoints={{
+            767: {
+              slidesPerView: 3.5,
+              spaceBetween: 10,
+            },
+          }}
           centeredSlides={true}
           pagination={{
             el: ".swiper-pagination",
@@ -38,7 +44,7 @@ export default function TopPageSlider() {
             <Image
               src={"/ImageGallery-30.png"}
               alt="テスト2"
-              className="object-cover rounded-md opacity-100 duration-200 hover:opacity-60"
+              className="object-cover rounded-md"
               fill
             />
           </SwiperSlide>
@@ -46,7 +52,7 @@ export default function TopPageSlider() {
             <Image
               src={"/ImageGallery.png"}
               alt="テスト3"
-              className="object-cover rounded-md opacity-100 duration-200 hover:opacity-60"
+              className="object-cover rounded-md"
               fill
             />
           </SwiperSlide>
@@ -54,7 +60,7 @@ export default function TopPageSlider() {
             <Image
               src={"/ImageGallery-30.png"}
               alt="テスト3"
-              className="object-cover rounded-md opacity-100 duration-200 hover:opacity-60"
+              className="object-cover rounded-md"
               fill
             />
           </SwiperSlide>
@@ -62,7 +68,7 @@ export default function TopPageSlider() {
             <Image
               src={"/ImageGallery.png"}
               alt="テスト3"
-              className="object-cover rounded-md opacity-100 duration-200 hover:opacity-60"
+              className="object-cover rounded-md"
               fill
             />
           </SwiperSlide>
@@ -70,7 +76,7 @@ export default function TopPageSlider() {
             <Image
               src={"/ImageGallery-30.png"}
               alt="テスト3"
-              className="object-cover rounded-md opacity-100 duration-200 hover:opacity-60"
+              className="object-cover rounded-md"
               fill
             />
           </SwiperSlide>
