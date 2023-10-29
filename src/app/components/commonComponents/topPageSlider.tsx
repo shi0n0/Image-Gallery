@@ -7,8 +7,7 @@ import Image from "next/image";
 
 export default function TopPageSlider() {
   return (
-    <div className="bg-yellow-100 p-3">
-      <p className="text-sm sm:text-sm md:text-lg lg:text-2xl text-center py-1 sm:py-2 md:py-3 lg:py-5 font-bold">🔥ホットなイラスト🔥</p>
+    <div className="bg-gray-100 p-3 relative">
       <div className="w-full h-[5vh] sm:h-[10vh] md:h-[20vh] lg:h-[30vh]">
         <Swiper
           modules={[Navigation, Pagination, Autoplay]}
@@ -31,7 +30,7 @@ export default function TopPageSlider() {
             <Image
               src={"/ImageGallery.png"}
               alt="テスト1"
-              className="object-cover rounded-md"
+              className="object-cover rounded-md opacity-100 duration-200 hover:opacity-60"
               fill
             />
           </SwiperSlide>
@@ -39,7 +38,7 @@ export default function TopPageSlider() {
             <Image
               src={"/ImageGallery-30.png"}
               alt="テスト2"
-              className="object-cover rounded-md"
+              className="object-cover rounded-md opacity-100 duration-200 hover:opacity-60"
               fill
             />
           </SwiperSlide>
@@ -47,34 +46,36 @@ export default function TopPageSlider() {
             <Image
               src={"/ImageGallery.png"}
               alt="テスト3"
-              className="object-cover rounded-md"
+              className="object-cover rounded-md opacity-100 duration-200 hover:opacity-60"
               fill
             />
           </SwiperSlide>
-          <SwiperSlide className="relative w-full">
+          <SwiperSlide className="relative w-ful h-full">
             <Image
               src={"/ImageGallery-30.png"}
               alt="テスト3"
-              className="object-cover rounded-md"
+              className="object-cover rounded-md opacity-100 duration-200 hover:opacity-60"
               fill
             />
           </SwiperSlide>
-          <SwiperSlide className="relative w-full">
+          <SwiperSlide className="relative w-full h-full">
             <Image
               src={"/ImageGallery.png"}
               alt="テスト3"
-              className="object-cover rounded-md"
+              className="object-cover rounded-md opacity-100 duration-200 hover:opacity-60"
               fill
             />
           </SwiperSlide>
-          <SwiperSlide className="relative w-full">
+          <SwiperSlide className="relative w-full h-full">
             <Image
               src={"/ImageGallery-30.png"}
               alt="テスト3"
-              className="object-cover rounded-md"
+              className="object-cover rounded-md opacity-100 duration-200 hover:opacity-60"
               fill
             />
           </SwiperSlide>
+
+          <div className="swiper-pagination absolute bottom-10 right-2 z-30"></div>
         </Swiper>
       </div>
     </div>
