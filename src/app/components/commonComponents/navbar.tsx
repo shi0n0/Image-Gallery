@@ -120,7 +120,7 @@ export default function Navbar() {
                 </button>
               </div>
               <div className="flex flex-col items-center space-y-4 py-4">
-                <Link href={"/"}>
+                <Link href={"/"} onClick={toggleMobileMenuClose}>
                   <p
                     className={`text-gray-600 hover:text-gray-800 ${getNavLinkStyles(
                       "/",
@@ -130,7 +130,7 @@ export default function Navbar() {
                     ホーム
                   </p>
                 </Link>
-                <Link href={"/upload"}>
+                <Link href={"/upload"} onClick={toggleMobileMenuClose}>
                   <p
                     className={`text-gray-600 hover:text-gray-800 ${getNavLinkStyles(
                       "/upload",
@@ -140,7 +140,7 @@ export default function Navbar() {
                     投稿する
                   </p>
                 </Link>
-                <Link href={"/settings"}>
+                <Link href={"/settings"} onClick={toggleMobileMenuClose}>
                   <p
                     className={`text-gray-600 hover:text-gray-800 ${getNavLinkStyles(
                       "/settings",
