@@ -2,6 +2,7 @@ import './globals.css'
 import type { Metadata } from 'next'
 import NextAuthProvider from '@/providers/NextAuth'
 import Navbar from './components/commonComponents/navbar'
+import Sidebar from './components/commonComponents/sidebar'
 
 
 export const metadata: Metadata = {
@@ -12,7 +13,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang='ja'>
-      <body className="bg-gray-50">
+      <body className="bg-white">
         <NextAuthProvider>
           <Navbar />
           <main>
