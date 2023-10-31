@@ -58,7 +58,7 @@ export default function TopUserCard() {
 
           return (
             <Link key={image.id} href={`illustrations/${image.id}`}>
-              <div className="sm:rounded-lg sm:p-2 duration-150 hover:-translate-y-1.5 active:bg-gray-100  active:duration-0">
+              <div className="sm:rounded-lg sm:p-2 duration-150 sm:hover:-translate-y-1.5 active:bg-gray-100  active:duration-0">
                 <div className="relative aspect-square">
                   <Image
                     src={image.url}
