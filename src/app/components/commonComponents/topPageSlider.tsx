@@ -40,7 +40,7 @@ export default function TopPageSlider() {
               fill
             />
           </SwiperSlide>
-          <SwiperSlide className="relative w-full h-full">
+          <SwiperSlide className="relative w-full h-full hover:opacity-60">
             <Image
               src={"/ImageGallery-30.png"}
               alt="テスト2"
@@ -48,7 +48,7 @@ export default function TopPageSlider() {
               fill
             />
           </SwiperSlide>
-          <SwiperSlide className="relative w-full h-full">
+          <SwiperSlide className="relative w-full h-full hover:opacity-60">
             <Image
               src={"/ImageGallery.png"}
               alt="テスト3"
@@ -56,7 +56,7 @@ export default function TopPageSlider() {
               fill
             />
           </SwiperSlide>
-          <SwiperSlide className="relative w-ful h-full">
+          <SwiperSlide className="relative w-ful h-full hover:opacity-60">
             <Image
               src={"/ImageGallery-30.png"}
               alt="テスト3"
@@ -64,7 +64,7 @@ export default function TopPageSlider() {
               fill
             />
           </SwiperSlide>
-          <SwiperSlide className="relative w-full h-full">
+          <SwiperSlide className="relative w-full h-full hover:opacity-60">
             <Image
               src={"/ImageGallery.png"}
               alt="テスト3"
@@ -72,7 +72,7 @@ export default function TopPageSlider() {
               fill
             />
           </SwiperSlide>
-          <SwiperSlide className="relative w-full h-full">
+          <SwiperSlide className="relative w-full h-full hover:opacity-60">
             <Image
               src={"/ImageGallery-30.png"}
               alt="テスト3"
