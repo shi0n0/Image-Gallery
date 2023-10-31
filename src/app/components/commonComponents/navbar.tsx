@@ -34,9 +34,9 @@ export default function Navbar() {
 
   return (
     <nav className="bg-white shadow-lg sticky top-0 z-50 font-sans">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto">
         <div className="flex justify-between items-center py-4">
-          <Link href={"/"} passHref>
+          <Link href={"/"} passHref className="px-3">
             <p className="text-2xl font-bold rounded text-white bg-custom-pink px-3 py-1">
               ImageGallery
             </p>
@@ -75,7 +75,7 @@ export default function Navbar() {
             {session && <UserLink href="/dashboard" src={userImage} />}
             {!session && <UserLink href="/dashboard" src={userImage} />}
           </div>
-          <div className="sm:hidden">
+          <div className="sm:hidden px-4">
             <button onClick={toggleMobileMenu}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -97,10 +97,10 @@ export default function Navbar() {
         {isMobileMenuOpen && (
           <div>
             <div
-              className="sm:hidden w-2/3 h-screen fixed transition-transform transform translate-x-0 z-20"
+              className="sm:hidden w-screen h-screen fixed transition-transform transform translate-x-0 z-2 bg-black opacity-20"
               onClick={toggleMobileMenuClose}
             ></div>
-            <div className="sm:hidden w-2/3 h-screen fixed top-0 right-0 bg-white transition-transform transform translate-x-0 z-50">
+            <div className="sm:hidden bg w-2/3 h-screen fixed top-0 right-0 bg-white transition-transform transform translate-x-0 z-50">
               <div className="sm:hidden flex items-center justify-end px-4 py-5">
                 <button onClick={toggleMobileMenuClose}>
                   <svg
