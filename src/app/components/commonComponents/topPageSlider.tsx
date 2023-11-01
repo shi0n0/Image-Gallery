@@ -8,14 +8,14 @@ import Image from "next/image";
 export default function TopPageSlider() {
   return (
     <div className="bg-gray-100 md:p-2 relative">
-      <div className="w-full h-[30vh] md:h-[20vh] lg:h-[30vh]">
+      <div className="w-full h-[25vh] sm:h-[25vh] md:h-[20vh] lg:h-[30vh]">
         <Swiper
           modules={[Navigation, Pagination, Autoplay]}
           spaceBetween={10}
           slidesPerView="auto"
           breakpoints={{
-            767: {
-              slidesPerView: 3.5,
+            768: {
+              slidesPerView: 2.5,
               spaceBetween: 10,
             },
           }}
