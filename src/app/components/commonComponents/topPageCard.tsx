@@ -75,7 +75,7 @@ export default function TopUserCard() {
                   </div>
                 </div>
 
-                <div className="mt-1">
+                <div className="py-1 px-2">
                   <h2 className="font-semibold text-gray-800 truncate">
                     {image.title}
                   </h2>
