@@ -83,13 +83,13 @@ const ImageDetail = () => {
   const formattedDate = `${year}年${month}月${day}日 ${hours}:${minutes}`;
 
   return (
-    <div className="p-10 flex">
-      <div className="w-5/6 pr-5">
-        <div className="relative h-[60vh] bg-gray-200 rounded-lg overflow-hidden">
+    <div className="sm:p-10 sm:flex">
+      <div className="w-full sm:w-5/6 sm:pr-5">
+        <div className="relative w-full h-[0] pb-[100%] bg-gray-200 sm:rounded-lg overflow-hidden">
           <Image
             src={image.url || "/ImageGallery-30.png"}
             alt="ユーザーが投稿した画像"
-            className="object-contain w-full h-full"
+            className="object-contain w-full"
             quality={80}
             fill
           />
