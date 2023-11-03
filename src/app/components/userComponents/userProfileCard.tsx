@@ -58,15 +58,16 @@ export default function UserProfileCard() {
 
           return (
             <Link key={image.id} href={`/illustrations/${image.id}`}>
-              <div className="bg-white rounded-lg shadow-md p-4 duration-150 hover:-translate-y-1.5 active:bg-gray-100  active:duration-0">
-                <div className="relative w-full h-0 pb-[100%]">
+              <div className="sm:rounded-lg sm:p-2 duration-150 sm:hover:-translate-y-1.5 active:bg-gray-100  active:duration-0">
+                <div className="relative aspect-square">
                   <Image
                     src={image.url}
-                    alt={`User Image ${index}`}
+                    alt={`ユーザー画像 | ${image.id}`}
                     layout="fill"
                     objectFit="cover"
                     quality={50}
-                    className="w-full h-full rounded-lg hover:opacity-95 transition-opacity"
+                    className="sm:rounded-lg hover:opacity-95 transition-opacity"
+                    fill
                   />
                   <div className="absolute top-2 right-2">
                     <span className="bg-red-500 text-white py-1 px-2 rounded-full text-xs">
@@ -75,8 +76,8 @@ export default function UserProfileCard() {
                   </div>
                 </div>
 
-                <div className="mt-1">
-                  <h2 className="text-lg font-semibold text-gray-800 truncate">
+                <div className="py-1 px-2">
+                  <h2 className="font-semibold text-gray-800 truncate">
                     {image.title}
                   </h2>
                   <Link href={`/userprofile/${userAccount?.id}`}>

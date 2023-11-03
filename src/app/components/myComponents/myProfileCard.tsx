@@ -45,14 +45,14 @@ export default function ProfileCard() {
       <GridContainer>
         {userImages.map((image, index) => (
           <Link key={image.id} href={`/illustrations/${image.id}`}>
-            <div className="bg-white rounded-lg shadow-md p-4 duration-150 hover:-translate-y-1.5 active:bg-gray-100  active:duration-0">
-              <div className="relative w-full h-0 pb-[100%]">
+            <div className="sm:rounded-lg sm:p-2 duration-150 sm:hover:-translate-y-1.5 active:bg-gray-100  active:duration-0">
+              <div className="relative aspect-square">
                 <Image
                   src={image.url}
-                  alt={`ユーザー画像 ${index}`}
+                  alt={`ユーザー画像 | ${index}`}
                   objectFit="cover"
                   quality={10}
-                  className="w-full h-full rounded-lg"
+                  className="sm:rounded-lg hover:opacity-95 transition-opacity"
                   fill
                 />
                 <div className="absolute top-2 right-2">
@@ -61,18 +61,18 @@ export default function ProfileCard() {
                   </span>
                 </div>
                 <Link href={`/dashboard/edit/${image.id}}`}>
-                    <button className="absolute bottom-2 right-2 bg-gray-300 opacity-30 text-white p-3 rounded-full hover:opacity-60">
-                      <Image
-                        src="/pen-solid.svg"
-                        alt="編集"
-                        width={20}
-                        height={20}
-                      />
-                    </button>
-                  </Link>
+                  <button className="absolute bottom-2 right-2 bg-gray-300 opacity-30 text-white p-3 rounded-full hover:opacity-60">
+                    <Image
+                      src="/pen-solid.svg"
+                      alt="編集"
+                      width={20}
+                      height={20}
+                    />
+                  </button>
+                </Link>
               </div>
 
-              <div className="mt-1">
+              <div className="py-1 px-2">
                 <h2 className="text-lg font-semibold text-gray-800 truncate">
                   {image.title}
                 </h2>
