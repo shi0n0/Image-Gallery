@@ -16,6 +16,8 @@ const ImageDetail = () => {
       userId: "",
       title: "",
       description: "",
+      width: "",
+      height: "",
       postedAt: "",
     },
   ]);
