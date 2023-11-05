@@ -35,7 +35,7 @@ const ImageDetail = () => {
       if (pagePath) {
         const { data, error } = await supabase
           .from("Image")
-          .select("url,userId,title,description,postedAt")
+          .select("url,userId,title,description,width,height,postedAt")
           .eq("id", pagePath);
 
         const { data: userData, error: userError } = await supabase
@@ -83,13 +83,13 @@ const ImageDetail = () => {
   const formattedDate = `${year}年${month}月${day}日 ${hours}:${minutes}`;
 
   return (
-    <div className="sm:p-10 sm:flex">
-      <div className="w-full sm:w-5/6 sm:pr-5">
-        <div className="relative w-full h-[0] pb-[100%] bg-gray-200 sm:rounded-lg overflow-hidden">
+    <div className="sm:p-20 sm:flex h-screen max-h-[90vh]">
+      <div className="relative h-auto sm:pr-5 sm:w-1/3 bg-gray-200">
+        <div className="h-fit">
           <Image
             src={image.url || "/ImageGallery-30.png"}
             alt="ユーザーが投稿した画像"
-            className="object-contain w-full"
+            className="object-contain w-fit"
             quality={80}
             fill
           />
