@@ -45,7 +45,7 @@ export default function ProfileCard() {
       <GridContainer>
         {userImages.map((image, index) => (
           <Link key={image.id} href={`/illustrations/${image.id}`}>
-            <div className="sm:rounded-lg sm:p-2 duration-150 active:bg-gray-900  active:duration-0">
+            <div className="sm:rounded-lg sm:p-2 duration-150 active:bg-gray-100  active:duration-0">
               <div className="relative aspect-square">
                 <Image
                   src={image.url}
