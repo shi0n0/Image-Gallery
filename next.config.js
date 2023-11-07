@@ -13,4 +13,8 @@ module.exports = {
       'manobwjepjqodaznaott.supabase.co'
     ],
   },
+  webpack: (config) => {
+    config.resolve.fallback = { fs: false };
+    return config;
+  },
 };
