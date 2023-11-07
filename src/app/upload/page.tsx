@@ -1,16 +1,16 @@
-"use client"
+"use client";
 
 import { ChangeEvent, useEffect, useState } from "react";
 import supabase from "../utils/supabase";
 import { useSession } from "next-auth/react";
-import { useRouter } from 'next/navigation'
+import { useRouter } from "next/navigation";
+import imageSize from "image-size";
 
 export default function Upload() {
-  const { data: session } = useSession()
-  const router = useRouter()
+  const { data: session } = useSession();
+  const router = useRouter();
 
-
-const [title, setTitle] = useState("");
+  const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
 
@@ -29,40 +29,54 @@ const [title, setTitle] = useState("");
       console.error("画像が選択されていません。");
       return;
     }
+    
+    // 選択された画像ファイルをバッファーに変換
+    const fileBuffer = await selectedImage.arrayBuffer();
+    const buffer = Buffer.from(new Uint8Array(fileBuffer));
+
+    const dimensions = imageSize(buffer);
+
+    const width = dimensions.width;
+    const height = dimensions.height;
 
     const filePath = `${selectedImage.name}`;
 
     // 画像をストレージにアップロード
     const { error: storageError } = await supabase.storage
-      .from('Images')
+      .from("Images")
       .upload(filePath, selectedImage);
 
     if (storageError) {
-      console.error('ストレージエラー:', storageError.message);
+      console.error("ストレージエラー:", storageError.message);
       return;
     }
 
     // 画像のURLを取得
-    const { data } = await supabase.storage.from('Images').getPublicUrl(filePath);
+    const { data } = await supabase.storage
+      .from("Images")
+      .getPublicUrl(filePath);
     const imageUrl = data.publicUrl;
 
-    const userId = session?.user?.id
+    const userId = session?.user?.id;
 
     // 画像のURL、タイトル、および概要をDBに保存
-    const { error: databaseError } = await supabase
-      .from('Image')
-      .insert([
-        { url: imageUrl, userId: userId, title: title, description: description }
-      ]);
+    const { error: databaseError } = await supabase.from("Image").insert([
+      {
+        url: imageUrl,
+        userId: userId,
+        title: title,
+        description: description,
+        width: width,
+        height: height,
+      },
+    ]);
 
     if (databaseError) {
-      console.error('データベースエラー:', databaseError.message);
+      console.error("データベースエラー:", databaseError.message);
     } else {
-      console.log('データベースにデータを挿入しました。');
-      router.push("/")
+      console.log("データベースにデータを挿入しました。");
+      router.push("/");
     }
-
-    
   };
 
   return (
