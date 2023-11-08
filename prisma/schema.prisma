@@ -13,8 +13,8 @@ model Image {
   userId      String
   title       String
   description String
-  width       String
-  height      String
+  width       Int
+  height      Int
   postedAt    DateTime  @default(now())
   user        User   @relation(fields: [userId], references: [id])
 }
