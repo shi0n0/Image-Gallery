@@ -84,18 +84,20 @@ const ImageDetail = () => {
 
   const formattedDate = `${year}年${month}月${day}日 ${hours}:${minutes}`;
 
+  // widthとheightを数値に変換
+  const imageWidth = parseInt(image.width, 10) || undefined;
+  const imageHeight = parseInt(image.height, 10) || undefined;
+
   return (
     <div className="sm:p-20 sm:flex h-screen max-h-[90vh]">
-      <div className="relative h-auto sm:pr-5 sm:w-1/3 bg-gray-200">
-        <div className="h-fit">
-          <Image
-            src={image.url || "/ImageGallery-30.png"}
-            alt="ユーザーが投稿した画像"
-            className="object-contain w-fit"
-            quality={80}
-            fill
-          />
-        </div>
+      <div className="relative sm:max-w-xl sm:pr-5 bg-gray-200">
+        <Image
+          src={image.url}
+          alt="ユーザーが投稿した画像"
+          quality={80}
+          width={imageWidth}
+          height={imageHeight}
+        />
       </div>
       <div>
         <div className="bg-white rounded-lg mb-5">
@@ -138,7 +140,7 @@ const ImageDetail = () => {
                   src={user.image}
                   alt="ユーザーのアイコン"
                   className="object-cover w-full h-full"
-                  layout="fill"
+                  fill
                 />
               </div>
               <p className="text-lg font-semibold px-2">{user.name}</p>
