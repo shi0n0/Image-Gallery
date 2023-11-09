@@ -98,7 +98,7 @@ const ImageDetail = () => {
           className="object-contain sm:min-w-0 lg:max-w-[50vw]"
         />
       </div>
-      <div className="sm:flex sm:justify-center sm:ml-4">
+      <div className="lg:flex lg:justify-center sm:ml-4">
         <div className="bg-white rounded-lg mt-5 sm:mt-0">
           <div className="p-5">
             <p className="text-xl font-bold mb-1">
