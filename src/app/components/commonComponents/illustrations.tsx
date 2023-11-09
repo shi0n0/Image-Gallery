@@ -27,6 +27,12 @@ const ImageDetail = () => {
     name: "",
   });
 
+  const [showFullImage, setShowFullImage] = useState(false);
+
+  const handleShowMoreClick = () => {
+    setShowFullImage(true);
+  };
+  
   useEffect(() => {
     async function fetchUserImages() {
       if (pagePath) {
@@ -80,11 +86,9 @@ const ImageDetail = () => {
     .toString()
     .padStart(2, "0")}`;
 
-    console.log("width:" + imageData.width)
-    console.log("height:" + imageData.height)
   return (
     <div className="sm:py-10 sm:px-20 lg:flex w-full">
-      <div className="relative bg-gray-200 sm:p-4 rounded-md sm:flex sm:justify-center">
+      <div className="relative top-0 bg-gray-200 sm:p-4 rounded-md sm:flex sm:justify-center">
         <Image
           src={imageData.url}
           alt="ユーザーが投稿した画像"
