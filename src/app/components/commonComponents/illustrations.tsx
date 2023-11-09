@@ -7,30 +7,25 @@ import { usePathname } from "next/navigation";
 import supabase from "../../utils/supabase";
 import Link from "next/link";
 
+// 必要なimport文を追加
+
 const ImageDetail = () => {
   const getPagePath = usePathname();
   const pagePath = getPagePath.replace("/illustrations/", "");
-  const [imageData, setImageData] = useState([
-    {
-      url: "",
-      userId: "",
-      title: "",
-      description: "",
-      width: "",
-      height: "",
-      postedAt: "",
-    },
-  ]);
-  const [userProps, setUserProps] = useState([
-    {
-      id: "",
-      image: "",
-      name: "",
-    },
-  ]);
-  const matchingUser = userProps.find(
-    (user) => user.id === imageData[0]?.userId
-  );
+  const [imageData, setImageData] = useState({
+    url: "",
+    userId: "",
+    title: "",
+    description: "",
+    width: 0,
+    height: 0,
+    postedAt: "",
+  });
+  const [userProps, setUserProps] = useState({
+    id: "",
+    image: "",
+    name: "",
+  });
 
   useEffect(() => {
     async function fetchUserImages() {
@@ -47,16 +42,13 @@ const ImageDetail = () => {
         if (error) {
           console.error("画像の取得にエラーが発生しました:", error);
         } else {
-          setImageData(data);
+          setImageData(data[0]);
         }
 
         if (userError) {
-          console.error(
-            "ユーザーデータの取得にエラーが発生しました:",
-            userError
-          );
+          console.error("ユーザーデータの取得にエラーが発生しました:", userError);
         } else {
-          setUserProps(userData);
+          setUserProps(userData[0]);
         }
       }
     }
@@ -64,89 +56,90 @@ const ImageDetail = () => {
     fetchUserImages();
   }, [pagePath]);
 
-  if (!imageData || imageData.length === 0) {
+  if (!imageData.url) {
     return (
       <div className="p-10">
-        イラストを探しています。1分以上この画面が表示されている場合リロードするか、URLを見直してください。
+        イラストを探しています。1分以上この画面が表示されている場合はリロードするか、URLを見直してください。
       </div>
     );
   }
 
-  const image = imageData[0];
-  const user = matchingUser;
+  const originalDateTime = new Date(imageData.postedAt);
+  const formattedDate = `${originalDateTime.getFullYear()}年${(
+    originalDateTime.getMonth() + 1
+  )
+    .toString()
+    .padStart(2, "0")}月${originalDateTime
+    .getDate()
+    .toString()
+    .padStart(2, "0")}日 ${originalDateTime
+    .getHours()
+    .toString()
+    .padStart(2, "0")}:${originalDateTime
+    .getMinutes()
+    .toString()
+    .padStart(2, "0")}`;
 
-  const originalDateTime = new Date(image.postedAt); // 指定された日付と時刻
-  const year = originalDateTime.getFullYear(); // 年
-  const month = (originalDateTime.getMonth() + 1).toString().padStart(2, "0"); // 月
-  const day = originalDateTime.getDate().toString().padStart(2, "0"); // 日
-  const hours = originalDateTime.getHours().toString().padStart(2, "0"); // 時
-  const minutes = originalDateTime.getMinutes().toString().padStart(2, "0"); //　分
-
-  const formattedDate = `${year}年${month}月${day}日 ${hours}:${minutes}`;
-
-  // widthとheightを数値に変換
-  const imageWidth = parseInt(image.width, 10) || undefined;
-  const imageHeight = parseInt(image.height, 10) || undefined;
-
+    console.log("width:" + imageData.width)
+    console.log("height:" + imageData.height)
   return (
-    <div className="sm:p-20 sm:flex h-screen max-h-[90vh]">
-      <div className="relative sm:max-w-xl sm:pr-5 bg-gray-200">
+    <div className="sm:py-10 sm:px-20 lg:flex w-full">
+      <div className="relative bg-gray-200 sm:p-4 rounded-md sm:flex sm:justify-center">
         <Image
-          src={image.url}
+          src={imageData.url}
           alt="ユーザーが投稿した画像"
           quality={80}
-          width={imageWidth}
-          height={imageHeight}
+          width={imageData.width}
+          height={imageData.height}
+          className="object-contain sm:min-w-0 lg:max-w-[50vw]"
         />
       </div>
-      <div>
-        <div className="bg-white rounded-lg mb-5">
+      <div className="sm:flex sm:justify-center sm:ml-4">
+        <div className="bg-white rounded-lg mt-5 sm:mt-0">
           <div className="p-5">
-            <p className="text-3xl font-bold mb-1">
-              {image.title || "ダミータイトル"}
+            <p className="text-xl font-bold mb-1">
+              {imageData.title || "ダミータイトル"}
             </p>
-            <p className="text-xl text-gray-800 mb-6">
-              {image.description || "ディスクリプションの文章がここに入ります"}
+            <p className="text-md text-gray-800 mb-6">
+              {imageData.description || "ディスクリプションの文章がここに入ります"}
             </p>
-            <p className="text-lg text-gray-500">
-              {formattedDate || "◯◯◯◯年◯◯月◯◯日 "}
-            </p>
+            <p className="text-md text-gray-500">{formattedDate}</p>
           </div>
-        </div>
 
-        <div className="flex items-center space-x-1">
-          <div className="text-center">
-            <p className="text-sm text-gray-500 mb-1">いいね</p>
-            <span className="text-5xl text-red-500 bg-white rounded-lg cursor-pointer">
-              ♡
-            </span>
+          <div className="flex items-center space-x-1 p-5">
+            <div className="text-center">
+              <p className="text-sm text-gray-500 mb-1">いいね</p>
+              <span className="text-5xl text-red-500 bg-white rounded-lg cursor-pointer">
+                ♡
+              </span>
+            </div>
+            <div className="text-center">
+              <p className="text-sm text-gray-500 mb-1">お気に入り</p>
+              <span className="text-5xl text-yellow-300 bg-white rounded-lg cursor-pointer">
+                ☆
+              </span>
+            </div>
           </div>
-          <div className="text-center">
-            <p className="text-sm text-gray-500 mb-1">お気に入り</p>
-            <span className="text-5xl text-yellow-300 bg-white rounded-lg cursor-pointer">
-              ☆
-            </span>
-          </div>
-        </div>
 
-        {user && (
-          <div className="flex items-center space-x-4">
-            <Link
-              href={`/userprofile/${user.id}`}
-              className="flex items-center p-2 hover:bg-gray-800 hover:bg-opacity-10 hover:rounded-lg"
-            >
-              <div className="w-16 h-16 relative rounded-full overflow-hidden">
-                <Image
-                  src={user.image}
-                  alt="ユーザーのアイコン"
-                  className="object-cover w-full h-full"
-                  fill
-                />
-              </div>
-              <p className="text-lg font-semibold px-2">{user.name}</p>
-            </Link>
-          </div>
-        )}
+          {userProps.id && (
+            <div className="flex items-center space-x-4 p-5">
+              <Link
+                href={`/userprofile/${userProps.id}`}
+                className="flex items-center p-2 hover:bg-gray-800 hover:bg-opacity-10 hover:rounded-lg"
+              >
+                <div className="w-16 h-16 relative rounded-full overflow-hidden">
+                  <Image
+                    src={userProps.image}
+                    alt="ユーザーのアイコン"
+                    className="object-cover w-full h-full"
+                    fill
+                  />
+                </div>
+                <p className="text-lg font-semibold px-2">{userProps.name}</p>
+              </Link>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
