@@ -32,7 +32,7 @@ const ImageDetail = () => {
   const handleShowMoreClick = () => {
     setShowFullImage(true);
   };
-  
+
   useEffect(() => {
     async function fetchUserImages() {
       if (pagePath) {
@@ -52,7 +52,10 @@ const ImageDetail = () => {
         }
 
         if (userError) {
-          console.error("ユーザーデータの取得にエラーが発生しました:", userError);
+          console.error(
+            "ユーザーデータの取得にエラーが発生しました:",
+            userError
+          );
         } else {
           setUserProps(userData[0]);
         }
@@ -87,63 +90,89 @@ const ImageDetail = () => {
     .padStart(2, "0")}`;
 
   return (
-    <div className="sm:py-10 sm:px-20 w-full lg:flex bg-gray-100">
-      <div className="relative top-0 bg-gray-50 sm:p-2 rounded-md sm:flex sm:justify-center">
-        <Image
-          src={imageData.url}
-          alt="ユーザーが投稿した画像"
-          quality={80}
-          width={imageData.width}
-          height={imageData.height}
-          className="object-contain sm:min-w-0 lg:max-w-[50vw]"
-        />
-      </div>
-      <div className="lg:flex sm:ml-4 sm:bg-white lg:w-full lg:h-fit">
-        <div className="rounded-lg mt-5 sm:mt-0">
-          <div className="p-5">
-            <p className="text-xl font-bold mb-1">
-              {imageData.title || "ダミータイトル"}
-            </p>
-            <p className="text-md text-gray-800 mb-6">
-              {imageData.description || "ディスクリプションの文章がここに入ります"}
-            </p>
-            <p className="text-md text-gray-500">{formattedDate}</p>
-          </div>
-
-          <div className="flex items-center space-x-1 p-5">
-            <div className="text-center">
-              <p className="text-sm text-gray-500 mb-1">いいね</p>
-              <span className="text-5xl text-red-500 rounded-lg cursor-pointer">
-                ♡
-              </span>
-            </div>
-            <div className="text-center">
-              <p className="text-sm text-gray-500 mb-1">お気に入り</p>
-              <span className="text-5xl text-yellow-300 rounded-lg cursor-pointer">
-                ☆
-              </span>
-            </div>
-          </div>
-
-          {userProps.id && (
-            <div className="flex items-center space-x-4 p-5">
-              <Link
-                href={`/userprofile/${userProps.id}`}
-                className="flex items-center p-2 hover:bg-gray-800 hover:bg-opacity-10 hover:rounded-lg"
-              >
-                <div className="w-16 h-16 relative rounded-full overflow-hidden">
-                  <Image
-                    src={userProps.image}
-                    alt="ユーザーのアイコン"
-                    className="object-cover w-full h-full"
-                    fill
-                  />
-                </div>
-                <p className="text-lg font-semibold px-2">{userProps.name}</p>
-              </Link>
-            </div>
-          )}
+    <div>
+      <div className="sm:py-10 sm:px-20 w-full lg:flex bg-gray-100">
+        {/* 画像表示部分 */}
+        <div className="relative top-0 bg-gray-50 sm:p-2 rounded-md sm:flex sm:justify-center">
+          {/* 画像コンポーネント */}
+          <Image
+            src={imageData.url}
+            alt="ユーザーが投稿した画像"
+            quality={80}
+            width={imageData.width}
+            height={imageData.height}
+            className="object-contain sm:min-w-0 lg:max-w-[50vw]"
+          />
         </div>
+        {/* 詳細情報部分 */}
+        <div className="lg:flex sm:ml-4 sm:bg-white lg:w-full lg:h-fit">
+          <div className="rounded-lg mt-5 sm:mt-0">
+            <div className="p-5">
+              {/* 画像タイトル */}
+              <p className="text-xl font-bold mb-1">
+                {imageData.title || "ダミータイトル"}
+              </p>
+              {/* 画像説明 */}
+              <p className="text-md text-gray-800 mb-6">
+                {imageData.description ||
+                  "ディスクリプションの文章がここに入ります"}
+              </p>
+              {/* 投稿日時 */}
+              <p className="text-md text-gray-500">{formattedDate}</p>
+            </div>
+
+            {/* いいねとお気に入り */}
+            <div className="flex items-center space-x-1 p-5">
+              {/* いいね */}
+              <div className="text-center">
+                <p className="text-sm text-gray-500 mb-1">いいね</p>
+                <span className="text-5xl text-red-500 rounded-lg cursor-pointer">
+                  ♡
+                </span>
+              </div>
+              {/* お気に入り */}
+              <div className="text-center">
+                <p className="text-sm text-gray-500 mb-1">お気に入り</p>
+                <span className="text-5xl text-yellow-300 rounded-lg cursor-pointer">
+                  ☆
+                </span>
+              </div>
+            </div>
+
+            {/* ユーザープロフィールへのリンク */}
+            {userProps.id && (
+              <div className="flex items-center space-x-4 p-5">
+                {/* ユーザープロフィールへのリンク */}
+                <Link
+                  href={`/userprofile/${userProps.id}`}
+                  className="flex items-center p-2 hover:bg-gray-800 hover:bg-opacity-10 hover:rounded-lg"
+                >
+                  {/* ユーザーアイコン */}
+                  <div className="w-16 h-16 relative rounded-full overflow-hidden">
+                    <Image
+                      src={userProps.image}
+                      alt="ユーザーのアイコン"
+                      className="object-cover w-full h-full"
+                      fill
+                    />
+                  </div>
+                  {/* ユーザー名 */}
+                  <p className="text-lg font-semibold px-2">{userProps.name}</p>
+                </Link>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+      <div className="p-5">
+        <p className="text-xl font-bold mb-4">コメント</p>
+        <textarea
+          className="w-full h-32 border border-gray-300 rounded-md p-2 focus:outline-none focus:ring focus:border-blue-300"
+          placeholder="コメントを入力してください"
+        ></textarea>
+        <button className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300">
+          送信
+        </button>
       </div>
     </div>
   );
