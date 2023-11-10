@@ -87,8 +87,8 @@ const ImageDetail = () => {
     .padStart(2, "0")}`;
 
   return (
-    <div className="sm:py-10 sm:px-20 lg:flex w-full">
-      <div className="relative top-0 bg-gray-200 sm:p-4 rounded-md sm:flex sm:justify-center">
+    <div className="sm:py-10 sm:px-20 w-full lg:flex bg-gray-100">
+      <div className="relative top-0 bg-gray-50 sm:p-2 rounded-md sm:flex sm:justify-center">
         <Image
           src={imageData.url}
           alt="ユーザーが投稿した画像"
@@ -98,8 +98,8 @@ const ImageDetail = () => {
           className="object-contain sm:min-w-0 lg:max-w-[50vw]"
         />
       </div>
-      <div className="lg:flex lg:justify-center sm:ml-4">
-        <div className="bg-white rounded-lg mt-5 sm:mt-0">
+      <div className="lg:flex sm:ml-4 sm:bg-white lg:w-full lg:h-fit">
+        <div className="rounded-lg mt-5 sm:mt-0">
           <div className="p-5">
             <p className="text-xl font-bold mb-1">
               {imageData.title || "ダミータイトル"}
@@ -113,13 +113,13 @@ const ImageDetail = () => {
           <div className="flex items-center space-x-1 p-5">
             <div className="text-center">
               <p className="text-sm text-gray-500 mb-1">いいね</p>
-              <span className="text-5xl text-red-500 bg-white rounded-lg cursor-pointer">
+              <span className="text-5xl text-red-500 rounded-lg cursor-pointer">
                 ♡
               </span>
             </div>
             <div className="text-center">
               <p className="text-sm text-gray-500 mb-1">お気に入り</p>
-              <span className="text-5xl text-yellow-300 bg-white rounded-lg cursor-pointer">
+              <span className="text-5xl text-yellow-300 rounded-lg cursor-pointer">
                 ☆
               </span>
             </div>
