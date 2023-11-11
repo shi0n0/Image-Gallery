@@ -6,6 +6,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import supabase from "../../utils/supabase";
 import Link from "next/link";
+import UploadComment from "./uploadComment";
 
 // 必要なimport文を追加
 
@@ -26,12 +27,6 @@ const ImageDetail = () => {
     image: "",
     name: "",
   });
-
-  const [showFullImage, setShowFullImage] = useState(false);
-
-  const handleShowMoreClick = () => {
-    setShowFullImage(true);
-  };
 
   useEffect(() => {
     async function fetchUserImages() {
@@ -93,7 +88,7 @@ const ImageDetail = () => {
     <div>
       <div className="sm:py-10 sm:px-20 w-full lg:flex bg-gray-100">
         {/* 画像表示部分 */}
-        <div className="relative top-0 bg-gray-50 sm:p-2 rounded-md sm:flex sm:justify-center">
+        <div className="relative top-0 rounded-md sm:flex sm:justify-center lg:h-fit">
           {/* 画像コンポーネント */}
           <Image
             src={imageData.url}
@@ -101,11 +96,11 @@ const ImageDetail = () => {
             quality={80}
             width={imageData.width}
             height={imageData.height}
-            className="object-contain sm:min-w-0 lg:max-w-[50vw]"
+            className="object-contain sm:min-w-0 lg:max-w-[50vw] rounded-lg"
           />
         </div>
         {/* 詳細情報部分 */}
-        <div className="lg:flex sm:ml-4 sm:bg-white lg:w-full lg:h-fit">
+        <div className="lg:flex sm:ml-4 sm:bg-white lg:w-full lg:h-fit rounded-lg">
           <div className="rounded-lg mt-5 sm:mt-0">
             <div className="p-5">
               {/* 画像タイトル */}
@@ -145,7 +140,7 @@ const ImageDetail = () => {
                 {/* ユーザープロフィールへのリンク */}
                 <Link
                   href={`/userprofile/${userProps.id}`}
-                  className="flex items-center p-2 hover:bg-gray-800 hover:bg-opacity-10 hover:rounded-lg"
+                  className="flex items-center p-2 hover:bg-gray-800 hover:bg-opacity-5 hover:rounded-lg"
                 >
                   {/* ユーザーアイコン */}
                   <div className="w-16 h-16 relative rounded-full overflow-hidden">
@@ -164,16 +159,7 @@ const ImageDetail = () => {
           </div>
         </div>
       </div>
-      <div className="p-5">
-        <p className="text-xl font-bold mb-4">コメント</p>
-        <textarea
-          className="w-full h-32 border border-gray-300 rounded-md p-2 focus:outline-none focus:ring focus:border-blue-300"
-          placeholder="コメントを入力してください"
-        ></textarea>
-        <button className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300">
-          送信
-        </button>
-      </div>
+      <UploadComment pagePath={pagePath}/>
     </div>
   );
 };
