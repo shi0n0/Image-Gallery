@@ -16,7 +16,18 @@ model Image {
   width       Int
   height      Int
   postedAt    DateTime  @default(now())
+  comments    Comment[]
   user        User   @relation(fields: [userId], references: [id])
+}
+
+model Comment {
+  id       String   @id @default(dbgenerated("uuid_generate_v4()"))
+  text     String
+  userId   String
+  imageId  String
+  postedAt DateTime @default(now())
+  image     Image    @relation(fields: [imageId], references: [id])
+  user     User     @relation(fields: [userId], references: [id])
 }
 
 model Header {
@@ -62,6 +73,7 @@ model User {
   accounts      Account[]
   headers       Header[]
   images        Image[]
+  comments      Comment[]
   sessions      Session[]
 }
 
