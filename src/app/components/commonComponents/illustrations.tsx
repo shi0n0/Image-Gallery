@@ -7,8 +7,8 @@ import { usePathname } from "next/navigation";
 import supabase from "../../utils/supabase";
 import Link from "next/link";
 import UploadComment from "./uploadComment";
+import ShowComment from "./showComment";
 
-// 必要なimport文を追加
 
 const ImageDetail = () => {
   const getPagePath = usePathname();
@@ -160,6 +160,7 @@ const ImageDetail = () => {
         </div>
       </div>
       <UploadComment pagePath={pagePath}/>
+      <ShowComment imageId={pagePath}/>
     </div>
   );
 };
