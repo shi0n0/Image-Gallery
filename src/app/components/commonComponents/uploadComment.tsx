@@ -33,6 +33,11 @@ const UploadComment = ({ pagePath }: ImagePath) => {
   };
 
   const handleCommentSubmit = async () => {
+    if (!text.trim()) {
+      console.error("コメントが空白または空です。");
+      return;
+    }
+    
     const { error } = await supabase.from("Comment").insert(commentData);
 
     if (error) {
@@ -47,7 +52,7 @@ const UploadComment = ({ pagePath }: ImagePath) => {
     <div className="p-5">
       <p className="text-xl font-bold mb-4">コメント</p>
       <textarea
-        className="w-full px-2 pb-2 pt-2 border border-gray-300 rounded-md resize-none overflow-hidden focus:outline-none focus:ring focus:border-blue-300"
+        className="w-full px-2 pb-2 pt-2 border bg-gray-100 rounded-md resize-none overflow-hidden focus:outline-none focus:ring focus:border-blue-300"
         placeholder="コメントを入力してください"
         value={text}
         onChange={handleTextChange}
