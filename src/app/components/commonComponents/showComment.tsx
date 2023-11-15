@@ -58,7 +58,7 @@ export default function ShowComment({ imageId }: { imageId: any }) {
 
   return (
     <div className="px-5">
-      <div className="flex mb-2">
+      <div className="flex mb-4">
           <button
             onClick={() =>{
               setComments(
