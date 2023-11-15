@@ -42,8 +42,11 @@ export default function ShowComment({ imageId }: { imageId: any }) {
               return { ...comment, user: userData };
             })
           );
-
-          setComments(allCommentData);
+          const sortedComments = allCommentData.sort(
+            (a, b) =>
+              new Date(b.postedAt).getTime() - new Date(a.postedAt).getTime()
+          );
+          setComments(sortedComments);
         }
       }
     };
@@ -53,6 +56,34 @@ export default function ShowComment({ imageId }: { imageId: any }) {
 
   return (
     <div className="p-5">
+      <div>
+        <button
+          onClick={() =>
+            setComments(
+              [...comments].sort(
+                (a, b) =>
+                  new Date(b.postedAt).getTime() -
+                  new Date(a.postedAt).getTime()
+              )
+            )
+          }
+        >
+          新しい順
+        </button>
+        <button
+          onClick={() =>
+            setComments(
+              [...comments].sort(
+                (a, b) =>
+                  new Date(a.postedAt).getTime() -
+                  new Date(b.postedAt).getTime()
+              )
+            )
+          }
+        >
+          古い順
+        </button>
+      </div>
       {comments.map((comment, index) => (
         <div key={index} className="flex p-2">
           <div className="relative aspect-square w-10 h-10 mr-2">
