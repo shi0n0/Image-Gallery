@@ -14,6 +14,8 @@ export default function ShowComment({ imageId }: { imageId: any }) {
       };
     }[]
   >([]);
+  const [sortOrder, setSortOrder] = useState<'new' | 'old'>('new');
+
 
   useEffect(() => {
     const fetchComments = async () => {
@@ -55,34 +57,38 @@ export default function ShowComment({ imageId }: { imageId: any }) {
   }, [imageId]);
 
   return (
-    <div className="p-5">
-      <div>
-        <button
-          onClick={() =>
-            setComments(
-              [...comments].sort(
-                (a, b) =>
-                  new Date(b.postedAt).getTime() -
-                  new Date(a.postedAt).getTime()
+    <div className="px-5">
+      <div className="flex mb-2">
+          <button
+            onClick={() =>{
+              setComments(
+                [...comments].sort(
+                  (a, b) =>
+                    new Date(b.postedAt).getTime() -
+                    new Date(a.postedAt).getTime()
+                )
               )
-            )
-          }
-        >
-          新しい順
-        </button>
-        <button
-          onClick={() =>
-            setComments(
-              [...comments].sort(
-                (a, b) =>
-                  new Date(a.postedAt).getTime() -
-                  new Date(b.postedAt).getTime()
+            setSortOrder('new');
+          }}
+          className={`py-2 px-4 bg-gray-200 ${sortOrder === 'new' ? 'bg-opacity-100' : 'bg-opacity-30'} text-gray-600 rounded-full ml-2 hover:bg-opacity-100`}
+          >
+            新しい順
+          </button>
+          <button
+            onClick={() => {
+              setComments(
+                [...comments].sort(
+                  (a, b) =>
+                    new Date(a.postedAt).getTime() -
+                    new Date(b.postedAt).getTime()
+                )
               )
-            )
-          }
-        >
-          古い順
-        </button>
+              setSortOrder('old');
+            }}
+            className={`py-2 px-4 bg-gray-200 ${sortOrder === 'old' ? 'bg-opacity-100' : 'bg-opacity-30'} text-gray-600 rounded-full ml-2 hover:bg-opacity-100`}
+            >
+            古い順
+          </button>
       </div>
       {comments.map((comment, index) => (
         <div key={index} className="flex p-2">
