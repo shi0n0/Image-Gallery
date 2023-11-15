@@ -103,8 +103,11 @@ export default function ShowComment({ imageId }: { imageId: any }) {
             )}
           </div>
           <div>
-            <p className="text-sm font-bold">{comment.user?.name}</p>
-            <p className="font-light">{comment.text}</p>
+            <div className="flex pb-1">
+            <p className="text-sm font-bold mr-1">{comment.user?.name}</p>
+            <p className="text-sm opacity-50 font-normal">{new Date(comment.postedAt).toLocaleDateString()}</p>
+            </div>
+            <p className="text-sm font-medium">{comment.text}</p>
           </div>
         </div>
       ))}
