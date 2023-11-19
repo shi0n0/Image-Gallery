@@ -1,6 +1,6 @@
 import supabase from "@/app/utils/supabase";
 import { useSession } from "next-auth/react";
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 
 interface ImagePath {
@@ -37,14 +37,13 @@ const UploadComment = ({ pagePath }: ImagePath) => {
       console.error("コメントが空白または空です。");
       return;
     }
-    
+
     const { error } = await supabase.from("Comment").insert(commentData);
 
     if (error) {
       console.error("コメントの投稿に失敗しました:", error.message);
     } else {
       console.log("コメントが投稿されました");
-      router.refresh();
     }
   };
 

@@ -1,4 +1,3 @@
-import Link from "next/link";
 import MyHeader from "../components/myComponents/myHeader";
 import TabSwitch from "../components/myComponents/tabSwitch";
 import PaddingContainer from "../components/commonComponents/paddingCotainer";

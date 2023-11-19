@@ -4,7 +4,6 @@ import supabase from "@/app/utils/supabase";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import Auth from "../myComponents/auth";
 
 
 export default function UserHeader() {
