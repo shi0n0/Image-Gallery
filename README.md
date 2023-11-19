@@ -1,9 +1,9 @@
 # Image-Gallery  
-Next.js - 13.4を使用したイメージギャラリーです。  
+Next.js14(App Router)を使用したイメージギャラリーです。  
 簡易版Pixiv的な感じを構想しています。  
 
 ## 技術スタック  
-言語・フレームワーク - TypeScript,Next.js13.4  
+言語・フレームワーク - TypeScript,Next.js14(App Router)
 CSSフレームワーク - Tailwind  
 デプロイ - Vercel  
 データベース - Supabase(Postgresql)  
@@ -43,7 +43,7 @@ CSSフレームワーク - Tailwind
  ・TOP3  
  ・最近投稿されたイラスト etc...  
  ・各ページのレスポンシブ対応
-・各ページのServerActionsへの改修
+・各ページのServerActionsへの改修(現在アップロードページのみ対応)
 
 ### メモ  
 トップページのみある程度のレスポンシブに対応。  
