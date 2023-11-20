@@ -8,7 +8,6 @@ import Link from "next/link";
 import UploadComment from "./uploadComment";
 import ShowComment from "./showComment";
 
-
 const ImageDetail = () => {
   const getPagePath = usePathname();
   const pagePath = getPagePath.replace("/illustrations/", "");
@@ -107,7 +106,7 @@ const ImageDetail = () => {
                 {imageData.title || "ダミータイトル"}
               </p>
               {/* 画像説明 */}
-              <p className="text-md text-gray-800 mb-6">
+              <p className="text-md text-gray-800">
                 {imageData.description ||
                   "ディスクリプションの文章がここに入ります"}
               </p>
@@ -153,13 +152,16 @@ const ImageDetail = () => {
                   {/* ユーザー名 */}
                   <p className="text-lg font-semibold px-2">{userProps.name}</p>
                 </Link>
+                <button className="bg-blue-500 text-white px-4 py-2 rounded-md">
+                  フォローする
+                </button>
               </div>
             )}
           </div>
         </div>
       </div>
-      <UploadComment pagePath={pagePath}/>
-      <ShowComment imageId={pagePath}/>
+      <UploadComment pagePath={pagePath} />
+      <ShowComment imageId={pagePath} />
     </div>
   );
 };
