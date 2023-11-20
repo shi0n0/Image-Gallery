@@ -55,7 +55,7 @@ const UploadFile = async (formData: FormData) => {
     console.error("データベースエラー:", databaseError.message);
   } else {
     console.log("データベースにデータを挿入しました。");
-    redirect("/dashboard")
+    redirect("/dashboard");
   }
 };
 
@@ -63,11 +63,16 @@ const UploadFile = async (formData: FormData) => {
     <form action={UploadFile} className="max-w-lg mx-auto mt-8 p-4">
       <h1 className="text-2xl font-semibold mb-4">画像をアップロード</h1>
       <div className="mb-4">
+        <label htmlFor="file" className="border p-2 cursor-pointer">
+          イラストを選択
+        </label>
         <input
           type="file"
           name="file"
+          id="file"
           accept="image/*"
           className="border p-2"
+          hidden
         />
       </div>
       <div className="mb-4">
