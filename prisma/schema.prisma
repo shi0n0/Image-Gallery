@@ -17,6 +17,7 @@ model Image {
   height      Int
   postedAt    DateTime  @default(now())
   comments    Comment[]
+  tags        TagToImage[]
   user        User   @relation(fields: [userId], references: [id])
 }
 
@@ -28,6 +29,20 @@ model Comment {
   postedAt DateTime @default(now())
   image     Image    @relation(fields: [imageId], references: [id])
   user     User     @relation(fields: [userId], references: [id])
+}
+
+model Tag {
+  id     String  @id @default(dbgenerated("uuid_generate_v4()"))
+  tagName   String
+  images    TagToImage[]
+}
+
+model TagToImage {
+  imageId String
+  tagId   String
+  image   Image @relation(fields: [imageId], references: [id])
+  tag     Tag   @relation(fields: [tagId], references: [id])
+  @@id([imageId, tagId])
 }
 
 model Header {
