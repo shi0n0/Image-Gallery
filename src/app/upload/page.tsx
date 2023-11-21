@@ -11,6 +11,7 @@ const UploadFile = async (formData: FormData) => {
   const file = formData.get("file") as File;
   const title = formData.get("title");
   const description = formData.get("description");
+  const tag = formData.get("tag")
   const bucket = "Images";
   const imageTable = "Image";
   const session = await getServerSession(nextAuthOptions);
@@ -88,6 +89,13 @@ const UploadFile = async (formData: FormData) => {
           name="description"
           placeholder="概要"
           className="border p-2 w-full h-24"
+        />
+      </div>
+      <div className="mb-4">
+        <input
+          name="tag"
+          placeholder="タグ"
+          className="border p-2 w-full"
         />
       </div>
       <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
