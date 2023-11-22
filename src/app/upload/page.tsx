@@ -5,60 +5,96 @@ import imageSize from "image-size";
 import { redirect } from "next/navigation";
 
 export default async function UploadForm() {
-  
-const UploadFile = async (formData: FormData) => {
-  "use server"
-  const file = formData.get("file") as File;
-  const title = formData.get("title");
-  const description = formData.get("description");
-  const tag = formData.get("tag")
-  const bucket = "Images";
-  const imageTable = "Image";
-  const session = await getServerSession(nextAuthOptions);
-  const userId = session?.user?.id;
+  const UploadFile = async (formData: FormData) => {
+    "use server";
+    const file = formData.get("file") as File;
+    const title = formData.get("title");
+    const description = formData.get("description");
+    const tag = formData.get("tag");
+    const bucket = "Images";
+    const imageTable = "Image";
+    const tagTable = "Tag";
+    const tagToImage = "TagToImage";
+    const session = await getServerSession(nextAuthOptions);
+    const userId = session?.user?.id;
 
-  // 選択された画像ファイルをバッファーに変換
-  const fileBuffer = await file.arrayBuffer();
-  const buffer = Buffer.from(new Uint8Array(fileBuffer));
-  const dimensions = imageSize(buffer);
-  const width = dimensions.width;
-  const height = dimensions.height;
+    // 選択された画像ファイルをバッファーに変換
+    const fileBuffer = await file.arrayBuffer();
+    const buffer = Buffer.from(new Uint8Array(fileBuffer));
+    const dimensions = imageSize(buffer);
+    const width = dimensions.width;
+    const height = dimensions.height;
 
-  const { error:storageError } = await supabase.storage
-    .from(bucket)
-    .upload(file.name, file);
+    const { error: storageError } = await supabase.storage
+      .from(bucket)
+      .upload(file.name, file);
 
-  if (storageError) {
-    console.error("ストレージエラー:",storageError);
-  } else {
-    console.log("ファイルをストレージにアップロードしました");
-  }
+    if (storageError) {
+      console.error("ストレージエラー:", storageError);
+    } else {
+      console.log("ファイルをストレージにアップロードしました");
+    }
 
-  // 画像のURLを取得
-  const { data: imageData } = await supabase.storage
-    .from(bucket)
-    .getPublicUrl(file.name);
-  const imageUrl = imageData.publicUrl;
+    // 画像のURLを取得
+    const { data: imageData } = await supabase.storage
+      .from(bucket)
+      .getPublicUrl(file.name);
+    const imageUrl = imageData.publicUrl;
 
-  // 画像のURL、タイトル、および概要をDBに保存
-  const { error: databaseError } = await supabase.from(imageTable).insert([
-    {
-      url: imageUrl,
-      userId: userId,
-      title: title,
-      description: description,
-      width: width,
-      height: height,
-    },
-  ]);
+    // 画像のURL、タイトル、および概要をDBに保存
+    const { data: imageTableData, error: imageTableError } = await supabase
+      .from(imageTable)
+      .insert([
+        {
+          url: imageUrl,
+          userId: userId,
+          title: title,
+          description: description,
+          width: width,
+          height: height,
+        },
+      ])
+      .select();
+    if (!imageTableError && imageTableData && imageTableData.length > 0) {
+      const imageId = imageTableData[0].id;
 
-  if (databaseError) {
-    console.error("データベースエラー:", databaseError.message);
-  } else {
-    console.log("データベースにデータを挿入しました。");
-    redirect("/dashboard");
-  }
-};
+      const { data: tagTableData, error: tagTableError } = await supabase
+        .from(tagTable)
+        .insert([
+          {
+            tagName: tag,
+          },
+        ])
+        .select();
+      if (!tagTableError && tagTableData && tagTableData.length > 0) {
+        const tagId = tagTableData[0].id;
+
+        const { error: tagToImageError } = await supabase
+          .from(tagToImage)
+          .insert([
+            {
+              imageId: imageId,
+              tagId: tagId,
+            },
+          ]);
+
+        if (tagToImageError) {
+          console.error("tagToImageテーブルエラー:", tagToImageError.message);
+        } else {
+          console.log("TagToImageテーブルにデータを挿入しました。");
+        }
+      } else if (tagTableError) {
+        console.error("タグテーブルエラー:", tagTableError.message);
+      } else {
+        console.log("タグテーブルにデータを挿入しました。")
+      }
+    } else if (imageTableError) {
+      console.error("イメージテーブルエラー:", imageTableError.message);
+    } else {
+      console.log("イメージテーブルにデータを挿入しました。")
+    }
+  };
+  redirect("dashboard")
 
   return (
     <form action={UploadFile} className="max-w-lg mx-auto mt-8 p-4">
@@ -92,15 +128,14 @@ const UploadFile = async (formData: FormData) => {
         />
       </div>
       <div className="mb-4">
-        <input
-          name="tag"
-          placeholder="タグ"
-          className="border p-2 w-full"
-        />
+        <input name="tag" placeholder="タグ" className="border p-2 w-full" />
       </div>
-      <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+      <button
+        type="submit"
+        className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+      >
         アップロード
       </button>
     </form>
   );
-};
+}
