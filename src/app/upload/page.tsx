@@ -55,46 +55,44 @@ export default async function UploadForm() {
         },
       ])
       .select();
-    if (!imageTableError && imageTableData && imageTableData.length > 0) {
-      const imageId = imageTableData[0].id;
+    const imageId = imageTableData?.[0]?.id;
 
-      const { data: tagTableData, error: tagTableError } = await supabase
-        .from(tagTable)
-        .insert([
-          {
-            tagName: tag,
-          },
-        ])
-        .select();
-      if (!tagTableError && tagTableData && tagTableData.length > 0) {
-        const tagId = tagTableData[0].id;
-
-        const { error: tagToImageError } = await supabase
-          .from(tagToImage)
-          .insert([
-            {
-              imageId: imageId,
-              tagId: tagId,
-            },
-          ]);
-
-        if (tagToImageError) {
-          console.error("tagToImageテーブルエラー:", tagToImageError.message);
-        } else {
-          console.log("TagToImageテーブルにデータを挿入しました。");
-        }
-      } else if (tagTableError) {
-        console.error("タグテーブルエラー:", tagTableError.message);
-      } else {
-        console.log("タグテーブルにデータを挿入しました。")
-      }
-    } else if (imageTableError) {
-      console.error("イメージテーブルエラー:", imageTableError.message);
+    if (imageTableError) {
+      console.error("imageテーブルエラー:", imageTableError)
     } else {
-      console.log("イメージテーブルにデータを挿入しました。")
+      console.log("imageテーブルにデータを挿入しました。")
+    }
+
+    const { data: tagTableData, error: tagTableError } = await supabase
+      .from(tagTable)
+      .insert([
+        {
+          tagName: tag,
+        },
+      ])
+      .select();
+    const tagId = tagTableData?.[0].id;
+
+    if ( tagTableError) {
+      console.error("tagテーブルエラー:", tagTableError)
+    } else {
+      console.log("tagテーブルにデータを挿入しました。")
+    }
+
+    const { error: tagToImageError } = await supabase.from(tagToImage).insert([
+      {
+        imageId: imageId,
+        tagId: tagId,
+      },
+    ]);
+
+    if (tagToImageError) {
+      console.error("tagToImageテーブルエラー:", tagToImageError.message);
+    } else {
+      console.log("TagToImageテーブルにデータを挿入しました。");
+      redirect("dashboard");
     }
   };
-  redirect("dashboard")
 
   return (
     <form action={UploadFile} className="max-w-lg mx-auto mt-8 p-4">
