@@ -8,9 +8,11 @@ import Link from "next/link";
 import UploadComment from "./uploadComment";
 import ShowComment from "./showComment";
 
+
 const ImageDetail = () => {
   const getPagePath = usePathname();
   const pagePath = getPagePath.replace("/illustrations/", "");
+
   const [imageData, setImageData] = useState({
     url: "",
     userId: "",
@@ -20,6 +22,11 @@ const ImageDetail = () => {
     height: 0,
     postedAt: "",
   });
+
+  const [tagToImageData, setTagToImageData] = useState({
+    tagId: "",
+  })
+
   const [userProps, setUserProps] = useState({
     id: "",
     image: "",
@@ -34,20 +41,31 @@ const ImageDetail = () => {
           .select("url,userId,title,description,width,height,postedAt")
           .eq("id", pagePath);
 
+        const { data: tagToImageData, error: tagToImageError } = await supabase
+          .from("TagToImage")
+          .select("tagId")
+          .eq("imageId", pagePath)
+
         const { data: userData, error: userError } = await supabase
           .from("User")
           .select("id,image,name");
 
         if (error) {
-          console.error("画像の取得にエラーが発生しました:", error);
+          console.error("画像の取得にエラーが発生しました:", error.message);
         } else {
           setImageData(data[0]);
+        }
+
+        if (tagToImageError) {
+          console.error("TagToImageテーブルでエラーが発生しました", tagToImageError.message);
+        } else {
+          setTagToImageData(tagToImageData[0]);
         }
 
         if (userError) {
           console.error(
             "ユーザーデータの取得にエラーが発生しました:",
-            userError
+            userError.message
           );
         } else {
           setUserProps(userData[0]);
@@ -112,6 +130,7 @@ const ImageDetail = () => {
               </p>
               {/* 投稿日時 */}
               <p className="text-md text-gray-500">{formattedDate}</p>
+              <p className="text-lg">{tagToImageData.tagId}</p>
             </div>
 
             {/* いいねとお気に入り */}
@@ -146,6 +165,7 @@ const ImageDetail = () => {
                       src={userProps.image}
                       alt="ユーザーのアイコン"
                       className="object-cover w-full h-full"
+                      quality={30}
                       fill
                     />
                   </div>
