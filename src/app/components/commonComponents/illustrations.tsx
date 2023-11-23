@@ -8,7 +8,6 @@ import Link from "next/link";
 import UploadComment from "./uploadComment";
 import ShowComment from "./showComment";
 
-
 const ImageDetail = () => {
   const getPagePath = usePathname();
   const pagePath = getPagePath.replace("/illustrations/", "");
@@ -25,7 +24,9 @@ const ImageDetail = () => {
 
   const [tagToImageData, setTagToImageData] = useState({
     tagId: "",
-  })
+  });
+
+  const [tagData, setTagData] = useState<string[]>([]); 
 
   const [userProps, setUserProps] = useState({
     id: "",
@@ -41,26 +42,43 @@ const ImageDetail = () => {
           .select("url,userId,title,description,width,height,postedAt")
           .eq("id", pagePath);
 
-        const { data: tagToImageData, error: tagToImageError } = await supabase
-          .from("TagToImage")
-          .select("tagId")
-          .eq("imageId", pagePath)
-
-        const { data: userData, error: userError } = await supabase
-          .from("User")
-          .select("id,image,name");
-
         if (error) {
           console.error("画像の取得にエラーが発生しました:", error.message);
         } else {
           setImageData(data[0]);
         }
 
+        const { data: tagToImageData, error: tagToImageError } = await supabase
+          .from("TagToImage")
+          .select("tagId")
+          .eq("imageId", pagePath);
+
         if (tagToImageError) {
-          console.error("TagToImageテーブルでエラーが発生しました", tagToImageError.message);
+          console.error(
+            "TagToImageテーブルでエラーが発生しました",
+            tagToImageError.message
+          );
         } else {
           setTagToImageData(tagToImageData[0]);
+
+          // タグの取得とセット
+          if (tagToImageData[0]) {
+            const { data: tagData, error: tagError } = await supabase
+              .from("Tag")
+              .select("tagName")
+              .eq("id", tagToImageData[0].tagId);
+
+            if (tagError) {
+              console.error("Tagテーブルでエラーが発生しました", tagError.message);
+            } else {
+              setTagData([tagData[0].tagName]);
+            }
+          }
         }
+
+        const { data: userData, error: userError } = await supabase
+          .from("User")
+          .select("id,image,name");
 
         if (userError) {
           console.error(
@@ -130,7 +148,16 @@ const ImageDetail = () => {
               </p>
               {/* 投稿日時 */}
               <p className="text-md text-gray-500">{formattedDate}</p>
-              <p className="text-lg">{tagToImageData.tagId}</p>
+              {/* タグの表示 */}
+              {tagData && (
+                <div className="flex flex-wrap space-x-2">
+                  {tagData.map((tag) => (
+                    <p className="text-lg" key={tag}>
+                      {tag}
+                    </p>
+                  ))}
+                </div>
+              )}
             </div>
 
             {/* いいねとお気に入り */}
