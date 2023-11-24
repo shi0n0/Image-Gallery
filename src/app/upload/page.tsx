@@ -127,11 +127,8 @@ export default async function UploadForm() {
         />
       </div>
       <div className="mb-4 flex items-center justify-between">
-        <input name="tag" placeholder="タグ" className="border p-2 flex-grow" />
+        <input name="tag" placeholder="タグ (空白で複数設定可能です)" className="border p-2 flex-grow" />
         <div className="aspect-square">
-          <button className="text-lg rounded-full hover:bg-gray-300">
-            <p className="text-gray-800 w- h-auto">＋</p>
-          </button>
         </div>
       </div>
       <button
