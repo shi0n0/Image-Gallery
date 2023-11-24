@@ -17,6 +17,11 @@ export default async function UploadForm() {
     const tagToImage = "TagToImage";
     const session = await getServerSession(nextAuthOptions);
     const userId = session?.user?.id;
+    const tagInput = formData.get("tag") as string;
+    const tags = tagInput
+      .split(" ")
+      .map((tag) => tag.trim())
+      .filter((tag) => tag !== "");
 
     // 選択された画像ファイルをバッファーに変換
     const fileBuffer = await file.arrayBuffer();
@@ -58,33 +63,29 @@ export default async function UploadForm() {
     const imageId = imageTableData?.[0]?.id;
 
     if (imageTableError) {
-      console.error("imageテーブルエラー:", imageTableError)
+      console.error("imageテーブルエラー:", imageTableError);
     } else {
-      console.log("imageテーブルにデータを挿入しました。")
+      console.log("imageテーブルにデータを挿入しました。");
     }
 
     const { data: tagTableData, error: tagTableError } = await supabase
       .from(tagTable)
-      .insert([
-        {
-          tagName: tag,
-        },
-      ])
+      .upsert(tags.map((tagName) => ({ tagName })))
       .select();
-    const tagId = tagTableData?.[0].id;
+    const tagIds = tagTableData?.map((tag) => tag.id) || [];
 
-    if ( tagTableError) {
-      console.error("tagテーブルエラー:", tagTableError)
+    if (tagTableError) {
+      console.error("tagテーブルエラー:", tagTableError);
     } else {
-      console.log("tagテーブルにデータを挿入しました。")
+      console.log("tagテーブルにデータを挿入しました。");
     }
 
-    const { error: tagToImageError } = await supabase.from(tagToImage).insert([
-      {
+    const { error: tagToImageError } = await supabase.from(tagToImage).insert(
+      tagIds.map((tagId) => ({
         imageId: imageId,
         tagId: tagId,
-      },
-    ]);
+      }))
+    );
 
     if (tagToImageError) {
       console.error("tagToImageテーブルエラー:", tagToImageError.message);
@@ -125,8 +126,13 @@ export default async function UploadForm() {
           className="border p-2 w-full h-24"
         />
       </div>
-      <div className="mb-4">
-        <input name="tag" placeholder="タグ" className="border p-2 w-full" />
+      <div className="mb-4 flex items-center justify-between">
+        <input name="tag" placeholder="タグ" className="border p-2 flex-grow" />
+        <div className="aspect-square">
+          <button className="text-lg rounded-full hover:bg-gray-300">
+            <p className="text-gray-800 w- h-auto">＋</p>
+          </button>
+        </div>
       </div>
       <button
         type="submit"
