@@ -26,7 +26,7 @@ const ImageDetail = () => {
     tagId: "",
   });
 
-  const [tagData, setTagData] = useState<string[]>([]); 
+  const [tagData, setTagData] = useState<string[]>([]);
 
   const [userProps, setUserProps] = useState({
     id: "",
@@ -66,12 +66,18 @@ const ImageDetail = () => {
             const { data: tagData, error: tagError } = await supabase
               .from("Tag")
               .select("tagName")
-              .eq("id", tagToImageData[0].tagId);
+              .in(
+                "id",
+                tagToImageData.map((tag) => tag.tagId)
+              );
 
             if (tagError) {
-              console.error("Tagテーブルでエラーが発生しました", tagError.message);
+              console.error(
+                "Tagテーブルでエラーが発生しました",
+                tagError.message
+              );
             } else {
-              setTagData([tagData[0].tagName]);
+              setTagData(tagData.map(tag => tag.tagName));
             }
           }
         }
