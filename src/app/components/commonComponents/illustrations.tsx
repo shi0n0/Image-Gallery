@@ -158,8 +158,8 @@ const ImageDetail = () => {
               {tagData && (
                 <div className="flex flex-wrap space-x-2">
                   {tagData.map((tag) => (
-                    <p className="text-lg" key={tag}>
-                      {tag}
+                    <p className="text-lg text-blue-500 cursor-pointer" key={tag}>
+                      #{tag}
                     </p>
                   ))}
                 </div>
