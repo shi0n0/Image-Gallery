@@ -27,7 +27,7 @@ model Comment {
   userId   String
   imageId  String
   postedAt DateTime @default(now())
-  image     Image    @relation(fields: [imageId], references: [id])
+  image     Image    @relation(fields: [imageId], references: [id], onDelete: Cascade)
   user     User     @relation(fields: [userId], references: [id])
 }
 
