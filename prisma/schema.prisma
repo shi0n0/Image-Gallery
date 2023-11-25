@@ -40,7 +40,7 @@ model Tag {
 model TagToImage {
   imageId String
   tagId   String
-  image   Image @relation(fields: [imageId], references: [id])
+  image   Image @relation(fields: [imageId], references: [id], onDelete: Cascade)
   tag     Tag   @relation(fields: [tagId], references: [id])
   @@id([imageId, tagId])
 }
