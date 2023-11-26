@@ -33,7 +33,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="bg-white shadow-lg sticky top-0 z-50 font-sans">
+    <nav className="bg-white shadow-lg sticky top-0 z-40 font-sans">
       <div className="container mx-auto">
         <div className="flex justify-between items-center py-4">
           <Link href={"/"} passHref className="px-3">
