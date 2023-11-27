@@ -136,7 +136,7 @@ const ImageDetail = () => {
             quality={80}
             width={imageData.width}
             height={imageData.height}
-            className="object-contain sm:min-w-0 lg:max-w-[50vw] rounded-lg"
+            className="object-contain sm:min-w-0 lg:max-w-[50vw] sm:rounded-lg"
           />
         </div>
         {/* 詳細情報部分 */}
