@@ -16,6 +16,7 @@ model Image {
   width       Int
   height      Int
   postedAt    DateTime  @default(now())
+  viewCount   Int       @default(0)
   comments    Comment[]
   tags        TagToImage[]
   user        User   @relation(fields: [userId], references: [id])
