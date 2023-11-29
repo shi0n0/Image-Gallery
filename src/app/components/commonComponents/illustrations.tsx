@@ -179,6 +179,7 @@ const ImageDetail = () => {
                   ))}
                 </div>
               )}
+              <p className="text-md text-gray-500">閲覧回数:{imageData.viewCount}回</p>
             </div>
 
             {/* いいねとお気に入り */}
