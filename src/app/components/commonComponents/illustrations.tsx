@@ -20,6 +20,7 @@ const ImageDetail = () => {
     width: 0,
     height: 0,
     postedAt: "",
+    viewCount: 0,
   });
 
   const [tagToImageData, setTagToImageData] = useState({
@@ -37,9 +38,10 @@ const ImageDetail = () => {
   useEffect(() => {
     async function fetchUserImages() {
       if (pagePath) {
+
         const { data, error } = await supabase
           .from("Image")
-          .select("url,userId,title,description,width,height,postedAt")
+          .select("url,userId,title,description,width,height,postedAt,viewCount")
           .eq("id", pagePath);
 
         if (error) {
@@ -94,11 +96,24 @@ const ImageDetail = () => {
         } else {
           setUserProps(userData[0]);
         }
+
+        const newViewCount = imageData.viewCount + 1
+
+        if (newViewCount) {
+          const { error:updateViewCountError } = await supabase
+          .from("Image")
+          .update({viewCount: newViewCount})
+          .eq("id",pagePath)
+
+          if ( updateViewCountError) {
+            console.log("ニュービューカウントエラー",updateViewCountError.message)
+          }
+        }
       }
     }
 
     fetchUserImages();
-  }, [pagePath]);
+  }, [pagePath,imageData.viewCount]);
 
   if (!imageData.url) {
     return (
