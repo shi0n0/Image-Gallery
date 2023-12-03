@@ -55,7 +55,7 @@ export default function Navbar() {
               <input
                 type="text"
                 placeholder="検索"
-                className="pl-8 pr-4 py-2 border rounded-full w-full focus:outline-none focus:shadow-inner"
+                className="pl-8 pr-4 py-2 border rounded-full w-full focus:outline-none focus:shadow-inner focus:border-blue-500"
               />
             </div>
           </form>
