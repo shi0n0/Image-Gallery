@@ -40,7 +40,7 @@ export default function Navbar() {
   return (
     <nav className="bg-white shadow-lg sticky top-0 z-40 font-sans">
       <div className="container mx-auto">
-        <div className="flex justify-between items-center py-4">
+        <div className="flex justify-between items-center py-2">
           <Link href={"/"} passHref className="px-3">
             <p className="text-2xl font-bold rounded text-white bg-custom-pink px-3 py-1">
               ImageGallery
@@ -67,7 +67,10 @@ export default function Navbar() {
                   pagePath
                 )}`}
               >
-                <FontAwesomeIcon icon={faArrowUpFromBracket} className="mx-2" />
+                <FontAwesomeIcon
+                  icon={faArrowUpFromBracket}
+                  className="p-3 mx-2 rounded-full duration-150 hover:bg-gray-100 active:text-custom-pink active:duration-0"
+                />
               </p>
             </Link>
             {session && <UserLink href="/dashboard" src={userImage} />}
