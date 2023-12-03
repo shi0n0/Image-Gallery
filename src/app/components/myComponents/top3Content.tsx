@@ -61,9 +61,9 @@ export default async function Top3Content() {
           <>
             <div className="py-3 px-5 font-semibold w-1/3">
               👀視聴数
-              <div className="relative w-full pb-[100%]">
+              <div className="relative w-full aspect-square">
                 <Image
-                  className="rounded-lg aspect-square"
+                  className="rounded-lg"
                   src={mostViewedImage.url}
                   alt="視聴数No1コンテンツ"
                   objectFit="cover"
@@ -74,9 +74,9 @@ export default async function Top3Content() {
             </div>
             <div className="py-3 px-5 font-semibold w-1/3">
               📝コメント数
-              <div className="relative w-full pb-[100%]">
+              <div className="relative w-full aspect-square">
                 <Image
-                  className="rounded-lg aspect-square"
+                  className="rounded-lg"
                   src={"/ImageGallery.png"}
                   alt="コメント数No1コンテンツ"
                   objectFit="cover"
@@ -87,9 +87,9 @@ export default async function Top3Content() {
             </div>
             <div className="py-3 px-5 font-semibold w-1/3">
               ❤️いいね数
-              <div className="relative w-full pb-[100%]">
+              <div className="relative w-full aspect-square">
                 <Image
-                  className="rounded-lg aspect-square"
+                  className="rounded-lg"
                   src={"/ImageGallery.png"}
                   alt="いいね数No1コンテンツ"
                   objectFit="cover"
