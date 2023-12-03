@@ -5,6 +5,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faArrowUpFromBracket,
+  faMagnifyingGlass,
+} from "@fortawesome/free-solid-svg-icons";
 
 interface NavLinkProps {
   href: string;
@@ -41,17 +46,20 @@ export default function Navbar() {
               ImageGallery
             </p>
           </Link>
+          <form className="flex-grow max-w-2xl mx-auto">
+            <div className="relative w-full">
+              <FontAwesomeIcon
+                icon={faMagnifyingGlass}
+                className="absolute top-1/2 left-3 transform -translate-y-1/2 text-gray-400"
+              />
+              <input
+                type="text"
+                placeholder="検索"
+                className="pl-8 pr-4 py-2 border rounded-full w-full focus:outline-none focus:shadow-inner"
+              />
+            </div>
+          </form>
           <div className="hidden sm:flex items-center space-x-4">
-            <Link href={"/"}>
-              <p
-                className={`text-gray-600 hover:text-gray-800 ${getNavLinkStyles(
-                  "/",
-                  pagePath
-                )}`}
-              >
-                ホーム
-              </p>
-            </Link>
             <Link href={"/upload"}>
               <p
                 className={`text-gray-600 hover:text-gray-800 ${getNavLinkStyles(
@@ -59,17 +67,7 @@ export default function Navbar() {
                   pagePath
                 )}`}
               >
-                投稿する
-              </p>
-            </Link>
-            <Link href={"/settings"}>
-              <p
-                className={`text-gray-600 hover:text-gray-800 ${getNavLinkStyles(
-                  "/settings",
-                  pagePath
-                )}`}
-              >
-                設定
+                <FontAwesomeIcon icon={faArrowUpFromBracket} className="mx-2" />
               </p>
             </Link>
             {session && <UserLink href="/dashboard" src={userImage} />}
