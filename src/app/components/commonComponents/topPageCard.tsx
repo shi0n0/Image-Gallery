@@ -42,7 +42,7 @@ export default function TopUserCard() {
   return (
     <PaddingContainer>
       <div className="sm:px-12 sm:py-3 w-fit h-fit flex justify-between items-center">
-        <p className="text-lg px-3 py-2 sm:text-xl sm:pr-2 font-semibold text-gray-700 inline-block">
+        <p className="text-lg py-2 sm:text-xl sm:pr-2 font-semibold text-gray-700 inline-block">
           最近投稿されたイラスト
         </p>
         <p className="text-md sm:text-lg font-semibold text-custom-pink duration-100 hidden hover:opacity-60 sm:inline-block">
