@@ -69,8 +69,8 @@ export default async function Top3Content() {
                   objectFit="cover"
                   fill
                 />
-                <p>Title: {mostViewedImage.title}</p>
               </div>
+              <p>{mostViewedImage.title}</p>
             </div>
             <div className="py-3 px-5 font-semibold w-1/3">
               📝コメント数
