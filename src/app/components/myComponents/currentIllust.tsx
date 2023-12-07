@@ -12,7 +12,7 @@ export default function CurrentIllust() {
             <div className="relative w-full pb-[100%]">
               <Image
                 className="rounded-lg"
-                src="/headercat.jpeg"
+                src="/ImageGallery.png"
                 alt="視聴数No1コンテンツ"
                 objectFit="cover"
                 fill
@@ -23,7 +23,7 @@ export default function CurrentIllust() {
             <div className="relative w-full pb-[100%]">
               <Image
                 className="rounded-lg"
-                src="/headercat.jpeg"
+                src="/ImageGallery.png"
                 alt="いいね数No1コンテンツ"
                 objectFit="cover"
                 fill
@@ -34,7 +34,7 @@ export default function CurrentIllust() {
             <div className="relative w-full pb-[100%]">
               <Image
                 className="rounded-lg"
-                src="/headercat.jpeg"
+                src="/ImageGallery.png"
                 alt="お気に入り数No1コンテンツ"
                 objectFit="cover"
                 fill
@@ -45,7 +45,7 @@ export default function CurrentIllust() {
             <div className="relative w-full pb-[100%]">
               <Image
                 className="rounded-lg"
-                src="/headercat.jpeg"
+                src="/ImageGallery.png"
                 alt="お気に入り数No1コンテンツ"
                 objectFit="cover"
                 fill
@@ -56,7 +56,7 @@ export default function CurrentIllust() {
             <div className="relative w-full pb-[100%]">
               <Image
                 className="rounded-lg"
-                src="/headercat.jpeg"
+                src="/ImageGallery.png"
                 alt="お気に入り数No1コンテンツ"
                 objectFit="cover"
                 fill
