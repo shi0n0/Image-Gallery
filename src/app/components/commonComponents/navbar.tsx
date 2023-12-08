@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowUpFromBracket,
@@ -24,11 +25,18 @@ interface UserLinkProps {
 export default function Navbar() {
   const pagePath = usePathname();
   const { data: session } = useSession();
+  const router = useRouter();
   const userImage =
     session?.user?.image ||
     "https://kotonohaworks.com/free-icons/wp-content/uploads/kkrn_icon_user_1.png";
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [searchKeyword, setSearchKeyword] = useState("");
+
+  const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    router.push(`/search?keyword=${searchKeyword}`);
+  };;
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(true);
@@ -48,15 +56,23 @@ export default function Navbar() {
           </Link>
           <form className="flex-grow max-w-2xl mx-auto">
             <div className="relative w-full">
-              <FontAwesomeIcon
-                icon={faMagnifyingGlass}
-                className="absolute top-1/2 left-3 transform -translate-y-1/2 text-gray-400"
-              />
-              <input
-                type="text"
-                placeholder="検索"
-                className="pl-8 pr-4 py-2 border rounded-full w-full focus:outline-none focus:shadow-inner focus:border-blue-500"
-              />
+              <form onSubmit={handleSearch}>
+                <FontAwesomeIcon
+                  icon={faMagnifyingGlass}
+                  className="absolute top-1/2 left-3 transform -translate-y-1/2 text-gray-400"
+                />
+                <input
+                  type="text"
+                  value={searchKeyword}
+                  onChange={(e) => setSearchKeyword(e.target.value)}
+                />
+                <input type="submit" value="検索" />
+
+                {/* Linkコンポーネントを使用して次のページに検索ワードを渡す */}
+                <Link href={`/search?keyword=${searchKeyword}`}>
+                  <a>検索結果を表示</a>
+                </Link>
+              </form>
             </div>
           </form>
           <div className="hidden sm:flex items-center space-x-4">
