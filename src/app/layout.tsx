@@ -4,6 +4,7 @@ import NextAuthProvider from "@/providers/NextAuth";
 import Navbar from "./components/commonComponents/navbar";
 import Sidebar from "./components/commonComponents/leftbar";
 import GoogleAnalytics from "./components/commonComponents/GoogleAnalytics";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 export const metadata: Metadata = {
   title: "Image-Gallery",
@@ -24,7 +25,10 @@ export default function RootLayout({
         <NextAuthProvider>
           <Sidebar />
           <Navbar />
-          <main>{children}</main>
+          <main>
+            {children}
+          </main>
+          <SpeedInsights/>
         </NextAuthProvider>
       </body>
     </html>
