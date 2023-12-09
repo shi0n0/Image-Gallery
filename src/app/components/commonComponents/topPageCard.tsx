@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import PaddingContainer from "./paddingCotainer";
 import GridContainer from "./gridContainer";
+import Loading from "@/app/loading";
 
 export default function TopUserCard() {
   const [userImages, setUserImages] = useState<
@@ -12,6 +13,7 @@ export default function TopUserCard() {
   const [userProps, setUserProps] = useState<
     { id: string; image: string; name: string }[]
   >([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
     async function fetchUserImages() {
@@ -33,6 +35,7 @@ export default function TopUserCard() {
         console.error("ユーザーデータの取得エラー:", usersError);
       } else {
         setUserProps(usersData);
+        setIsLoading(false);
       }
     }
 
@@ -41,6 +44,7 @@ export default function TopUserCard() {
 
   return (
     <PaddingContainer>
+      {isLoading && <Loading />}
       <div className="sm:px-12 sm:py-3 w-fit h-fit flex justify-between items-center">
         <p className="text-lg py-2 sm:text-xl sm:pr-2 font-semibold text-gray-700 inline-block">
           最近投稿されたイラスト
