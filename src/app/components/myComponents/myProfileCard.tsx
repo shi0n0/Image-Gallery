@@ -8,6 +8,8 @@ import Link from "next/link";
 import TabSwitch from "./tabSwitch";
 import PaddingContainer from "../commonComponents/paddingCotainer";
 import GridContainer from "../commonComponents/gridContainer";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 
 export default function ProfileCard() {
   const { data: session } = useSession();
@@ -61,14 +63,9 @@ export default function ProfileCard() {
                   </span>
                 </div>
                 <Link href={`/dashboard/edit/${image.id}}`}>
-                  <button className="absolute bottom-2 right-2 bg-gray-300 opacity-30 text-white p-3 rounded-full hover:opacity-60">
-                    <Image
-                      src="/pen-solid.svg"
-                      alt="編集"
-                      width={20}
-                      height={20}
-                    />
-                  </button>
+                  <div className="absolute bottom-2 right-2 bg-gray-300 opacity-30 py-2 px-3 rounded-full hover:opacity-60">
+                    <FontAwesomeIcon icon={faPenToSquare}/>
+                  </div>
                 </Link>
               </div>
 
