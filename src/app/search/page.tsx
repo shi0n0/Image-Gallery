@@ -49,21 +49,29 @@ export default function SearchResult() {
   return (
     <PaddingContainer>
       <SearchBar />
+      {imageData.length === 0 && (
+        <div className="text-center my-4">
+          <p className="text-gray-600">検索結果がありません。</p>
+        </div>
+      )}
       <GridContainer>
         {imageData &&
           imageData.map((item) => {
             const user = userData.find((user) => user.id === item.userId);
 
             return (
-              <div key={item.id} className="bg-white rounded-sm shadow-md my-4 mx-1 hover:">
+              <div
+                key={item.id}
+                className="bg-white rounded-sm shadow-md my-4 mx-1 hover:"
+              >
                 <div className="relative aspect-square aspect-h-9">
                   <Link href={`illustrations/${item.id}`}>
-                  <Image
-                    src={item.url}
-                    alt="検索結果"
-                    className="rounded-t-sm object-cover hover:opacity-90"
-                    fill
-                  />
+                    <Image
+                      src={item.url}
+                      alt="検索結果の画像"
+                      className="rounded-t-sm object-cover hover:opacity-90"
+                      fill
+                    />
                   </Link>
                 </div>
                 <div className="p-3">
