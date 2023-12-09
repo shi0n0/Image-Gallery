@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import NextAuthProvider from "@/providers/NextAuth";
 import Navbar from "./components/commonComponents/navbar";
 import Sidebar from "./components/commonComponents/leftbar";
+import GoogleAnalytics from "./components/commonComponents/GoogleAnalytics";
 
 export const metadata: Metadata = {
   title: "Image-Gallery",
@@ -16,6 +17,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ja">
+      <head>
+        <GoogleAnalytics />
+      </head>
       <body className="bg-white">
         <NextAuthProvider>
           <Sidebar />
