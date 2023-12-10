@@ -1,13 +1,11 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faMagnifyingGlass,
-} from "@fortawesome/free-solid-svg-icons";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-export default function SearchBar() {
+export default function SearchBar({ initialValue }: { initialValue: string }) {
   const router = useRouter();
-  const [searchKeyword, setSearchKeyword] = useState("");
+  const [searchKeyword, setSearchKeyword] = useState(initialValue);
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     router.push(`/search?keyword=${searchKeyword}`);
@@ -18,12 +16,11 @@ export default function SearchBar() {
       <div className="relative w-full">
         <FontAwesomeIcon
           icon={faMagnifyingGlass}
-          className="absolute top-1/2 left-3 transform -translate-y-1/2 text-gray-400"
+          className="absolute top-1/2 left-3 transform -translate-y-1/2 text-gray-400 text-sm"
         />
         <input
           type="text"
           value={searchKeyword}
-          placeholder="検索キーワード"
           onChange={(e) => setSearchKeyword(e.target.value)}
           className="pl-8 pr-4 py-2 border rounded-full w-full focus:outline-none focus:shadow-inner focus:border-blue-500"
         />

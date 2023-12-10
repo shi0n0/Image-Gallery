@@ -47,7 +47,7 @@ export default function Navbar() {
               ImageGallery
             </p>
           </Link>
-          {pagePath !== "/search" && <SearchBar />}
+          {pagePath !== "/search" && <SearchBar initialValue=""/>}
           <div className="hidden sm:flex items-center space-x-4">
             <Link href={"/upload"}>
               <p

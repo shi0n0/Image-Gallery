@@ -49,7 +49,7 @@ export default function SearchResult() {
 
   return (
     <PaddingContainer>
-      <SearchBar />
+      <SearchBar initialValue={search || ""} />
       {imageData.length === 0 && (
       <Loading />
       )}
