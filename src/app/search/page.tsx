@@ -10,6 +10,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
+import Loading from "../loading";
 
 export default function SearchResult() {
   const searchParams = useSearchParams();
@@ -50,9 +51,7 @@ export default function SearchResult() {
     <PaddingContainer>
       <SearchBar />
       {imageData.length === 0 && (
-        <div className="text-center my-4">
-          <p className="text-gray-600">検索結果がありません。</p>
-        </div>
+      <Loading />
       )}
       <GridContainer>
         {imageData &&
@@ -69,7 +68,7 @@ export default function SearchResult() {
                     <Image
                       src={item.url}
                       alt="検索結果の画像"
-                      className="rounded-t-sm object-cover hover:opacity-90"
+                      className="rounded-t-sm object-cover hover:opacity-90 duration-100"
                       fill
                     />
                   </Link>
