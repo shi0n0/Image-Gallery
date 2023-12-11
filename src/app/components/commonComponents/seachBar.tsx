@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { faMagnifyingGlass, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
@@ -9,6 +9,10 @@ export default function SearchBar({ initialValue }: { initialValue: string }) {
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     router.push(`/search?keyword=${searchKeyword}`);
+  };
+
+  const handleReset = () => {
+    setSearchKeyword("");
   };
 
   return (
@@ -24,6 +28,15 @@ export default function SearchBar({ initialValue }: { initialValue: string }) {
           onChange={(e) => setSearchKeyword(e.target.value)}
           className="pl-8 pr-4 py-2 border rounded-full w-full focus:outline-none focus:shadow-inner focus:border-blue-500"
         />
+        {searchKeyword && ( // 検索キーワードがある場合にのみバツボタンを表示
+          <button
+            type="button"
+            onClick={handleReset}
+            className="absolute top-1/2 right-3 transform -translate-y-1/2 text-gray-400 cursor-pointer hover:bg-gray-200 rounded-full p-2 transition-all duration-300"
+          >
+            <FontAwesomeIcon icon={faTimes} size="sm" className="flex items-center"/>
+          </button>
+        )}
       </div>
     </form>
   );
