@@ -28,13 +28,13 @@ export default function SearchBar({ initialValue }: { initialValue: string }) {
           onChange={(e) => setSearchKeyword(e.target.value)}
           className="pl-8 pr-4 py-2 border rounded-full w-full focus:outline-none focus:shadow-inner focus:border-blue-500"
         />
-        {searchKeyword && ( // 検索キーワードがある場合にのみバツボタンを表示
+        {searchKeyword && (
           <button
             type="button"
             onClick={handleReset}
-            className="absolute top-1/2 right-3 transform -translate-y-1/2 text-gray-400 cursor-pointer hover:bg-gray-200 rounded-full p-2 transition-all duration-300"
+            className="absolute top-1/2 right-3 transform -translate-y-1/2 text-gray-400 cursor-pointer hover:bg-gray-100 rounded-full p-2 transition-all duration-300"
           >
-            <FontAwesomeIcon icon={faTimes} size="sm" className="flex items-center"/>
+            <FontAwesomeIcon icon={faTimes} size="sm" className="flex items-center aspect-square"/>
           </button>
         )}
       </div>
