@@ -9,7 +9,21 @@ export default async function Ranking() {
 
   if (error) {
     console.error("ランキング情報を取得中にエラーが発生:", error.message);
-  } else {
+    return null;
+  }
+
+  // dataがnullでない場合にユーザー情報を取得
+  if (data) {
+    const { data: userData, error: userError } = await supabase
+      .from("User")
+      .select("name, image")
+      .eq("id", data[0]?.userId); // Optional Chainingを使用してnullチェック
+
+    if (userError) {
+      console.error("ユーザー情報を取得中にエラーが発生:", userError.message);
+      return null;
+    }
+
     // ランキング情報をマップして表示
     return (
       <PaddingContainer>
@@ -18,7 +32,7 @@ export default async function Ranking() {
             <img className="w-full" src={imageData.url} alt={imageData.description} />
             <div className="px-6 py-4">
               <div className="font-bold text-xl mb-2">{imageData.title}</div>
-              <p className="text-gray-700 text-base">作者: {imageData.userId}</p>
+              <p className="text-gray-700 text-base">作者: {userData[0]?.name}</p>
               <p className="text-gray-700 text-base">ランキング: {index + 1}位</p>
             </div>
             <div className="px-6 py-4">
@@ -30,5 +44,7 @@ export default async function Ranking() {
         ))}
       </PaddingContainer>
     );
+  } else {
+    return null; // dataがnullの場合は何も表示しないか、適切な処理を追加
   }
 }
