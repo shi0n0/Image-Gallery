@@ -1,5 +1,6 @@
 import supabase from "@/app/utils/supabase";
 import PaddingContainer from "./paddingCotainer";
+import Image from "next/image";
 
 export default async function Ranking() {
   const { data, error } = await supabase
@@ -28,13 +29,39 @@ export default async function Ranking() {
     return (
       <PaddingContainer>
         {data.map((imageData, index) => (
-          <div key={imageData.id} className="max-w-sm rounded overflow-hidden shadow-lg">
-            <img className="w-full" src={imageData.url} alt={imageData.description} />
+          <div
+            key={imageData.id}
+            className="max-w-sm rounded overflow-hidden shadow-lg"
+          >
+            <div className="relative aspect-square">
+              <Image
+                className="object-cover"
+                src={imageData.url}
+                alt={imageData.description}
+                fill
+              />
+            </div>
             <div className="px-6 py-4">
               <div className="font-bold text-xl mb-2">{imageData.title}</div>
-              <p className="text-gray-700 text-base">作者: {userData[0]?.name}</p>
-              <p className="text-gray-700 text-base">ランキング: {index + 1}位</p>
+              <div className="flex items-center">
+                <div className="relative aspect-square w-10 mr-2">
+                  <Image
+                    className="rounded-full"
+                    src={userData[0].image}
+                    alt="アイコン"
+                    fill
+                  />
+                </div>
+                <div>
+                  <p className="text-gray-700 text-md">{userData[0]?.name}</p>
+                  <p className="text-gray-400 text-xs">フォロー数 200人</p>
+                </div>
+              </div>
+              <p className="text-gray-700 text-base">
+                ランキング: {index + 1}位
+              </p>
             </div>
+
             <div className="px-6 py-4">
               <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">
                 #カテゴリ
