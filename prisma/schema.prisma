@@ -53,6 +53,13 @@ model Header {
   user   User   @relation(fields: [userId], references: [id])
 }
 
+model TopPageSlider {
+  id String @id @default(dbgenerated("uuid_generate_v4()"))
+  image String
+  url String
+  createdAt  DateTime  @default(now())
+}
+
 model Account {
   id                String  @id @default(cuid())
   userId            String
