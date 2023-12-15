@@ -4,8 +4,14 @@ import "swiper/swiper-bundle.css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import Image from "next/image";
+import supabase from "@/app/utils/supabase";
 
-export default function TopPageSlider() {
+export default async function TopPageSlider() {
+  const { data, error } = await supabase
+    .from("TopPageSlider")
+    .select("id, image, url");
+
+
   return (
     <div className="bg-gray-100 md:p-2 relative">
       <div className="w-full h-[25vh] sm:h-[25vh] md:h-[20vh] lg:h-[30vh]">
