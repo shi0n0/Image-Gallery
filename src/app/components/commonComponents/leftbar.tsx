@@ -4,10 +4,17 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGear,faRankingStar,faTachometerAlt,faFolderPlus,faQuestion } from "@fortawesome/free-solid-svg-icons";
+import {
+  faGear,
+  faRankingStar,
+  faTachometerAlt,
+  faFolderPlus,
+  faQuestion,
+} from "@fortawesome/free-solid-svg-icons";
 
 const Sidebar: React.FC = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const handleMouseEnter = () => {
     setIsSidebarOpen(true);
@@ -17,10 +24,13 @@ const Sidebar: React.FC = () => {
     setIsSidebarOpen(false);
   };
 
+  const handleMobileMenuToggle = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
   useEffect(() => {
     const handleMouseMove = (event: MouseEvent) => {
       const shouldOpenSidebar = event.clientX <= 20;
-
       const shouldCloseSidebar = event.clientX > 1000;
 
       if (shouldOpenSidebar || shouldCloseSidebar) {
@@ -37,17 +47,33 @@ const Sidebar: React.FC = () => {
 
   return (
     <div>
+      {/* ハンバーガーボタン (スマホサイズの場合のみ表示) */}
+      <div
+        className="md:hidden fixed top-4 left-4 z-50"
+        onClick={handleMobileMenuToggle}
+      >
+        <div className="w-6 h-6 bg-gray-600 rounded-md p-2 cursor-pointer">
+          <div className="w-full h-0.5 bg-white mb-1"></div>
+          <div className="w-full h-0.5 bg-white mb-1"></div>
+          <div className="w-full h-0.5 bg-white"></div>
+        </div>
+      </div>
+
       {/* オーバーレイ */}
-      {isSidebarOpen && (
+      {(isSidebarOpen || isMobileMenuOpen) && (
         <div
           className="fixed top-0 left-0 w-full h-full bg-black opacity-50 z-50 transition-opacity duration-300 ease-in-out"
-          onClick={handleMouseLeave}
+          onClick={() => {
+            setIsSidebarOpen(false);
+            setIsMobileMenuOpen(false);
+          }}
         />
       )}
 
+      {/* サイドバー */}
       <div
         className={`fixed left-0 top-0 h-full bg-white w-52 z-50 transition-transform transform duration-300 py-4 ${
-          isSidebarOpen ? "translate-x-0" : "-translate-x-60"
+          isSidebarOpen || isMobileMenuOpen ? "translate-x-0" : "-translate-x-60"
         }`}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
@@ -67,7 +93,7 @@ const Sidebar: React.FC = () => {
           <Link
             href="/ranking"
             className="text-md text-gray-600 flex items-center px-4 py-2 hover:bg-gray-100"
-            >
+          >
             <FontAwesomeIcon icon={faRankingStar} className="mx-2" />
             <p>ランキング</p>
           </Link>
@@ -77,7 +103,6 @@ const Sidebar: React.FC = () => {
             className="text-md text-gray-500 flex items-center px-4 py-2 mb-4 hover:bg-gray-100"
           >
             <FontAwesomeIcon icon={faTachometerAlt} className="mx-2" />
-
             <p>ダッシュボード</p>
           </Link>
         </div>
@@ -88,7 +113,6 @@ const Sidebar: React.FC = () => {
           className="text-md text-gray-500 flex items-center px-4 py-2 hover:bg-gray-100"
         >
           <FontAwesomeIcon icon={faFolderPlus} className="mx-2" />
-
           <p>最近のイラスト</p>
         </Link>
 
@@ -97,7 +121,6 @@ const Sidebar: React.FC = () => {
           className="text-md text-gray-500 flex items-center px-4 py-2 hover:bg-gray-100"
         >
           <FontAwesomeIcon icon={faQuestion} className="mx-2" />
-
           <p>穴埋め</p>
         </Link>
 
@@ -116,7 +139,6 @@ const Sidebar: React.FC = () => {
           <p>設定</p>
         </Link>
       </div>
-
       {/* サイドバーの中身終了 */}
     </div>
   );
