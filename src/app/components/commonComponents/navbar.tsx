@@ -32,7 +32,7 @@ export default function Navbar() {
       <div className="container mx-auto">
         <div className="flex justify-between items-center py-2">
         <Sidebar />
-          <Link href={"/"} passHref className="px-3">
+          <Link href={"/"} passHref>
             <p className="text-2xl font-bold rounded text-white bg-custom-pink px-3 py-1">
               ImageGallery
             </p>
