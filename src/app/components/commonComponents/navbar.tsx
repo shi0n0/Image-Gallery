@@ -8,6 +8,7 @@ import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUpFromBracket } from "@fortawesome/free-solid-svg-icons";
 import SearchBar from "./seachBar";
+import Sidebar from "./leftbar";
 
 interface NavLinkProps {
   href: string;
@@ -30,6 +31,7 @@ export default function Navbar() {
     <nav className="bg-white shadow-lg sticky top-0 z-40 font-sans">
       <div className="container mx-auto">
         <div className="flex justify-between items-center py-2">
+        <Sidebar />
           <Link href={"/"} passHref className="px-3">
             <p className="text-2xl font-bold rounded text-white bg-custom-pink px-3 py-1">
               ImageGallery
