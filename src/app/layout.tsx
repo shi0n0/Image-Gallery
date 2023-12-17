@@ -25,7 +25,6 @@ export default function RootLayout({
       </head>
       <body className="bg-white">
         <NextAuthProvider>
-          <Sidebar />
           <Navbar />
           <main>
             {children}
