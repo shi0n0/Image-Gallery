@@ -47,10 +47,10 @@ const Sidebar: React.FC = () => {
   }, []);
 
   return (
-    <div>
+    <>
       {/* ハンバーガーボタン (スマホサイズの場合のみ表示) */}
       <div
-        className="md:hidden fixed top-4 left-4 z-50"
+        className="md:hidden top-4 left-4 z-４0"
         onClick={handleMobileMenuToggle}
       >
         <FontAwesomeIcon icon={faBars} size="xl" className="text-gray-600"/>
@@ -137,7 +137,7 @@ const Sidebar: React.FC = () => {
         </Link>
       </div>
       {/* サイドバーの中身終了 */}
-    </div>
+    </>
   );
 };
 
