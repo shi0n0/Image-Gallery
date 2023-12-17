@@ -9,8 +9,9 @@ import supabase from "@/app/utils/supabase";
 export default async function TopPageSlider() {
   const { data, error } = await supabase
     .from("TopPageSlider")
-    .select("id, image, url");
-
+    .select("id, image, url")
+    .order("createdAt", { ascending: false })
+    .limit(6);
 
   return (
     <div className="bg-gray-100 md:p-2 relative">
