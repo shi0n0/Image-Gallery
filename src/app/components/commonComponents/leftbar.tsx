@@ -10,6 +10,7 @@ import {
   faTachometerAlt,
   faFolderPlus,
   faQuestion,
+  faBars,
 } from "@fortawesome/free-solid-svg-icons";
 
 const Sidebar: React.FC = () => {
@@ -46,17 +47,13 @@ const Sidebar: React.FC = () => {
   }, []);
 
   return (
-    <div>
+    <>
       {/* ハンバーガーボタン (スマホサイズの場合のみ表示) */}
       <div
-        className="md:hidden fixed top-4 left-4 z-50"
+        className="md:hidden top-4 left-4 z-４0 px-4"
         onClick={handleMobileMenuToggle}
       >
-        <div className="w-6 h-6 bg-gray-600 rounded-md p-2 cursor-pointer">
-          <div className="w-full h-0.5 bg-white mb-1"></div>
-          <div className="w-full h-0.5 bg-white mb-1"></div>
-          <div className="w-full h-0.5 bg-white"></div>
-        </div>
+        <FontAwesomeIcon icon={faBars} size="xl" className="text-gray-600"/>
       </div>
 
       {/* オーバーレイ */}
@@ -140,7 +137,7 @@ const Sidebar: React.FC = () => {
         </Link>
       </div>
       {/* サイドバーの中身終了 */}
-    </div>
+    </>
   );
 };
 
