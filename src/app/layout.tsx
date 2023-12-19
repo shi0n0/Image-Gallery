@@ -1,12 +1,15 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import NextAuthProvider from "@/providers/NextAuth";
-import Navbar from "./components/commonComponents/navbar";
-import Sidebar from "./components/commonComponents/leftbar";
-import GoogleAnalytics from "./components/commonComponents/GoogleAnalytics";
-import { SpeedInsights } from "@vercel/speed-insights/next"
-import { Analytics } from '@vercel/analytics/react';
+import Navbar from "./components/commonComponents/navigation/navbar";
+import Sidebar from "./components/commonComponents/navigation/leftbar";
+import GoogleAnalytics from "./components/commonComponents/GA4/GoogleAnalytics";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/react";
+import "@fortawesome/fontawesome-svg-core/styles.css";
+import { config } from "@fortawesome/fontawesome-svg-core";
 
+config.autoAddCss = false;
 
 export const metadata: Metadata = {
   title: "Image-Gallery",
@@ -26,11 +29,9 @@ export default function RootLayout({
       <body className="bg-white">
         <NextAuthProvider>
           <Navbar />
-          <main>
-            {children}
-          </main>
+          <main>{children}</main>
           <Analytics />
-          <SpeedInsights/>
+          <SpeedInsights />
         </NextAuthProvider>
       </body>
     </html>
