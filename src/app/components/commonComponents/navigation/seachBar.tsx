@@ -20,7 +20,8 @@ export default function SearchBar({ initialValue }: { initialValue: string }) {
       <div className="relative w-full">
         <FontAwesomeIcon
           icon={faMagnifyingGlass}
-          className="absolute top-1/2 left-3 transform -translate-y-1/2 text-gray-400 text-sm"
+          className="absolute top-1/2 left-3 transform -translate-y-1/2 text-gray-400"
+          size="sm"
         />
         <input
           type="text"
