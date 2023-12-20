@@ -1,5 +1,5 @@
 import MyHeader from "@/app/components/myComponents/myHeader";
-import PaddingContainer from "@/app/components/commonComponents/paddingCotainer";
+import PaddingContainer from "@/app/components/commonComponents/container/paddingCotainer";
 import TabSwitch from "@/app/components/myComponents/tabSwitch";
 
 export default function Edit() {

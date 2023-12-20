@@ -3,9 +3,9 @@
 import { useSearchParams } from "next/navigation";
 import supabase from "../utils/supabase";
 import Image from "next/image";
-import SearchBar from "../components/commonComponents/seachBar";
-import PaddingContainer from "../components/commonComponents/paddingCotainer";
-import GridContainer from "../components/commonComponents/gridContainer";
+import SearchBar from "../components/commonComponents/navigation/seachBar";
+import PaddingContainer from "../components/commonComponents/container/paddingCotainer";
+import GridContainer from "../components/commonComponents/container/gridContainer";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -50,9 +50,7 @@ export default function SearchResult() {
   return (
     <PaddingContainer>
       <SearchBar initialValue={search || ""} />
-      {imageData.length === 0 && (
-      <Loading />
-      )}
+      {imageData.length === 0 && <Loading />}
       <GridContainer>
         {imageData &&
           imageData.map((item) => {

@@ -1,6 +1,6 @@
 import MyHeader from "../components/myComponents/myHeader";
 import TabSwitch from "../components/myComponents/tabSwitch";
-import PaddingContainer from "../components/commonComponents/paddingCotainer";
+import PaddingContainer from "../components/commonComponents/container/paddingCotainer";
 import Stats from "../components/myComponents/Stats";
 import Top3Content from "../components/myComponents/top3Content";
 import CurrentIllust from "../components/myComponents/currentIllust";

@@ -1,5 +1,5 @@
 import supabase from "@/app/utils/supabase";
-import PaddingContainer from "./paddingCotainer";
+import PaddingContainer from "./container/paddingCotainer";
 import Image from "next/image";
 
 interface ImageData {
@@ -22,15 +22,28 @@ interface ImageCardProps {
 }
 
 const ImageCard = ({ imageData, userData, index }: ImageCardProps) => (
-  <div key={imageData.id} className="max-w-sm rounded overflow-hidden shadow-lg">
+  <div
+    key={imageData.id}
+    className="max-w-sm rounded overflow-hidden shadow-lg"
+  >
     <div className="relative aspect-square">
-      <Image className="object-cover" src={imageData.url} alt={imageData.description} fill />
+      <Image
+        className="object-cover"
+        src={imageData.url}
+        alt={imageData.description}
+        fill
+      />
     </div>
     <div className="px-6 py-4">
       <div className="font-bold text-xl mb-2">{imageData.title}</div>
       <div className="flex items-center">
         <div className="relative aspect-square w-10 mr-2">
-          <Image className="rounded-full" src={userData[0].image} alt="アイコン" fill />
+          <Image
+            className="rounded-full"
+            src={userData[0].image}
+            alt="アイコン"
+            fill
+          />
         </div>
         <div>
           <p className="text-gray-700 text-md">{userData[0]?.name}</p>
@@ -63,7 +76,7 @@ export default async function Ranking() {
     const { data: userData, error: userError } = await supabase
       .from("User")
       .select("name, image")
-      .eq("id", data[0]?.userId); 
+      .eq("id", data[0]?.userId);
 
     if (userError) {
       console.error("ユーザー情報を取得中にエラーが発生:", userError.message);
@@ -74,7 +87,12 @@ export default async function Ranking() {
       <PaddingContainer>
         <p className="text-4xl font-bold text-center">閲覧数</p>
         {data.map((imageData, index) => (
-          <ImageCard key={imageData.id} imageData={imageData} userData={userData} index={index} />
+          <ImageCard
+            key={imageData.id}
+            imageData={imageData}
+            userData={userData}
+            index={index}
+          />
         ))}
       </PaddingContainer>
     );

@@ -6,8 +6,8 @@ import Image from "next/image";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import TabSwitch from "./tabSwitch";
-import PaddingContainer from "../commonComponents/paddingCotainer";
-import GridContainer from "../commonComponents/gridContainer";
+import PaddingContainer from "../commonComponents/container/paddingCotainer";
+import GridContainer from "../commonComponents/container/gridContainer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 
@@ -64,7 +64,7 @@ export default function ProfileCard() {
                 </div>
                 <Link href={`/dashboard/edit/${image.id}}`}>
                   <div className="absolute bottom-2 right-2 bg-gray-300 opacity-30 py-2 px-3 rounded-full hover:opacity-60">
-                    <FontAwesomeIcon icon={faPenToSquare}/>
+                    <FontAwesomeIcon icon={faPenToSquare} />
                   </div>
                 </Link>
               </div>

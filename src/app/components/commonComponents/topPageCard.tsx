@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import supabase from "../../utils/supabase";
 import Image from "next/image";
 import Link from "next/link";
-import PaddingContainer from "./paddingCotainer";
-import GridContainer from "./gridContainer";
+import PaddingContainer from "./container/paddingCotainer";
+import GridContainer from "./container/gridContainer";
 import Loading from "@/app/loading";
 
 export default function TopUserCard() {

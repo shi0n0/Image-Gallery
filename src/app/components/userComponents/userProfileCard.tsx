@@ -5,8 +5,8 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import GridContainer from "../commonComponents/gridContainer";
-import PaddingContainer from "../commonComponents/paddingCotainer";
+import GridContainer from "../commonComponents/container/gridContainer";
+import PaddingContainer from "../commonComponents/container/paddingCotainer";
 
 export default function UserProfileCard() {
   const getPagePath = usePathname();
