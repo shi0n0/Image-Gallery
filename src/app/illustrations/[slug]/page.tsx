@@ -1,4 +1,4 @@
-import ImageDetail from "@/app/components/commonComponents/illustrations";
+import ImageDetail from "@/app/components/commonComponents/illustration/illustrations";
 
 export default function illustrations() {
   return <ImageDetail />;
