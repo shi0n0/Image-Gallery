@@ -65,7 +65,8 @@ export default async function Ranking() {
   const { data, error } = await supabase
     .from("Image")
     .select("id, url, title, description, userId, viewCount")
-    .order("viewCount", { ascending: false });
+    .order("viewCount", { ascending: false })
+    .limit(10)
 
   if (error) {
     console.error("ランキング情報を取得中にエラーが発生:", error.message);

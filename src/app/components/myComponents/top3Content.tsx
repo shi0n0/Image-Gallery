@@ -52,14 +52,14 @@ export default async function Top3Content() {
   await getMostViewedImage(); // 関数の非同期処理が完了するまで待機
 
   return (
-    <div className="bg-white rounded-xl w-2/3">
+    <div className="bg-white rounded-xl lg:w-2/3">
       <div className="bg-gray-100 rounded-t-lg py-3 px-5 font-semibold text-xl">
         トップ3
       </div>
       <div className="flex w-full justify-center flex-col sm:flex-row">
         {mostViewedImage ? (
           <>
-            <div className="py-3 px-5 font-semibold w-1/3">
+            <div className="py-3 px-5 font-semibold lg:w-1/3">
               👀視聴数
               <div className="relative w-full aspect-square">
                 <Image
