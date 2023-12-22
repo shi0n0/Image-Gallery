@@ -59,7 +59,7 @@ export default async function Top3Content() {
       <div className="flex w-full justify-center flex-col sm:flex-row">
         {mostViewedImage ? (
           <>
-            <div className="py-3 px-5 font-semibold lg:w-1/3">
+            <div className="py-3 px-5 font-semibold sm:w-1/3">
               👀視聴数
               <div className="relative w-full aspect-square">
                 <Image
@@ -72,7 +72,7 @@ export default async function Top3Content() {
               </div>
               <p>{mostViewedImage.title}</p>
             </div>
-            <div className="py-3 px-5 font-semibold w-1/3">
+            <div className="py-3 px-5 font-semibold sm:w-1/3">
               📝コメント数
               <div className="relative w-full aspect-square">
                 <Image
@@ -85,7 +85,7 @@ export default async function Top3Content() {
                 <p>Title: 仮タイトル</p>
               </div>
             </div>
-            <div className="py-3 px-5 font-semibold w-1/3">
+            <div className="py-3 px-5 font-semibold sm:w-1/3">
               ❤️いいね数
               <div className="relative w-full aspect-square">
                 <Image

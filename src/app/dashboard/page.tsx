@@ -14,7 +14,7 @@ export default function Home() {
           ダッシュボード
         </p>
         <TabSwitch />
-        <div className="w-full sm:flex gap-4">
+        <div className="w-full sm:flex gap-4 justify-between">
           <Stats />
           <Top3Content />
         </div>
