@@ -10,11 +10,11 @@ export default function Home() {
     <>
       <MyHeader />
       <PaddingContainer>
-        <p className="text-2xl mb-5 font-semibold text-gray-700">
+        <p className="text-2xl mb-5 m-4 sm:m-0 font-semibold text-gray-700">
           ダッシュボード
         </p>
         <TabSwitch />
-        <div className="flex gap-4">
+        <div className="w-full sm:flex gap-4 justify-between">
           <Stats />
           <Top3Content />
         </div>

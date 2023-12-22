@@ -32,7 +32,7 @@ export default async function Stats() {
 
 
   return (
-    <div className="bg-white rounded-xl w-1/3 h-80">
+    <div className="bg-white rounded-xl lg:w-1/3 h-80">
       <div className="bg-gray-100 rounded-t-lg py-3 px-5 font-semibold text-xl">
         合計リアクション数
       </div>
