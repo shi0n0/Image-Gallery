@@ -25,7 +25,7 @@ export default function CurrentIllust() {
         .from("Image")
         .select("id,url,title")
         .eq("userId", userId)
-        .limit(3);
+        .limit(10);
       if (error) {
         console.error("カレントイラスト取得中にエラー:", error.message);
       } else {
