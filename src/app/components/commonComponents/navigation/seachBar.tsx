@@ -16,8 +16,8 @@ export default function SearchBar({ initialValue }: { initialValue: string }) {
   };
 
   return (
-    <form className="flex-grow max-w-2xl mx-2" onSubmit={handleSearch}>
-      <div className="relative w-full">
+    <form className="flex-grow max-w-2xl mx-2 w-full m-4 sm:m-0" onSubmit={handleSearch}>
+      <div className="relative">
         <FontAwesomeIcon
           icon={faMagnifyingGlass}
           className="absolute top-1/2 left-3 transform -translate-y-1/2 text-gray-400"
