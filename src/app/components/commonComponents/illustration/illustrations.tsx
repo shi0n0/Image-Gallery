@@ -191,20 +191,12 @@ const ImageDetail = () => {
               </p>
             </div>
 
-            {/* いいねとお気に入り */}
+            {/* いいね */}
             <div className="flex items-center space-x-1 p-5">
-              {/* いいね */}
               <div className="text-center">
                 <p className="text-sm text-gray-500 mb-1">いいね</p>
                 <span className="text-5xl text-red-500 rounded-lg cursor-pointer">
                   ♡
-                </span>
-              </div>
-              {/* お気に入り */}
-              <div className="text-center">
-                <p className="text-sm text-gray-500 mb-1">お気に入り</p>
-                <span className="text-5xl text-yellow-300 rounded-lg cursor-pointer">
-                  ☆
                 </span>
               </div>
             </div>

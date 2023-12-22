@@ -48,11 +48,6 @@ export default async function Stats() {
           〇〇回
         </p>
         <p className="text-xl">
-          ⭐︎ お気に入り
-          <br />
-          〇〇回
-        </p>
-        <p className="text-xl">
           ✍️ コメント
           <br />
           {count}回
