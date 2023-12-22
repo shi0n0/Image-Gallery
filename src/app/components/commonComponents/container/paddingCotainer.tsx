@@ -6,7 +6,7 @@ interface PaddingContainerProps {
 
 const PaddingContainer: React.FC<PaddingContainerProps> = ({ children }) => {
   return (
-    <div className='sm:p-10'>
+    <div className='sm:p-10 flex flex-col w-full'>
       {children}
     </div>
   );

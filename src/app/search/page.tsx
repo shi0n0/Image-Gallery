@@ -49,7 +49,9 @@ export default function SearchResult() {
 
   return (
     <PaddingContainer>
-      <SearchBar initialValue={search || ""} />
+      <div className="flex justify-center">
+        <SearchBar initialValue={search || ""} />
+      </div>
       {imageData.length === 0 && <Loading />}
       <GridContainer>
         {imageData &&
