@@ -25,7 +25,7 @@ export default function CurrentIllust() {
         .from("Image")
         .select("id,url,title")
         .eq("userId", userId)
-        .limit(5);
+        .limit(3);
       if (error) {
         console.error("カレントイラスト取得中にエラー:", error.message);
       } else {
@@ -44,7 +44,12 @@ export default function CurrentIllust() {
         <Swiper
           modules={[Navigation, Pagination, Autoplay]}
           spaceBetween={10}
-          slidesPerView={5}
+          slidesPerView={1.5}
+          breakpoints={{
+            768: {
+              slidesPerView: 5,
+            },
+          }}
           centeredSlides={true}
           pagination={{
             el: ".swiper-pagination",
