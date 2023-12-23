@@ -8,7 +8,7 @@ export default async function Stats() {
 
   let totalViewCount = 0;
 
-  const { count, error:commentError } = await supabase
+  const { count, error: commentError } = await supabase
     .from("Comment")
     .select("*", { count: "exact", head: true })
     .match({ userId: userId });
@@ -16,27 +16,31 @@ export default async function Stats() {
   if (count) {
     console.log("コメント数:", count);
   } else {
-    console.error("コメントのカウントに失敗しました:",commentError?.message)
+    console.error("コメントのカウントに失敗しました:", commentError?.message);
   }
 
-  const { data, error:viewCountError } = await supabase
-  .from("Image")
-  .select("viewCount")
-  .eq("userId",userId)
+  const { data, error: viewCountError } = await supabase
+    .from("Image")
+    .select("viewCount")
+    .eq("userId", userId);
 
-  if (data){
-    totalViewCount = data.map(item => item.viewCount).reduce((acc, count) => acc + count, 0);
+  if (data) {
+    totalViewCount = data
+      .map((item) => item.viewCount)
+      .reduce((acc, count) => acc + count, 0);
   } else {
-    console.error("閲覧回数取得でエラーが発生しました:",viewCountError.message)
+    console.error(
+      "閲覧回数取得でエラーが発生しました:",
+      viewCountError.message
+    );
   }
-
 
   return (
     <div className="bg-white rounded-xl lg:w-1/3 h-80">
       <div className="bg-gray-100 rounded-t-lg py-3 px-5 font-semibold text-xl">
         合計リアクション数
       </div>
-      <div className="py-3 px-5 font-semibold">
+      <div className="py-3 px-5 font-semibold flex justify-between whitespace-nowrap">
         <p className="text-xl">
           👀 閲覧数
           <br />
