@@ -40,7 +40,7 @@ export default function ProfileCard() {
 
   return (
     <PaddingContainer>
-      <p className="text-2xl mb-5 font-semibold text-gray-700">
+      <p className="text-2xl mb-5 m-4 sm:m-0 font-semibold text-gray-700">
         ダッシュボード
       </p>
       <TabSwitch />
