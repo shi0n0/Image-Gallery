@@ -81,7 +81,6 @@ export default function CurrentIllust() {
             ))}
         </Swiper>
       </div>
-      <div className="swiper-pagination absolute bottom-10 right-2 z-30"></div>
     </div>
   );
 }
