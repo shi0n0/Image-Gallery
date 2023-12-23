@@ -36,8 +36,8 @@ export default async function Stats() {
   }
 
   return (
-    <div className="bg-white rounded-xl lg:w-1/3 h-80">
-      <div className="bg-gray-100 rounded-t-lg py-3 px-5 font-semibold text-xl">
+    <div className="bg-white lg:rounded-xl lg:w-1/3">
+      <div className="bg-gray-100 lg:rounded-t-lg py-3 px-5 font-semibold text-xl">
         合計リアクション数
       </div>
       <div className="py-3 px-5 font-semibold flex justify-between whitespace-nowrap">
