@@ -1,5 +1,5 @@
 import supabase from "@/app/utils/supabase";
-import PaddingContainer from "./container/paddingCotainer";
+import PaddingContainer from "../container/paddingCotainer";
 import Image from "next/image";
 
 interface ImageData {
@@ -66,7 +66,7 @@ export default async function Ranking() {
     .from("Image")
     .select("id, url, title, description, userId, viewCount")
     .order("viewCount", { ascending: false })
-    .limit(10)
+    .limit(10);
 
   if (error) {
     console.error("ランキング情報を取得中にエラーが発生:", error.message);
