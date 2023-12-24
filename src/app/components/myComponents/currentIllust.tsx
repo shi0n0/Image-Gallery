@@ -74,8 +74,10 @@ export default function CurrentIllust() {
                       className="object-cover rounded-md"
                       fill
                     />
-                    <p>{image.title}</p>
                   </div>
+                  <div className="absolute bottom-0 w-full font-light bg-black bg-opacity-20 text-white text-center p-2">
+                      <p className="text-white">{image.title}</p>
+                    </div>
                 </Link>
               </SwiperSlide>
             ))}
