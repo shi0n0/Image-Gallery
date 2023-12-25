@@ -1,12 +1,11 @@
-import UserHeader from "@/app/components/userComponents/userHeader"
-import UserProfileCard from "@/app/components/userComponents/userProfileCard"
+import UserHeader from "@/app/components/userComponents/userPage/userHeader";
+import UserProfileCard from "@/app/components/userComponents/userPage/userProfileCard";
 
 export default function UserProfile() {
-
-  return(
+  return (
     <div>
       <UserHeader />
       <UserProfileCard />
     </div>
-  )
-} 
+  );
+}
