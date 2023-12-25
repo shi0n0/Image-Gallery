@@ -1,7 +1,7 @@
 "use client";
 
-import TopUserCard from "./components/commonComponents/topPageCard";
-import TopPageSlider from "./components/commonComponents/topPageSlider";
+import TopUserCard from "./components/commonComponents/topPgae/topPageCard";
+import TopPageSlider from "./components/commonComponents/topPgae/topPageSlider";
 
 export default function Home() {
   return (
