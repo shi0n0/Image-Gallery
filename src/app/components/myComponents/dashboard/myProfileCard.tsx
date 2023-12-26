@@ -1,13 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import supabase from "../../utils/supabase";
+import supabase from "../../../utils/supabase";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import TabSwitch from "./tabSwitch";
-import PaddingContainer from "../commonComponents/container/paddingCotainer";
-import GridContainer from "../commonComponents/container/gridContainer";
+import PaddingContainer from "../../commonComponents/container/paddingCotainer";
+import GridContainer from "../../commonComponents/container/gridContainer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 

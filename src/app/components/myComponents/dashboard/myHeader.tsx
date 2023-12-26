@@ -4,7 +4,7 @@ import React, { ChangeEvent, useEffect, useState } from "react";
 import Image from "next/image";
 import Auth from "./auth";
 import { useSession } from "next-auth/react";
-import supabase from "../../utils/supabase";
+import supabase from "../../../utils/supabase";
 import { useRouter } from "next/navigation";
 
 function MyHeader() {

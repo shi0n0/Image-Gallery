@@ -1,6 +1,6 @@
-import MyHeader from "@/app/components/myComponents/myHeader";
+import MyHeader from "@/app/components/myComponents/dashboard/myHeader";
 import PaddingContainer from "@/app/components/commonComponents/container/paddingCotainer";
-import TabSwitch from "@/app/components/myComponents/tabSwitch";
+import TabSwitch from "@/app/components/myComponents/dashboard/tabSwitch";
 
 export default function Edit() {
   return (

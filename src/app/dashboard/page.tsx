@@ -1,9 +1,9 @@
-import MyHeader from "../components/myComponents/myHeader";
-import TabSwitch from "../components/myComponents/tabSwitch";
+import MyHeader from "../components/myComponents/dashboard/myHeader";
+import TabSwitch from "../components/myComponents/dashboard/tabSwitch";
 import PaddingContainer from "../components/commonComponents/container/paddingCotainer";
-import Stats from "../components/myComponents/Stats";
-import Top3Content from "../components/myComponents/top3Content";
-import CurrentIllust from "../components/myComponents/currentIllust";
+import Stats from "../components/myComponents/dashboard/Stats";
+import Top3Content from "../components/myComponents/dashboard/top3Content";
+import CurrentIllust from "../components/myComponents/dashboard/currentIllust";
 
 export default function Home() {
   return (
