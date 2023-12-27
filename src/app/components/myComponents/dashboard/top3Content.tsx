@@ -2,6 +2,7 @@ import supabase from "@/app/utils/supabase";
 import Image from "next/image";
 import { getServerSession } from "next-auth";
 import { nextAuthOptions } from "@/app/api/auth/[...nextauth]/options";
+import Link from "next/link";
 
 interface MostViewedImage {
   id: string;
@@ -61,14 +62,16 @@ export default async function Top3Content() {
           <>
             <div className="py-3 px-5 font-semibold sm:w-1/3">
               👀視聴数
-              <div className="relative w-full aspect-square">
-                <Image
-                  className="rounded-lg"
-                  src={mostViewedImage.url}
-                  alt="視聴数No1コンテンツ"
-                  objectFit="cover"
-                  fill
-                />
+              <div className="relative w-full aspect-square duration-150 hover:opacity-90">
+                <Link href={`/illustrations/${mostViewedImage.id}`}>
+                  <Image
+                    className="rounded-lg"
+                    src={mostViewedImage.url}
+                    alt="視聴数No1コンテンツ"
+                    objectFit="cover"
+                    fill
+                  />
+                </Link>
               </div>
               <p>{mostViewedImage.title}</p>
             </div>
