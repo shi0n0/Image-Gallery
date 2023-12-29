@@ -44,7 +44,6 @@ export default function TopUserCard() {
 
   return (
     <PaddingContainer>
-      {isLoading && <Loading />}
       <div className="sm:px-12 sm:py-3 w-fit h-fit flex justify-between items-center">
         <p className="text-lg py-2 sm:text-xl sm:pr-2 font-semibold text-gray-700 inline-block">
           最近投稿されたイラスト
@@ -53,6 +52,7 @@ export default function TopUserCard() {
           もっと見る ＞
         </p>
       </div>
+      {isLoading && <Loading />}
       <GridContainer>
         {userImages.map((image) => {
           const matchingUser = userProps.find(
