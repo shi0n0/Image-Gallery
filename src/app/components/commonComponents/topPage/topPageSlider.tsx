@@ -15,7 +15,7 @@ export default async function TopPageSlider() {
 
   return (
     <div className="bg-gray-100 md:p-2 relative">
-      <div className="w-full h-[25vh] sm:h-[25vh] md:h-[20vh] lg:h-[30vh]">
+      <div className="w-full">
         <Swiper
           modules={[Navigation, Pagination, Autoplay]}
           spaceBetween={10}
@@ -39,7 +39,7 @@ export default async function TopPageSlider() {
           }}
           className="h-full"
         >
-          <SwiperSlide className="relative w-full h-full">
+          <SwiperSlide className="relative aspect-video w-full h-full">
             <Image
               src={"/ImageGallery.png"}
               alt="テスト1"
@@ -47,7 +47,7 @@ export default async function TopPageSlider() {
               fill
             />
           </SwiperSlide>
-          <SwiperSlide className="relative w-full h-full hover:opacity-60">
+          <SwiperSlide className="relative aspect-video w-full h-full hover:opacity-60">
             <Image
               src={"/ImageGallery-30.png"}
               alt="テスト2"
@@ -55,7 +55,7 @@ export default async function TopPageSlider() {
               fill
             />
           </SwiperSlide>
-          <SwiperSlide className="relative w-full h-full hover:opacity-60">
+          <SwiperSlide className="relative aspect-video w-full h-full hover:opacity-60">
             <Image
               src={"/ImageGallery.png"}
               alt="テスト3"
@@ -63,7 +63,7 @@ export default async function TopPageSlider() {
               fill
             />
           </SwiperSlide>
-          <SwiperSlide className="relative w-ful h-full hover:opacity-60">
+          <SwiperSlide className="relative aspect-video w-ful h-full hover:opacity-60">
             <Image
               src={"/ImageGallery-30.png"}
               alt="テスト3"
@@ -71,7 +71,7 @@ export default async function TopPageSlider() {
               fill
             />
           </SwiperSlide>
-          <SwiperSlide className="relative w-full h-full hover:opacity-60">
+          <SwiperSlide className="relative aspect-video w-full h-full hover:opacity-60">
             <Image
               src={"/ImageGallery.png"}
               alt="テスト3"
@@ -79,7 +79,7 @@ export default async function TopPageSlider() {
               fill
             />
           </SwiperSlide>
-          <SwiperSlide className="relative w-full h-full hover:opacity-60">
+          <SwiperSlide className="relative aspect-video w-full h-full hover:opacity-60">
             <Image
               src={"/ImageGallery-30.png"}
               alt="テスト3"
