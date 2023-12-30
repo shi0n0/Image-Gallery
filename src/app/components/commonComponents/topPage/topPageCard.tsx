@@ -19,11 +19,13 @@ export default function TopUserCard() {
     async function fetchUserImages() {
       const { data: imagesData, error: imagesError } = await supabase
         .from("Image")
-        .select("id, url, title, userId");
+        .select("id, url, title, userId")
+        .limit(12);
 
       const { data: usersData, error: usersError } = await supabase
         .from("User")
-        .select("id, image, name");
+        .select("id, image, name")
+        .limit(12)
 
       if (imagesError) {
         console.error("ユーザー画像の取得エラー:", imagesError);
