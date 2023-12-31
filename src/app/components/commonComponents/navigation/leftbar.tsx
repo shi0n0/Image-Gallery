@@ -50,7 +50,7 @@ const Sidebar: React.FC = () => {
     <>
       {/* ハンバーガーボタン */}
       <div
-        className="top-4 left-4 z-４0 px-4"
+        className="top-4 left-4 p-2 z-４0 aspect-square rounded-full hover:bg-gray-50 active:bg-gray-100"
         onClick={handleMobileMenuToggle}
       >
         <FontAwesomeIcon icon={faBars} size="xl" className="text-gray-600" />
