@@ -48,9 +48,9 @@ const Sidebar: React.FC = () => {
 
   return (
     <>
-      {/* ハンバーガーボタン (スマホサイズの場合のみ表示) */}
+      {/* ハンバーガーボタン */}
       <div
-        className="md:hidden top-4 left-4 z-４0 px-4"
+        className="top-4 left-4 z-４0 px-4"
         onClick={handleMobileMenuToggle}
       >
         <FontAwesomeIcon icon={faBars} size="xl" className="text-gray-600" />
