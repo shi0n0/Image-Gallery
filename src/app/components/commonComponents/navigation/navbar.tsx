@@ -31,12 +31,14 @@ export default function Navbar() {
     <nav className="bg-white shadow-lg sticky top-0 z-40 font-sans">
       <div className="container mx-auto">
         <div className="flex justify-between items-center py-2">
-          <Sidebar />
-          <Link href={"/"} passHref>
-            <p className="text-2xl font-bold rounded text-white bg-custom-pink px-3 py-1">
-              ImageGallery
-            </p>
-          </Link>
+          <div className="flex items-center">
+            <Sidebar />
+            <Link href={"/"} passHref>
+              <p className="text-2xl font-bold rounded text-white bg-custom-pink px-3 py-1">
+                ImageGallery
+              </p>
+            </Link>
+          </div>
           {pagePath !== "/search" && <SearchBar initialValue="" />}
           <div className="hidden sm:flex items-center space-x-4">
             <Link href={"/upload"}>
