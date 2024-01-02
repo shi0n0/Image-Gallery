@@ -6,7 +6,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowUpFromBracket } from "@fortawesome/free-solid-svg-icons";
+import { faArrowUpFromBracket, faUser } from "@fortawesome/free-solid-svg-icons";
 import SearchBar from "./seachBar";
 import Sidebar from "./leftbar";
 
@@ -24,8 +24,7 @@ export default function Navbar() {
   const pagePath = usePathname();
   const { data: session } = useSession();
   const userImage =
-    session?.user?.image ||
-    "https://kotonohaworks.com/free-icons/wp-content/uploads/kkrn_icon_user_1.png";
+    session?.user?.image || <FontAwesomeIcon icon={faUser}/>;
 
   return (
     <nav className="bg-white shadow-lg sticky top-0 z-40 font-sans">
@@ -54,8 +53,8 @@ export default function Navbar() {
                 />
               </p>
             </Link>
-            {session && <UserLink href="/dashboard" src={userImage} />}
-            {!session && <UserLink href="/dashboard" src={userImage} />}
+            {session && <UserLink href="/dashboard" src={userImage as string} />}
+            {!session && <UserLink href="/dashboard" src={userImage as string} />}
           </div>
         </div>
       </div>
