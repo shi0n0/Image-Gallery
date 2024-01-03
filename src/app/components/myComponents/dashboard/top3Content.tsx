@@ -66,7 +66,7 @@ export default async function Top3Content() {
                 <Link href={`/illustrations/${mostViewedImage.id}`}>
                   <Image
                     className="rounded-lg"
-                    src={mostViewedImage.url}
+                    src={mostViewedImage.url || "/ImageGallery.png"}
                     alt="視聴数No1コンテンツ"
                     objectFit="cover"
                     fill
