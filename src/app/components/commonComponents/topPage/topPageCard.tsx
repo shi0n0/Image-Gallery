@@ -20,12 +20,13 @@ export default function TopUserCard() {
       const { data: imagesData, error: imagesError } = await supabase
         .from("Image")
         .select("id, url, title, userId")
+        .order("postedAt", { ascending: false })
         .limit(12);
 
       const { data: usersData, error: usersError } = await supabase
         .from("User")
         .select("id, image, name")
-        .limit(12)
+        .limit(12);
 
       if (imagesError) {
         console.error("ユーザー画像の取得エラー:", imagesError);
