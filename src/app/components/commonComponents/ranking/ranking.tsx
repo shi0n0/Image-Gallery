@@ -62,7 +62,7 @@ const ImageCard = ({ imageData, userData, index }: ImageCardProps) => (
 );
 
 export default async function Ranking() {
-  const { data, error } = await supabase
+  const { data: viewRankingData, error } = await supabase
     .from("Image")
     .select("id, url, title, description, userId, viewCount")
     .order("viewCount", { ascending: false })
@@ -73,11 +73,11 @@ export default async function Ranking() {
     return null;
   }
 
-  if (data) {
+  if (viewRankingData) {
     const { data: userData, error: userError } = await supabase
       .from("User")
       .select("name, image")
-      .eq("id", data[0]?.userId);
+      .eq("id", viewRankingData[0]?.userId);
 
     if (userError) {
       console.error("ユーザー情報を取得中にエラーが発生:", userError.message);
@@ -89,7 +89,7 @@ export default async function Ranking() {
         <div className="flex">
           <div>
             <p className="text-4xl font-bold text-center">閲覧数</p>
-            {data.map((imageData, index) => (
+            {viewRankingData.map((imageData, index) => (
               <ImageCard
                 key={imageData.id}
                 imageData={imageData}
@@ -100,7 +100,20 @@ export default async function Ranking() {
           </div>
           <div>
             <p className="text-4xl font-bold text-center">いいね数</p>
-            {data.map((imageData, index) => (
+            {/* 今後いいねランキングにデータを差し替える */}
+            {viewRankingData.map((imageData, index) => (
+              <ImageCard
+                key={imageData.id}
+                imageData={imageData}
+                userData={userData}
+                index={index}
+              />
+            ))}
+          </div>
+          <div>
+            <p className="text-4xl font-bold text-center">コメント数</p>
+            {/* 今後いいねランキングにデータを差し替える */}
+            {viewRankingData.map((imageData, index) => (
               <ImageCard
                 key={imageData.id}
                 imageData={imageData}
