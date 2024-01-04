@@ -86,15 +86,30 @@ export default async function Ranking() {
 
     return (
       <PaddingContainer>
-        <p className="text-4xl font-bold text-center">閲覧数</p>
-        {data.map((imageData, index) => (
-          <ImageCard
-            key={imageData.id}
-            imageData={imageData}
-            userData={userData}
-            index={index}
-          />
-        ))}
+        <div className="flex">
+          <div>
+            <p className="text-4xl font-bold text-center">閲覧数</p>
+            {data.map((imageData, index) => (
+              <ImageCard
+                key={imageData.id}
+                imageData={imageData}
+                userData={userData}
+                index={index}
+              />
+            ))}
+          </div>
+          <div>
+            <p className="text-4xl font-bold text-center">いいね数</p>
+            {data.map((imageData, index) => (
+              <ImageCard
+                key={imageData.id}
+                imageData={imageData}
+                userData={userData}
+                index={index}
+              />
+            ))}
+          </div>
+        </div>
       </PaddingContainer>
     );
   } else {
