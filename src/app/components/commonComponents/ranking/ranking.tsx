@@ -24,7 +24,7 @@ interface ImageCardProps {
 const ImageCard = ({ imageData, userData, index }: ImageCardProps) => (
   <div
     key={imageData.id}
-    className="max-w-sm rounded overflow-hidden shadow-lg"
+    className="max-w-sm rounded overflow-hidden shadow-lg my-8"
   >
     <div className="relative aspect-square">
       <Image
