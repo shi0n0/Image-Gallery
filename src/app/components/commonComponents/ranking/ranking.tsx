@@ -86,7 +86,7 @@ export default async function Ranking() {
 
     return (
       <PaddingContainer>
-        <div className="flex">
+        <div className="flex justify-between">
           <div>
             <p className="text-4xl font-bold text-center">閲覧数</p>
             {viewRankingData.map((imageData, index) => (
