@@ -41,7 +41,10 @@ export default function Navbar() {
           {pagePath !== "/search" && <SearchBar initialValue="" />}
           <div className="hidden sm:flex items-center space-x-4">
             <Link href={"/ranking"}>
-              <FontAwesomeIcon icon={faRankingStar} className="mx-2" />
+              <FontAwesomeIcon
+                icon={faRankingStar}
+                className="p-3 rounded-full duration-150 hover:bg-gray-100 active:text-custom-pink active:duration-0 text-gray-600 hover:text-gray-800"
+              />
             </Link>
             <Link href={"/upload"}>
               <p
@@ -52,7 +55,7 @@ export default function Navbar() {
               >
                 <FontAwesomeIcon
                   icon={faArrowUpFromBracket}
-                  className="p-3 mx-2 rounded-full duration-150 hover:bg-gray-100 active:text-custom-pink active:duration-0"
+                  className="p-3 rounded-full duration-150 hover:bg-gray-100 active:text-custom-pink active:duration-0"
                 />
               </p>
             </Link>
