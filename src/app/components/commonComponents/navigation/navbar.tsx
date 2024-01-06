@@ -6,7 +6,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowUpFromBracket, faUser } from "@fortawesome/free-solid-svg-icons";
+import { faArrowUpFromBracket, faUser,faRankingStar } from "@fortawesome/free-solid-svg-icons";
 import SearchBar from "./seachBar";
 import Sidebar from "./leftbar";
 
@@ -40,6 +40,9 @@ export default function Navbar() {
           </div>
           {pagePath !== "/search" && <SearchBar initialValue="" />}
           <div className="hidden sm:flex items-center space-x-4">
+            <Link href={"/ranking"}>
+              <FontAwesomeIcon icon={faRankingStar} className="mx-2" />
+            </Link>
             <Link href={"/upload"}>
               <p
                 className={`text-gray-600 hover:text-gray-800 ${getNavLinkStyles(
