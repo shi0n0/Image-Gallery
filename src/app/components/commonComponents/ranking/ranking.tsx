@@ -1,6 +1,7 @@
 import supabase from "@/app/utils/supabase";
 import PaddingContainer from "../container/paddingCotainer";
 import Image from "next/image";
+import Link from "next/link";
 
 interface ImageData {
   id: number;
@@ -90,12 +91,14 @@ export default async function Ranking() {
           <div>
             <p className="text-4xl font-bold text-center">閲覧数</p>
             {viewRankingData.map((imageData, index) => (
+            <Link href={`/illustrations/${imageData.id}`} key={imageData.id}>
               <ImageCard
                 key={imageData.id}
                 imageData={imageData}
                 userData={userData}
                 index={index}
               />
+            </Link>
             ))}
           </div>
           <div>
