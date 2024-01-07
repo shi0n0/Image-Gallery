@@ -91,38 +91,42 @@ export default async function Ranking() {
           <div>
             <p className="text-4xl font-bold text-center">閲覧数</p>
             {viewRankingData.map((imageData, index) => (
-            <Link href={`/illustrations/${imageData.id}`} key={imageData.id}>
-              <ImageCard
-                key={imageData.id}
-                imageData={imageData}
-                userData={userData}
-                index={index}
-              />
-            </Link>
+              <Link href={`/illustrations/${imageData.id}`} key={imageData.id}>
+                <ImageCard
+                  key={imageData.id}
+                  imageData={imageData}
+                  userData={userData}
+                  index={index}
+                />
+              </Link>
             ))}
           </div>
           <div>
             <p className="text-4xl font-bold text-center">いいね数</p>
             {/* 今後いいねランキングにデータを差し替える */}
             {viewRankingData.map((imageData, index) => (
-              <ImageCard
-                key={imageData.id}
-                imageData={imageData}
-                userData={userData}
-                index={index}
-              />
+              <Link href={`/illustrations/${imageData.id}`} key={imageData.id}>
+                <ImageCard
+                  key={imageData.id}
+                  imageData={imageData}
+                  userData={userData}
+                  index={index}
+                />
+              </Link>
             ))}
           </div>
           <div>
             <p className="text-4xl font-bold text-center">コメント数</p>
             {/* 今後いいねランキングにデータを差し替える */}
             {viewRankingData.map((imageData, index) => (
-              <ImageCard
-                key={imageData.id}
-                imageData={imageData}
-                userData={userData}
-                index={index}
-              />
+              <Link href={`/illustrations/${imageData.id}`} key={imageData.id}>
+                <ImageCard
+                  key={imageData.id}
+                  imageData={imageData}
+                  userData={userData}
+                  index={index}
+                />
+              </Link>
             ))}
           </div>
         </div>
