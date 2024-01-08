@@ -13,6 +13,8 @@ export default async function TopPageSlider() {
     .order("createdAt", { ascending: false })
     .limit(6);
 
+    if (!data) return null;
+
   return (
     <div className="bg-gray-100 md:p-2 relative">
       <div className="w-full">
@@ -39,54 +41,19 @@ export default async function TopPageSlider() {
           }}
           className="h-full"
         >
-          <SwiperSlide className="relative aspect-video w-full h-full">
-            <Image
-              src={"/ImageGallery.png"}
-              alt="テスト1"
-              className="object-cover rounded-md opacity-100 duration-200 hover:opacity-60"
-              fill
-            />
-          </SwiperSlide>
-          <SwiperSlide className="relative aspect-video w-full h-full hover:opacity-60">
-            <Image
-              src={"/ImageGallery-30.png"}
-              alt="テスト2"
-              className="object-cover rounded-md"
-              fill
-            />
-          </SwiperSlide>
-          <SwiperSlide className="relative aspect-video w-full h-full hover:opacity-60">
-            <Image
-              src={"/ImageGallery.png"}
-              alt="テスト3"
-              className="object-cover rounded-md"
-              fill
-            />
-          </SwiperSlide>
-          <SwiperSlide className="relative aspect-video w-ful h-full hover:opacity-60">
-            <Image
-              src={"/ImageGallery-30.png"}
-              alt="テスト3"
-              className="object-cover rounded-md"
-              fill
-            />
-          </SwiperSlide>
-          <SwiperSlide className="relative aspect-video w-full h-full hover:opacity-60">
-            <Image
-              src={"/ImageGallery.png"}
-              alt="テスト3"
-              className="object-cover rounded-md"
-              fill
-            />
-          </SwiperSlide>
-          <SwiperSlide className="relative aspect-video w-full h-full hover:opacity-60">
-            <Image
-              src={"/ImageGallery-30.png"}
-              alt="テスト3"
-              className="object-cover rounded-md"
-              fill
-            />
-          </SwiperSlide>
+          {data.map((slide) => (
+            <SwiperSlide
+              key={slide.id}
+              className="relative aspect-video w-full h-full hover:opacity-60"
+            >
+              <Image
+                src={slide.url}
+                alt={slide.image}
+                className="object-cover rounded-md"
+                fill
+              />
+            </SwiperSlide>
+          ))}
 
           <div className="swiper-pagination absolute bottom-10 right-2 z-30"></div>
         </Swiper>
