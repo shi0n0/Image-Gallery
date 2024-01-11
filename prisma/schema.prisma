@@ -17,9 +17,19 @@ model Image {
   height      Int
   postedAt    DateTime  @default(now())
   viewCount   Int       @default(0)
+  likes  Like[]
   comments    Comment[]
   tags        TagToImage[]
   user        User   @relation(fields: [userId], references: [id])
+}
+
+model Like {
+  id      String   @id @default(cuid())
+  userId  String
+  imageId String
+  user    User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  image   Image    @relation(fields: [imageId], references: [id], onDelete: Cascade)
+  @@unique([userId, imageId])
 }
 
 model Comment {
@@ -96,6 +106,7 @@ model User {
   accounts      Account[]
   headers       Header[]
   images        Image[]
+  likes  Like[]
   comments      Comment[]
   sessions      Session[]
 }
