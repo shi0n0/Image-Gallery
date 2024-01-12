@@ -67,7 +67,7 @@ export default function CurrentIllust() {
             data.map((image, index) => (
               <SwiperSlide key={index}>
                 <Link href={`/illustrations/${image.id}`}>
-                  <div className="aspect-square hpver:opacity-110">
+                  <div className="aspect-square duration-100 hover:opacity-90">
                     <Image
                       src={image.url}
                       alt={image.title}
