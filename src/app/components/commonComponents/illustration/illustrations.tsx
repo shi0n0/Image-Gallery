@@ -255,11 +255,10 @@ const ImageDetail = () => {
             <div className="flex items-center justify-between mt-4">
               <button className="text-red-500 text-lg" onClick={toggleLike}>
                 {isLiked ? (
-                  <FontAwesomeIcon icon={faHeart} className="transition transform duration-300 scale-125" />
+                  <FontAwesomeIcon icon={faHeart} size="xl" className="transition transform duration-100 scale-125" />
                 ) : (
-                  <FontAwesomeIcon icon={faHeartRegular}/>
+                  <FontAwesomeIcon icon={faHeartRegular} size="xl"/>
                 )}
-                いいね
               </button>
               <button className="text-blue-500 text-lg">💬 コメント</button>
             </div>
