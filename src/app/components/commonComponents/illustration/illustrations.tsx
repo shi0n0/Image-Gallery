@@ -153,14 +153,29 @@ const ImageDetail = () => {
   }
 
   const toggleLike = async () => {
-    const { data:likeData, error:likeError} = await supabase
-    .from("Like")
-    .insert({ imageId: pagePath, userId: userProps.id });
-
-    if (likeError) {
-      console.log("いいねの保存でエラーが発生しました:",likeError.message)
-    } else if (likeData) {
-      console.log("いいねの保存が完了しました")
+    if (isLiked) {
+      // クリック時、いいねがすでにされている場合、いいねを解除する
+      const { error: unlikeError } = await supabase
+        .from("Like")
+        .delete()
+        .match({ imageId: pagePath, userId: userProps.id });
+  
+      if (unlikeError) {
+        console.log("いいねの削除でエラーが発生しました:", unlikeError.message);
+      } else {
+        console.log("いいねを削除しました");
+      }
+    } else {
+      // クリック時、いいねがついていない場合はいいねを追加
+      const { error: likeError } = await supabase
+        .from("Like")
+        .insert({ imageId: pagePath, userId: userProps.id });
+  
+      if (likeError) {
+        console.log("いいねの保存でエラーが発生しました:", likeError.message);
+      } else {
+        console.log("いいねの保存が完了しました");
+      }
     }
     setIsLiked(!isLiked);
   };
