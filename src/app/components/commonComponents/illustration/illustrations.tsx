@@ -10,6 +10,7 @@ import ShowComment from "./showComment";
 import { faHeart as faHeartRegular } from "@fortawesome/free-regular-svg-icons";
 import { faHeart as faHeart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { error } from "console";
 
 const ImageDetail = () => {
   const getPagePath = usePathname();
@@ -151,7 +152,16 @@ const ImageDetail = () => {
     );
   }
 
-  const toggleLike = () => {
+  const toggleLike = async () => {
+    const { data:likeData, error:likeError} = await supabase
+    .from("Like")
+    .insert({ imageId: pagePath, userId: userProps.id });
+
+    if (likeError) {
+      console.log("いいねの保存でエラーが発生しました:",likeError.message)
+    } else if (likeData) {
+      console.log("いいねの保存が完了しました")
+    }
     setIsLiked(!isLiked);
   };
 
