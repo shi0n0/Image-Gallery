@@ -7,7 +7,8 @@ import supabase from "../../../utils/supabase";
 import Link from "next/link";
 import UploadComment from "./uploadComment";
 import ShowComment from "./showComment";
-import { faHeart } from "@fortawesome/free-regular-svg-icons";
+import { faHeart as faHeartRegular } from "@fortawesome/free-regular-svg-icons";
+import { faHeart as faHeart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const ImageDetail = () => {
@@ -36,6 +37,8 @@ const ImageDetail = () => {
     image: "",
     name: "",
   });
+
+  const [isLiked, setIsLiked] = useState(false);
 
   useEffect(() => {
     async function fetchUserImages() {
@@ -148,6 +151,10 @@ const ImageDetail = () => {
     );
   }
 
+  const toggleLike = () => {
+    setIsLiked(!isLiked);
+  };
+
   const originalDateTime = new Date(imageData.postedAt);
   const formattedDate = `${originalDateTime.getFullYear()}年${(
     originalDateTime.getMonth() + 1
@@ -203,15 +210,15 @@ const ImageDetail = () => {
 
             {/* いいねとコメント */}
             <div className="flex items-center justify-between mt-4">
-              <button className="text-red-500 text-lg">
-                <FontAwesomeIcon icon={faHeart}/>
+              <button className="text-red-500 text-lg" onClick={toggleLike}>
+                {isLiked ? (
+                  <FontAwesomeIcon icon={faHeart} className="transition transform duration-300 scale-125" />
+                ) : (
+                  <FontAwesomeIcon icon={faHeartRegular}/>
+                )}
                 いいね
               </button>
-              <button
-                className="text-blue-500 text-lg"
-              >
-                💬 コメント
-              </button>
+              <button className="text-blue-500 text-lg">💬 コメント</button>
             </div>
           </div>
 
