@@ -7,6 +7,8 @@ import supabase from "../../../utils/supabase";
 import Link from "next/link";
 import UploadComment from "./uploadComment";
 import ShowComment from "./showComment";
+import { faHeart } from "@fortawesome/free-regular-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const ImageDetail = () => {
   const getPagePath = usePathname();
@@ -201,7 +203,10 @@ const ImageDetail = () => {
 
             {/* いいねとコメント */}
             <div className="flex items-center justify-between mt-4">
-              <button className="text-red-500 text-lg">♡ いいね</button>
+              <button className="text-red-500 text-lg">
+                <FontAwesomeIcon icon={faHeart}/>
+                いいね
+              </button>
               <button
                 className="text-blue-500 text-lg"
               >
