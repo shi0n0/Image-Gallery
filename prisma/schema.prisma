@@ -24,7 +24,7 @@ model Image {
 }
 
 model Like {
-  id      String   @id @default(cuid())
+  id      String   @id @default(dbgenerated("uuid_generate_v4()"))
   userId  String
   imageId String
   user    User     @relation(fields: [userId], references: [id], onDelete: Cascade)
