@@ -37,6 +37,16 @@ const ImageDetail = () => {
 
   useEffect(() => {
     async function fetchUserImages() {
+      const now = new Date().getTime();
+
+      // ローカルストレージから最終閲覧時刻を取得
+      const lastViewedString = localStorage.getItem(`lastViewed-${pagePath}`);
+      const lastViewed = lastViewedString
+        ? new Date(lastViewedString).getTime()
+        : null;
+      // 最終閲覧時刻から10分が経過しているか確認
+      const tenMinutes = 1000 * 60 * 10;
+
       if (pagePath) {
         const { data, error } = await supabase
           .from("Image")
@@ -97,7 +107,8 @@ const ImageDetail = () => {
         } else {
           setUserProps(userData[0]);
         }
-
+      }
+      if (!lastViewed || now - lastViewed > tenMinutes) {
         const newViewCount = imageData.viewCount + 1;
 
         if (newViewCount) {
@@ -111,8 +122,16 @@ const ImageDetail = () => {
               "ニュービューカウントエラー",
               updateViewCountError.message
             );
+          } else {
+            console.log("カウントしました");
           }
         }
+
+        // 現在の時刻をローカルストレージに保存
+        localStorage.setItem(
+          `lastViewed-${pagePath}`,
+          new Date(now).toISOString()
+        );
       }
     }
 

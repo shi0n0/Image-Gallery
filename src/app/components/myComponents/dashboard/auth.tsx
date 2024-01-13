@@ -20,19 +20,23 @@ export default function Auth() {
           />
         )}
         {session && (
-          <button
-            onClick={() => signOut()}
-            className="text-gray-600 hover:text-gray-800 px-4 py-2"
-          >
-            <p>ログアウト</p>
-          </button>
+          <>
+          <p className="text-3xl">{session.user?.name}</p>
+          <p>ユーザーID:{session.user?.id}</p>
+            <button
+              onClick={() => signOut()}
+              className="text-gray-600 hover:text-gray-800 px-4 py-2"
+            >
+              <p>ログアウト</p>
+            </button>
+          </>
         )}
         {!session && (
           <div>
-              <FontAwesomeIcon
-                icon={faUser}
-                className="text-gray-800 text-5xl bg-gray-400 p-3 rounded-full aspect-square"
-              />
+            <FontAwesomeIcon
+              icon={faUser}
+              className="text-gray-800 text-5xl bg-gray-400 p-3 rounded-full aspect-square"
+            />
             <p className="text-5xl font-medium">名無し</p>
 
             <p>
