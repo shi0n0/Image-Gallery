@@ -139,10 +139,28 @@ const ImageDetail = () => {
           new Date(now).toISOString()
         );
       }
+
+      const checkIfLiked = async () => {
+        const { data: likeData, error } = await supabase
+          .from("Like")
+          .select("*")
+          .eq("imageId", pagePath)
+          .eq("userId", userProps.id);
+    
+        if (error) {
+          console.error("いいねの状態の確認でエラーが発生しました:", error.message);
+        } else if (likeData && likeData.length > 0) {
+          setIsLiked(true);
+        } else {
+          setIsLiked(false);
+        }
+      };
+    
+      checkIfLiked();
     }
 
     fetchUserImages();
-  }, [pagePath, imageData.viewCount]);
+  }, [pagePath,userProps.id, imageData.viewCount]);
 
   if (!imageData.url) {
     return (
