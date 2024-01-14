@@ -41,6 +41,8 @@ const ImageDetail = () => {
 
   const [isLiked, setIsLiked] = useState(false);
 
+  const [likeCount, setLikeCount] = useState(0);
+
   useEffect(() => {
     async function fetchUserImages() {
       const now = new Date().getTime();
@@ -146,21 +148,39 @@ const ImageDetail = () => {
           .select("*")
           .eq("imageId", pagePath)
           .eq("userId", userProps.id);
-    
+
         if (error) {
-          console.error("いいねの状態の確認でエラーが発生しました:", error.message);
+          console.error(
+            "いいねの状態の確認でエラーが発生しました:",
+            error.message
+          );
         } else if (likeData && likeData.length > 0) {
           setIsLiked(true);
         } else {
           setIsLiked(false);
         }
       };
-    
+
+      // 画像に対するいいねの数を取得する関数
+      const fetchLikeCount = async () => {
+        const { data, error } = await supabase
+          .from("Like")
+          .select("*", { count: "exact" })
+          .eq("imageId", pagePath);
+
+        if (error) {
+          console.error("いいね回数の取得に失敗しました:", error.message);
+        } else {
+          setLikeCount(data.length); // いいねの数を設定
+        }
+      };
+
       checkIfLiked();
+      fetchLikeCount();
     }
 
     fetchUserImages();
-  }, [pagePath,userProps.id, imageData.viewCount]);
+  }, [pagePath, userProps.id, imageData.viewCount]);
 
   if (!imageData.url) {
     return (
@@ -177,7 +197,7 @@ const ImageDetail = () => {
         .from("Like")
         .delete()
         .match({ imageId: pagePath, userId: userProps.id });
-  
+
       if (unlikeError) {
         console.log("いいねの削除でエラーが発生しました:", unlikeError.message);
       } else {
@@ -188,7 +208,7 @@ const ImageDetail = () => {
       const { error: likeError } = await supabase
         .from("Like")
         .insert({ imageId: pagePath, userId: userProps.id });
-  
+
       if (likeError) {
         console.log("いいねの保存でエラーが発生しました:", likeError.message);
       } else {
@@ -253,13 +273,23 @@ const ImageDetail = () => {
 
             {/* いいねとコメント */}
             <div className="flex items-center justify-between mt-4">
-              <button className="text-red-500 text-lg" onClick={toggleLike}>
-                {isLiked ? (
-                  <FontAwesomeIcon icon={faHeart} size="xl" className="transition transform duration-100 scale-125" />
-                ) : (
-                  <FontAwesomeIcon icon={faHeartRegular} size="xl"/>
-                )}
-              </button>
+              <div className="text-center">
+                <button
+                  className="text-red-500 text-lg focus:outline-none focus:ring focus:border-blue-300"
+                  onClick={toggleLike}
+                >
+                  {isLiked ? (
+                    <FontAwesomeIcon
+                      icon={faHeart}
+                      size="lg"
+                      className="transition transform duration-100 scale-125"
+                    />
+                  ) : (
+                    <FontAwesomeIcon icon={faHeartRegular} size="lg" />
+                  )}
+                </button>
+                <p className="text-sm text-gray-600 mt-1">{likeCount} いいね</p>
+              </div>
               <button className="text-blue-500 text-lg">💬 コメント</button>
             </div>
           </div>
