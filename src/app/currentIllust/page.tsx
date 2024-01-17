@@ -20,7 +20,7 @@ interface User {
   image: string;
 }
 
-export default async function CurrentIllust() {
+export default function CurrentIllust() {
   const [illustrations, setIllustrations] = useState<Illustration[]>([]);
   const [user, setUser] = useState<User[]>([]); // 型を指定
 
