@@ -15,12 +15,18 @@ interface Illustration {
   userId: number;
 }
 
+interface User {
+  name: string;
+  image: string;
+}
+
 export default async function CurrentIllust() {
-  const [illustrations, setIllustrations] = useState<Illustration[]>([]); // 型を指定
+  const [illustrations, setIllustrations] = useState<Illustration[]>([]);
+  const [user, setUser] = useState<User[]>([]); // 型を指定
 
   useEffect(() => {
     const fetchIllustrations = async () => {
-      const { data, error } = await supabase
+      const { data:illustrationsData, error } = await supabase
         .from("Image")
         .select("id, url, title, userId")
         .order("postedAt", { ascending: false });
@@ -28,11 +34,25 @@ export default async function CurrentIllust() {
       if (error) {
         console.error("Error fetching illustrations", error);
       } else {
-        setIllustrations(data);
+        setIllustrations(illustrationsData);
       }
     };
 
+    const fetchUser = async () => {
+      const {data:userData,error} = await supabase
+        .from("User")
+        .select("name, image")
+
+      if (error) {
+        console.error("Error fetching user", error);
+      } else {
+        setUser(userData)
+      }
+
+    }
+
     fetchIllustrations();
+    fetchUser();
   }, []);
 
   return (
