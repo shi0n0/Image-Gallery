@@ -251,7 +251,7 @@ const ImageDetail = () => {
         </div>
 
         {/* 詳細情報部分 */}
-        <div className="col-span-1">
+        <div className="col-span-1 h-fit top-20 sticky">
           <div className="bg-white shadow-lg rounded-lg p-4">
             <p className="text-xl font-bold mb-1">{imageData.title}</p>
             <p className="text-gray-800">{imageData.description}</p>
