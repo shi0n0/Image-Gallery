@@ -26,13 +26,13 @@ export default function CurrentIllust() {
 
   useEffect(() => {
     const fetchIllustrations = async () => {
-      const { data:illustrationsData, error } = await supabase
+      const { data:illustrationsData, error:illustrationsError } = await supabase
         .from("Image")
         .select("id, url, title, userId")
         .order("postedAt", { ascending: false });
 
-      if (error) {
-        console.error("Error fetching illustrations", error);
+      if (illustrationsError) {
+        console.error("Error fetching illustrations", illustrationsError);
       } else {
         setIllustrations(illustrationsData);
       }
