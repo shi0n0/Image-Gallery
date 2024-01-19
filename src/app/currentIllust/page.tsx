@@ -22,38 +22,41 @@ interface User {
 
 export default function CurrentIllust() {
   const [illustrations, setIllustrations] = useState<Illustration[]>([]);
-  const [user, setUser] = useState<User[]>([]); // 型を指定
+  const [user, setUser] = useState<User[]>([]);
 
   useEffect(() => {
     const fetchIllustrations = async () => {
-      const { data:illustrationsData, error:illustrationsError } = await supabase
+      const { data: illustrationsData, error: illustrationsError } = await supabase
         .from("Image")
         .select("id, url, title, userId")
         .order("postedAt", { ascending: false });
-
+  
       if (illustrationsError) {
         console.error("Error fetching illustrations", illustrationsError);
       } else {
         setIllustrations(illustrationsData);
+        if (illustrationsData && illustrationsData.length > 0) {
+          fetchUser(illustrationsData[0].userId);
+        }
       }
     };
-
-    const fetchUser = async () => {
-      const {data:userData,error:userError} = await supabase
+  
+    const fetchUser = async (userId:string) => {
+      const { data: userData, error: userError } = await supabase
         .from("User")
         .select("name, image")
-
+        .eq("id", userId);
+  
       if (userError) {
         console.error("Error fetching user", userError);
       } else {
-        setUser(userData)
+        setUser(userData);
       }
-
-    }
-
+    };
+  
     fetchIllustrations();
-    fetchUser();
   }, []);
+  
 
   return (
     <PaddingContainer>
@@ -85,7 +88,7 @@ export default function CurrentIllust() {
                 <Link href={`/userprofile/username`}>
                   <div className="flex items-center">
                     <Image
-                      src={"/ImageGallery.png"}
+                      src={user[0]?.image|| "/ImageGallery.png"}
                       alt="ユーザーアイコン"
                       objectFit="cover"
                       className="w-6 h-6 rounded-full"
@@ -93,7 +96,7 @@ export default function CurrentIllust() {
                       height={20}
                     />
                     <p className="text-gray-600 text-sm ml-1 hover:text-black">
-                      {illust?.userId || "Unknown"}
+                      {user[0]?.name || "Unknown"}
                     </p>
                   </div>
                 </Link>
