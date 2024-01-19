@@ -39,12 +39,12 @@ export default function CurrentIllust() {
     };
 
     const fetchUser = async () => {
-      const {data:userData,error} = await supabase
+      const {data:userData,error:userError} = await supabase
         .from("User")
         .select("name, image")
 
-      if (error) {
-        console.error("Error fetching user", error);
+      if (userError) {
+        console.error("Error fetching user", userError);
       } else {
         setUser(userData)
       }
