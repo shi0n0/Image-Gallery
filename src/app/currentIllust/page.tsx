@@ -59,54 +59,73 @@ export default function CurrentIllust() {
     fetchIllustrations();
   }, []);
 
-  return (
-    <PaddingContainer>
-      <p className="text-xl font-bold text-gray-800">最近投稿されたイラスト</p>
-      <GridContainer>
-        {illustrations.map((illust) => (
-          <Link key={illust.id} href={`illustrations/test`}>
-            <div className="sm:rounded-lg sm:p-2 duration-150 sm:hover:-translate-y-1.5 active:bg-gray-100  active:duration-0">
-              <div className="relative aspect-square">
-                <Image
-                  src={illust.url}
-                  alt={`ユーザー画像 | ${illust.id}`}
-                  objectFit="cover"
-                  quality={10}
-                  className="sm:rounded-lg hover:opacity-95 transition-opacity"
-                  fill
-                />
-                <div className="absolute top-2 right-2">
+// 新しい投稿かどうかを判断する関数
+const isRecent = (postedAt: string) => {
+  const postedDate = new Date(postedAt);
+  const oneWeekAgo = new Date();
+  oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+  return postedDate > oneWeekAgo;
+};
+
+// 日付をフォーマットする関数
+const formatDate = (dateString: string) => {
+  const date = new Date(dateString);
+  return `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`;
+};
+
+// 描画部分
+return (
+  <PaddingContainer>
+    <GridContainer>
+      {illustrations.map((illust) => (
+        <Link key={illust.id} href={`illustrations/test`}>
+          <div className="...">
+            {/* Image component */}
+            <div className="relative aspect-square">
+              <Image
+                src={illust.url}
+                alt={`ユーザー画像 | ${illust.id}`}
+                objectFit="cover"
+                quality={10}
+                className="sm:rounded-lg hover:opacity-95 transition-opacity"
+                fill
+              />
+              <div className="absolute top-2 right-2">
+                {isRecent(illust.postedAt) && (
                   <span className="bg-red-500 text-white py-1 px-2 rounded-full text-xs">
                     New
                   </span>
-                </div>
-              </div>
-
-              <div className="py-1 px-2">
-                <h2 className="font-semibold text-gray-800 truncate">
-                  {illust.title}
-                </h2>
-
-                <Link href={`/userprofile/username`}>
-                  <div className="flex items-center">
-                    <Image
-                      src={user[0]?.image || "/ImageGallery.png"}
-                      alt="ユーザーアイコン"
-                      objectFit="cover"
-                      className="w-6 h-6 rounded-full"
-                      width={20}
-                      height={20}
-                    />
-                    <p className="text-gray-600 text-sm ml-1 hover:text-black">
-                      {user[0]?.name || "Unknown"}
-                    </p>
-                  </div>
-                </Link>
+                )}
               </div>
             </div>
-          </Link>
-        ))}
-      </GridContainer>
-    </PaddingContainer>
-  );
-}
+            {/* Title and user info */}
+            <div className="py-1 px-2">
+              <h2 className="font-semibold text-gray-800 truncate">
+                {illust.title}
+              </h2>
+              <p className="text-gray-600 text-sm ml-1 hover:text-black">
+                {formatDate(illust.postedAt)}
+              </p>
+              {/* User Profile Link */}
+              <Link href={`/userprofile/username`}>
+                <div className="flex items-center">
+                  <Image
+                    src={user[0]?.image || "/ImageGallery.png"}
+                    alt="ユーザーアイコン"
+                    objectFit="cover"
+                    className="w-6 h-6 rounded-full"
+                    width={20}
+                    height={20}
+                  />
+                  <p className="text-gray-600 text-sm ml-1 hover:text-black">
+                    {user[0]?.name || "Unknown"}
+                  </p>
+                </div>
+              </Link>
+            </div>
+          </div>
+        </Link>
+      ))}
+    </GridContainer>
+  </PaddingContainer>
+)};
