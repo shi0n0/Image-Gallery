@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import GridContainer from "../components/commonComponents/container/gridContainer";
 import PaddingContainer from "../components/commonComponents/container/paddingCotainer";
@@ -26,11 +26,12 @@ export default function CurrentIllust() {
 
   useEffect(() => {
     const fetchIllustrations = async () => {
-      const { data: illustrationsData, error: illustrationsError } = await supabase
-        .from("Image")
-        .select("id, url, title, userId")
-        .order("postedAt", { ascending: false });
-  
+      const { data: illustrationsData, error: illustrationsError } =
+        await supabase
+          .from("Image")
+          .select("id, url, title, userId")
+          .order("postedAt", { ascending: false });
+
       if (illustrationsError) {
         console.error("Error fetching illustrations", illustrationsError);
       } else {
@@ -40,26 +41,27 @@ export default function CurrentIllust() {
         }
       }
     };
-  
-    const fetchUser = async (userId:string) => {
+
+    const fetchUser = async (userId: string) => {
       const { data: userData, error: userError } = await supabase
         .from("User")
         .select("name, image")
         .eq("id", userId);
-  
+
       if (userError) {
         console.error("Error fetching user", userError);
       } else {
         setUser(userData);
       }
     };
-  
+
     fetchIllustrations();
   }, []);
-  
 
   return (
     <PaddingContainer>
+      <p className="text-xl font-bold text-gray-800">最近投稿されたイラスト</p>
+
       <GridContainer>
         {illustrations.map((illust) => (
           <Link key={illust.id} href={`illustrations/test`}>
@@ -88,7 +90,7 @@ export default function CurrentIllust() {
                 <Link href={`/userprofile/username`}>
                   <div className="flex items-center">
                     <Image
-                      src={user[0]?.image|| "/ImageGallery.png"}
+                      src={user[0]?.image || "/ImageGallery.png"}
                       alt="ユーザーアイコン"
                       objectFit="cover"
                       className="w-6 h-6 rounded-full"
