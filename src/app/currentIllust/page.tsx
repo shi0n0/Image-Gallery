@@ -13,6 +13,7 @@ interface Illustration {
   url: string;
   title: string;
   userId: number;
+  postedAt: string;
 }
 
 interface User {
@@ -29,7 +30,7 @@ export default function CurrentIllust() {
       const { data: illustrationsData, error: illustrationsError } =
         await supabase
           .from("Image")
-          .select("id, url, title, userId")
+          .select("id, url, title, userId, postedAt")
           .order("postedAt", { ascending: false });
 
       if (illustrationsError) {
@@ -61,7 +62,6 @@ export default function CurrentIllust() {
   return (
     <PaddingContainer>
       <p className="text-xl font-bold text-gray-800">最近投稿されたイラスト</p>
-
       <GridContainer>
         {illustrations.map((illust) => (
           <Link key={illust.id} href={`illustrations/test`}>
