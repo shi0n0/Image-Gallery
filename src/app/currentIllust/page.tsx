@@ -82,7 +82,7 @@ export default function CurrentIllust() {
   // 描画部分
   return (
     <PaddingContainer>
-      <div className="sort-options flex justify-end items-center my-4">
+      <div className="sort-options flex justify-end items-center px-10 my-4">
         <label htmlFor="sort" className="mr-2 text-lg font-medium">
           ソート:
         </label>
