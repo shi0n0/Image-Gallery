@@ -17,9 +17,11 @@ interface Illustration {
 }
 
 interface User {
+  id: number;
   name: string;
   image: string;
 }
+
 
 export default function CurrentIllust() {
   const [illustrations, setIllustrations] = useState<Illustration[]>([]);
@@ -44,21 +46,26 @@ export default function CurrentIllust() {
       } else {
         setIllustrations(illustrationsData);
         if (illustrationsData && illustrationsData.length > 0) {
-          fetchUser(illustrationsData[0].userId);
+          // ユニークなユーザーIDのリストを作成
+          const userIds = [
+            ...new Set(illustrationsData.map((illust) => illust.userId)),
+          ];
+          // すべてのユーザー情報を取得
+          fetchUsers(userIds);
         }
       }
     };
 
-    const fetchUser = async (userId: string) => {
-      const { data: userData, error: userError } = await supabase
+    const fetchUsers = async (userIds: number[]) => {
+      const { data: usersData, error: usersError } = await supabase
         .from("User")
-        .select("name, image")
-        .eq("id", userId);
+        .select("name, image, id")
+        .in("id", userIds);
 
-      if (userError) {
-        console.error("Error fetching user", userError);
+      if (usersError) {
+        console.error("Error fetching users", usersError);
       } else {
-        setUser(userData);
+        setUser(usersData);
       }
     };
 
@@ -100,55 +107,60 @@ export default function CurrentIllust() {
       </div>
 
       <GridContainer>
-        {illustrations.map((illust) => (
-          <Link key={illust.id} href={`illustrations/test`}>
-            <div className="...">
-              {/* Image component */}
-              <div className="relative aspect-square">
-                <Image
-                  src={illust.url}
-                  alt={`ユーザー画像 | ${illust.id}`}
-                  objectFit="cover"
-                  quality={10}
-                  className="sm:rounded-lg hover:opacity-95 transition-opacity"
-                  fill
-                />
-                <div className="absolute top-2 right-2">
-                  {isRecent(illust.postedAt) && (
-                    <span className="bg-red-500 text-white py-1 px-2 rounded-full text-xs">
-                      New
-                    </span>
-                  )}
+        {illustrations.map((illust) => {
+          // 対応するユーザー情報を検索
+          const userProfile = user.find((u) => u.id === illust.userId);
+
+          return (
+            <Link key={illust.id} href={`/illustrations/${illust.id}`}>
+              <div className="...">
+                {/* Image component */}
+                <div className="relative aspect-square">
+                  <Image
+                    src={illust.url}
+                    alt={`ユーザー画像 | ${illust.title}`}
+                    objectFit="cover"
+                    quality={10}
+                    className="sm:rounded-lg hover:opacity-95 transition-opacity"
+                    fill
+                  />
+                  <div className="absolute top-2 right-2">
+                    {isRecent(illust.postedAt) && (
+                      <span className="bg-red-500 text-white py-1 px-2 rounded-full text-xs">
+                        New
+                      </span>
+                    )}
+                  </div>
+                </div>
+                {/* Title and user info */}
+                <div className="py-1 px-2">
+                  <h2 className="font-semibold text-gray-800 truncate">
+                    {illust.title}
+                  </h2>
+                  <p className="text-gray-600 text-sm ml-1 hover:text-black">
+                    {formatDate(illust.postedAt)}
+                  </p>
+                  {/* User Profile Link */}
+                  <Link href={`/userprofile/${userProfile?.id}`}>
+                    <div className="flex items-center cursor-pointer">
+                      <Image
+                        src={userProfile?.image || "/ImageGallery.png"}
+                        alt="ユーザーアイコン"
+                        objectFit="cover"
+                        className="w-6 h-6 rounded-full"
+                        width={24}
+                        height={24}
+                      />
+                      <p className="text-gray-600 text-sm ml-1 hover:text-black">
+                        {userProfile?.name || "Unknown"}
+                      </p>
+                    </div>
+                  </Link>
                 </div>
               </div>
-              {/* Title and user info */}
-              <div className="py-1 px-2">
-                <h2 className="font-semibold text-gray-800 truncate">
-                  {illust.title}
-                </h2>
-                <p className="text-gray-600 text-sm ml-1 hover:text-black">
-                  {formatDate(illust.postedAt)}
-                </p>
-                {/* User Profile Link */}
-                <Link href={`/userprofile/username`}>
-                  <div className="flex items-center">
-                    <Image
-                      src={user[0]?.image || "/ImageGallery.png"}
-                      alt="ユーザーアイコン"
-                      objectFit="cover"
-                      className="w-6 h-6 rounded-full"
-                      width={20}
-                      height={20}
-                    />
-                    <p className="text-gray-600 text-sm ml-1 hover:text-black">
-                      {user[0]?.name || "Unknown"}
-                    </p>
-                  </div>
-                </Link>
-              </div>
-            </div>
-          </Link>
-        ))}
+            </Link>
+          );
+        })}
       </GridContainer>
     </PaddingContainer>
   );
