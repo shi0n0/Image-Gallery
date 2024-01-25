@@ -97,7 +97,7 @@ export default function CurrentIllust() {
           id="sort"
           value={sortOption}
           onChange={handleSortChange}
-          className="bg-white border border-gray-300 text-gray-700 py-2 px-4 rounded-lg shadow-sm focus:outline-none focus:border-blue-500 transition-colors"
+          className="bg-white border border-gray-300 text-gray-700 py-2 px-4 rounded-lg shadow-s cursor-pointer focus:outline-none focus:border-blue-500 transition-colors"
         >
           <option value="latest">最新順</option>
           <option value="old">古い順</option>
