@@ -61,20 +61,20 @@ export default function SearchResult() {
             return (
               <div
                 key={item.id}
-                className="bg-white rounded-sm shadow-md my-4 mx-1 hover:"
+                className="bg-white rounded-sm my-4 mx-1 hover:"
               >
                 <div className="relative aspect-square aspect-h-9">
                   <Link href={`illustrations/${item.id}`}>
                     <Image
                       src={item.url}
                       alt="検索結果の画像"
-                      className="rounded-t-sm object-cover hover:opacity-90 duration-100"
+                      className="rounded-md object-cover hover:opacity-90 duration-100"
                       fill
                     />
                   </Link>
                 </div>
-                <div className="p-3">
-                  <h2 className="text-sm font-bold truncate mb-1">
+                <div className="py-1 px-2">
+                  <h2 className="text-base font-bold truncate mb-1">
                     {item.title}
                   </h2>
                   <div className="flex justify-between">
