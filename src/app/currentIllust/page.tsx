@@ -7,6 +7,8 @@ import Image from "next/image";
 import supabase from "../utils/supabase";
 import { useState } from "react";
 import { useEffect } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart } from "@fortawesome/free-regular-svg-icons";
 
 interface Illustration {
   id: number;
@@ -21,7 +23,6 @@ interface User {
   name: string;
   image: string;
 }
-
 
 export default function CurrentIllust() {
   const [illustrations, setIllustrations] = useState<Illustration[]>([]);
@@ -142,18 +143,23 @@ export default function CurrentIllust() {
                   </p>
                   {/* User Profile Link */}
                   <Link href={`/userprofile/${userProfile?.id}`}>
-                    <div className="flex items-center cursor-pointer">
-                      <Image
-                        src={userProfile?.image || "/ImageGallery.png"}
-                        alt="ユーザーアイコン"
-                        objectFit="cover"
-                        className="w-6 h-6 rounded-full"
-                        width={24}
-                        height={24}
-                      />
-                      <p className="text-gray-600 text-sm ml-1 hover:text-black">
-                        {userProfile?.name || "Unknown"}
-                      </p>
+                    <div className="flex items-center justify-between cursor-pointer">
+                      <div className="flex">
+                        <Image
+                          src={userProfile?.image || "/ImageGallery.png"}
+                          alt="ユーザーアイコン"
+                          objectFit="cover"
+                          className="w-6 h-6 rounded-full"
+                          width={24}
+                          height={24}
+                        />
+                        <p className="text-gray-600 text-sm ml-1 hover:text-black">
+                          {userProfile?.name || "Unknown"}
+                        </p>
+                      </div>
+                      <button>
+                        <FontAwesomeIcon icon={faHeart} size="xl" />
+                      </button>
                     </div>
                   </Link>
                 </div>
