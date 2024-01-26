@@ -5,6 +5,8 @@ import Link from "next/link";
 import PaddingContainer from "../container/paddingCotainer";
 import GridContainer from "../container/gridContainer";
 import Loading from "@/app/loading";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart } from "@fortawesome/free-regular-svg-icons";
 
 export default function TopUserCard() {
   const [userImages, setUserImages] = useState<
@@ -89,21 +91,26 @@ export default function TopUserCard() {
                   </h2>
 
                   <Link href={`/userprofile/${matchingUser?.id}`}>
-                    <div className="flex items-center">
-                      <Image
-                        src={
-                          matchingUser?.image ||
-                          "https://kotonohaworks.com/free-icons/wp-content/uploads/kkrn_icon_user_1.png"
-                        }
-                        alt="ユーザーアイコン"
-                        objectFit="cover"
-                        className="w-6 h-6 rounded-full"
-                        width={20}
-                        height={20}
-                      />
-                      <p className="text-gray-600 text-sm ml-1 hover:text-black">
-                        {matchingUser?.name || "Unknown"}
-                      </p>
+                    <div className="flex items-center justify-between">
+                      <div className="flex">
+                        <Image
+                          src={
+                            matchingUser?.image ||
+                            "https://kotonohaworks.com/free-icons/wp-content/uploads/kkrn_icon_user_1.png"
+                          }
+                          alt="ユーザーアイコン"
+                          objectFit="cover"
+                          className="w-6 h-6 rounded-full"
+                          width={20}
+                          height={20}
+                        />
+                        <p className="text-gray-600 text-sm ml-1 hover:text-black">
+                          {matchingUser?.name || "Unknown"}
+                        </p>
+                      </div>
+                      <button>
+                        <FontAwesomeIcon icon={faHeart} size="xl" />
+                      </button>
                     </div>
                   </Link>
                 </div>
