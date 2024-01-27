@@ -119,7 +119,7 @@ const EditImagePage: React.FC = () => {
   </div>
 
   {/* Buttons */}
-  <div className="mt-4 flex flex-col space-y-2">
+  <div className="mt-4 flex space-y-2">
     <button
       onClick={handleSave}
       className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-6 rounded-lg shadow-md transition duration-300"
