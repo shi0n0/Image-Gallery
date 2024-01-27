@@ -72,59 +72,69 @@ const EditImagePage: React.FC = () => {
   };
 
   return (
-    <div className="p-4">
-      <h1 className="text-2xl">Edit Image Page</h1>
-      <div className="flex items-center">
-        <div className="w-1/4 relative aspect-square">
-          <Image
-            src={imageData.url}
-            alt="プレビュー"
-            className="object-contain"
-            fill
-          />
-        </div>
-        <div className="w-3/4 ml-4">
-          <label className="block">Title:</label>
-          <input
-            type="text"
-            value={imageData.title}
-            onChange={(e) =>
-              setImageData({ ...imageData, title: e.target.value })
-            }
-            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
-          />
-          <label className="block mt-2">Tags:</label>
-          <input
-            type="text"
-            value={imageData.tags}
-            onChange={(e) =>
-              setImageData({ ...imageData, tags: e.target.value })
-            }
-            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
-          />
-        </div>
-      </div>
-      <label className="block mt-4">Description:</label>
+    <div className="flex flex-col items-center p-4 bg-gray-50">
+  {/* Image Preview */}
+  <div className="w-full relative h-96 bg-gray-200 rounded-lg overflow-hidden shadow-lg mb-6">
+    <Image
+      src={imageData.url}
+      alt="プレビュー"
+      className="w-full h-full object-contain"
+      layout="fill"
+    />
+  </div>
+
+  {/* Form */}
+  <div className="w-full max-w-2xl p-4 bg-white rounded-lg shadow-md">
+    {/* Title */}
+    <div className="mb-4">
+      <label className="block font-semibold mb-2">Title:</label>
+      <input
+        type="text"
+        value={imageData.title}
+        onChange={(e) => setImageData({ ...imageData, title: e.target.value })}
+        className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+      />
+    </div>
+
+    {/* Tags */}
+    <div className="mb-4">
+      <label className="block font-semibold mb-2">Tags:</label>
+      <input
+        type="text"
+        value={imageData.tags}
+        onChange={(e) => setImageData({ ...imageData, tags: e.target.value })}
+        className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+      />
+    </div>
+
+    {/* Description */}
+    <div className="mb-6">
+      <label className="block font-semibold mb-2">Description:</label>
       <textarea
         value={imageData.description}
-        onChange={(e) =>
-          setImageData({ ...imageData, description: e.target.value })
-        }
-        className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
+        onChange={(e) => setImageData({ ...imageData, description: e.target.value })}
+        className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
       />
-      <button
-        onClick={handleSave}
-        className="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg mr-2 transition duration-300 ease-in-out transform hover:scale-105"
-      >
-        Save
-      </button>
-      <button
-        onClick={handleDelete}
-        className="bg-red-500 hover.bg-red-700 text-white font-semibold py-2 px-6 rounded-lg transition duration-300 ease-in-out transform hover:scale-105"
-      >
-        Delete
-      </button>
     </div>
+  </div>
+
+  {/* Buttons */}
+  <div className="mt-4 flex flex-col space-y-2">
+    <button
+      onClick={handleSave}
+      className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-6 rounded-lg shadow-md transition duration-300"
+    >
+      Save
+    </button>
+    <button
+      onClick={handleDelete}
+      className="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-6 rounded-lg shadow-md transition duration-300"
+    >
+      Delete
+    </button>
+  </div>
+</div>
+
   );
 };
 
