@@ -87,7 +87,7 @@ const EditImagePage: React.FC = () => {
       <div className="w-full max-w-2xl p-4 bg-white rounded-lg shadow-md">
         {/* Title */}
         <div className="mb-4">
-          <label className="block font-semibold mb-2">Title:</label>
+          <label className="block font-semibold mb-2">タイトル:</label>
           <input
             type="text"
             value={imageData.title}
@@ -100,7 +100,7 @@ const EditImagePage: React.FC = () => {
 
         {/* Tags */}
         <div className="mb-4">
-          <label className="block font-semibold mb-2">Tags:</label>
+          <label className="block font-semibold mb-2">タグ:</label>
           <input
             type="text"
             value={imageData.tags}
@@ -113,7 +113,7 @@ const EditImagePage: React.FC = () => {
 
         {/* Description */}
         <div className="mb-6">
-          <label className="block font-semibold mb-2">Description:</label>
+          <label className="block font-semibold mb-2">概要や詳細など:</label>
           <textarea
             value={imageData.description}
             onChange={(e) =>
@@ -125,7 +125,7 @@ const EditImagePage: React.FC = () => {
       </div>
 
       {/* Buttons */}
-      <div className="mt-4 flex">
+      <div className="mt-4 flex gap-2">
         <button
           onClick={handleSave}
           className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-6 rounded-lg shadow-md transition duration-300"
