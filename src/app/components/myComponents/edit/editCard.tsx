@@ -78,7 +78,7 @@ const EditImagePage: React.FC = () => {
         <Image
           src={imageData.url}
           alt="プレビュー"
-          className="w-full h-full object-contain"
+          className="w-full h-full object-contain p-2"
           layout="fill"
         />
       </div>
