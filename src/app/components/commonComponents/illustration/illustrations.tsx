@@ -295,19 +295,19 @@ const ImageDetail = () => {
 
           {/* ユーザープロフィール */}
           <div className="bg-white shadow-lg rounded-lg p-4 mt-4 flex items-center">
-            <Image
-              src={userProps.image}
-              alt="ユーザーのアイコン"
-              width={40}
-              height={40}
-              className="rounded-full"
-            />
-            <div className="ml-2">
-              <p className="font-semibold">{userProps.name}</p>
-              <Link href={`/userprofile/${userProps.id}`}>
-                <p className="text-blue-500 text-sm">プロフィールを見る</p>
-              </Link>
-            </div>
+            <Link href={`/userprofile/${userProps.id}`} className="flex">
+              <Image
+                src={userProps.image}
+                alt="ユーザーのアイコン"
+                width={40}
+                height={40}
+                className="rounded-full"
+              />
+              <div className="ml-2">
+                <p className="font-semibold">{userProps.name}</p>
+                <p className="text-gray-600 text-sm">フォロー数〇〇人</p>
+              </div>
+            </Link>
           </div>
         </div>
       </div>
