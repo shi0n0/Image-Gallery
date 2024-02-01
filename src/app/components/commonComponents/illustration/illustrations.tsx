@@ -290,7 +290,6 @@ const ImageDetail = () => {
                 </button>
                 <p className="text-sm text-gray-600 mt-1">{likeCount} いいね</p>
               </div>
-              <button className="text-blue-500 text-lg">💬 コメント</button>
             </div>
           </div>
 
