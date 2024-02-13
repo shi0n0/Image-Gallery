@@ -108,7 +108,7 @@ const Sidebar: React.FC = () => {
         {/* ホームカテゴリ */}
         <p className="text-sm font-semibold text-gray-500 px-5">ホーム</p>
         <Link
-          href="/"
+          href="/currentIllust"
           className="text-md text-gray-500 flex items-center px-4 py-2 hover:bg-gray-100"
         >
           <FontAwesomeIcon icon={faFolderPlus} className="mx-2" />
