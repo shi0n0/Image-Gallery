@@ -87,7 +87,7 @@ export default function ProfileCard() {
                       width={20}
                       height={20}
                     />
-                    <p className="text-gray-500 text-sm ml-1 hover:text-black">
+                    <p className="text-gray-500 text-sm ml-1 overflow-hidden whitespace-nowrap text-overflow-ellipsis hover:text-black">
                       {session?.user?.name || "Unknown"}
                     </p>
                   </div>
