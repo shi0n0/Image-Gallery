@@ -79,11 +79,11 @@ const Sidebar: React.FC = () => {
         onMouseLeave={handleMouseLeave}
       >
         {/* 閉じるボタン */}
-        <div className="absolute top-0 p-3 mb-2">
+        <div className="absolute top-0 p-2 mb-2">
           <FontAwesomeIcon
             size="2xl"
             icon={faTimes}
-            className="text-gray-600 cursor-pointer text-4xl"
+            className="text-gray-600 cursor-pointer text-4xl hover:bg-gray-100 active:bg-gray-200 aspect-square rounded-full p-1"
             onClick={() => {
               setIsSidebarOpen(false);
               setIsMobileMenuOpen(false);
