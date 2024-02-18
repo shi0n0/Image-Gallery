@@ -11,6 +11,7 @@ import {
   faFolderPlus,
   faQuestion,
   faBars,
+  faTimes,
 } from "@fortawesome/free-solid-svg-icons";
 
 const Sidebar: React.FC = () => {
@@ -77,12 +78,24 @@ const Sidebar: React.FC = () => {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
+        {/* 閉じるボタン */}
+        <div className="absolute top-0 p-3 mb-2">
+          <FontAwesomeIcon
+            size="2xl"
+            icon={faTimes}
+            className="text-gray-600 cursor-pointer text-4xl"
+            onClick={() => {
+              setIsSidebarOpen(false);
+              setIsMobileMenuOpen(false);
+            }}
+          />
+        </div>
         {/* サイドバーの中身 */}
         {/* ロゴ兼トップページ遷移 */}
         <div>
           <div className="px-4">
             <Link href={"/"} passHref className="px-3">
-              <p className="text-2xl text-center font-bold rounded text-white bg-custom-pink px-3 py-1">
+              <p className="text-2xl text-center font-bold rounded text-white bg-custom-pink px-3 py-1 mt-4">
                 ImageGallery
               </p>
             </Link>
