@@ -138,7 +138,7 @@ export default function CurrentIllust() {
                   <h2 className="font-semibold text-gray-800 truncate">
                     {illust.title}
                   </h2>
-                  <p className="text-gray-600 text-sm ml-1 hover:text-black">
+                  <p className="text-gray-600 text-sm ml-1">
                     {formatDate(illust.postedAt)}
                   </p>
                   {/* User Profile Link */}
