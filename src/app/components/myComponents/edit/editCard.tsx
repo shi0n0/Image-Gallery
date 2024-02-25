@@ -127,16 +127,16 @@ const EditImagePage: React.FC = () => {
       </div>
 
       {/* Buttons */}
-      <div className="mt-4 flex gap-2">
+      <div className="mt-4 flex gap-2 justify-center">
         <button
           onClick={handleSave}
-          className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-6 rounded-lg shadow-md transition duration-300"
+          className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-6 rounded-lg shadow-md transition duration-300 w-32"
         >
           Save
         </button>
         <button
           onClick={handleDelete}
-          className="w-full bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-6 rounded-lg shadow-md transition duration-300"
+          className="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-6 rounded-lg shadow-md transition duration-300 w-32"
         >
           Delete
         </button>
