@@ -72,55 +72,57 @@ const EditImagePage: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col items-center p-4 bg-gray-50">
-      {/* Image Preview */}
-      <div className="w-full relative h-96 bg-gray-200 rounded-lg overflow-hidden shadow-lg mb-6">
-        <Image
-          src={imageData.url}
-          alt="プレビュー"
-          className="w-full h-full object-contain p-2"
-          layout="fill"
-        />
-      </div>
-
-      {/* Form */}
-      <div className="w-full max-w-2xl p-4 bg-white rounded-lg shadow-md">
-        {/* Title */}
-        <div className="mb-4">
-          <label className="block font-semibold mb-2">タイトル:</label>
-          <input
-            type="text"
-            value={imageData.title}
-            onChange={(e) =>
-              setImageData({ ...imageData, title: e.target.value })
-            }
-            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+    <div className="p-4 bg-gray-50 h-[80vh]">
+      <div className="flex flex-col md:flex-row w-full gap-2 h-full">
+        {/* Image Preview */}
+        <div className="w-full relative h-full bg-gray-200 rounded-lg overflow-hidden shadow-lg">
+          <Image
+            src={imageData.url}
+            alt="プレビュー"
+            className="w-full h-full object-contain p-2"
+            layout="fill"
           />
         </div>
 
-        {/* Tags */}
-        <div className="mb-4">
-          <label className="block font-semibold mb-2">タグ:</label>
-          <input
-            type="text"
-            value={imageData.tags}
-            onChange={(e) =>
-              setImageData({ ...imageData, tags: e.target.value })
-            }
-            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-          />
-        </div>
+        {/* Form */}
+        <div className="w-full max-w-2xl p-4 bg-white rounded-lg shadow-md">
+          {/* Title */}
+          <div className="mb-4">
+            <label className="block font-semibold mb-2">タイトル:</label>
+            <input
+              type="text"
+              value={imageData.title}
+              onChange={(e) =>
+                setImageData({ ...imageData, title: e.target.value })
+              }
+              className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+            />
+          </div>
 
-        {/* Description */}
-        <div className="mb-6">
-          <label className="block font-semibold mb-2">概要や詳細など:</label>
-          <textarea
-            value={imageData.description}
-            onChange={(e) =>
-              setImageData({ ...imageData, description: e.target.value })
-            }
-            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-          />
+          {/* Tags */}
+          <div className="mb-4">
+            <label className="block font-semibold mb-2">タグ:</label>
+            <input
+              type="text"
+              value={imageData.tags}
+              onChange={(e) =>
+                setImageData({ ...imageData, tags: e.target.value })
+              }
+              className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+            />
+          </div>
+
+          {/* Description */}
+          <div className="mb-6">
+            <label className="block font-semibold mb-2">概要や詳細など:</label>
+            <textarea
+              value={imageData.description}
+              onChange={(e) =>
+                setImageData({ ...imageData, description: e.target.value })
+              }
+              className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+            />
+          </div>
         </div>
       </div>
 
