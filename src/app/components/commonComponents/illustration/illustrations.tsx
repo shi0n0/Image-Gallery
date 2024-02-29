@@ -10,6 +10,7 @@ import ShowComment from "./showComment";
 import { faHeart as faHeartRegular } from "@fortawesome/free-regular-svg-icons";
 import { faHeart as faHeart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Loading from "@/app/loading";
 import { error } from "console";
 
 const ImageDetail = () => {
@@ -184,7 +185,9 @@ const ImageDetail = () => {
 
   if (!imageData.url) {
     return (
+
       <div className="flex justify-center items-center h-screen">
+        <Loading></Loading>
         イラストを探しています...
       </div>
     );
