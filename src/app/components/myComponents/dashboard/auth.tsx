@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import { signIn, signOut, useSession } from "next-auth/react";
+import { LogOut } from "lucide-react"; 
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -21,13 +22,14 @@ export default function Auth() {
         )}
         {session && (
           <>
-          <p className="text-3xl">{session.user?.name}</p>
-          <p>ユーザーID:{session.user?.id}</p>
+            <p className="text-3xl">{session.user?.name}</p>
+            <p>ユーザーID:{session.user?.id}</p>
             <button
               onClick={() => signOut()}
-              className="text-gray-600 hover:text-gray-800 px-4 py-2"
+              className="mt-3 inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500" // Enhanced styling for logout button
             >
-              <p>ログアウト</p>
+              <LogOut className="mr-2 -ml-1 h-5 w-5" /> {/* Adding a logout icon */}
+              ログアウト
             </button>
           </>
         )}
@@ -46,7 +48,7 @@ export default function Auth() {
               onClick={() => signIn()}
               className="text-gray-600 hover:text-gray-800 px-4 py-2"
             >
-              <p>ログイン</p>
+              ログイン
             </button>
           </div>
         )}
