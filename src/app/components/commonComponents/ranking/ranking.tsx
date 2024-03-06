@@ -46,8 +46,12 @@ const ImageCard = ({ imageData, userData, index }: ImageCardProps) => (
             fill
           />
         </div>
-        <div>
-          <p className="text-gray-700 text-md">{userData[0]?.name}</p>
+        <div className="hover:opacity-95 duration-100">
+          <Link href={`/userprofile/${imageData.userId}`}>
+            <p className="text-gray-500 text-md hover:text-black duration-100">
+              {userData[0]?.name}
+            </p>
+          </Link>
           <p className="text-gray-400 text-xs">フォロー数 200人</p>
         </div>
       </div>
