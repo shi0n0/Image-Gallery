@@ -27,7 +27,7 @@ const ImageCard = ({ imageData, userData, index }: ImageCardProps) => (
     key={imageData.id}
     className="max-w-sm rounded overflow-hidden shadow-lg my-8"
   >
-    <div className="relative aspect-square">
+    <div className="relative aspect-square hover:opacity-95 duration-100">
       <Image
         className="object-cover"
         src={imageData.url}
