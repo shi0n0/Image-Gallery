@@ -91,9 +91,9 @@ export default async function Ranking() {
 
     return (
       <PaddingContainer>
-        <div className="flex justify-between">
+        <div className="grid grid-cols-3 gap-8">
           <div>
-            <p className="text-4xl font-bold text-center">閲覧数</p>
+            <p className="text-4xl font-bold text-center mb-4">閲覧数</p>
             {viewRankingData.map((imageData, index) => (
               <Link href={`/illustrations/${imageData.id}`} key={imageData.id}>
                 <ImageCard
@@ -106,7 +106,7 @@ export default async function Ranking() {
             ))}
           </div>
           <div>
-            <p className="text-4xl font-bold text-center">いいね数</p>
+            <p className="text-4xl font-bold text-center mb-4">いいね数</p>
             {/* 今後いいねランキングにデータを差し替える */}
             {viewRankingData.map((imageData, index) => (
               <Link href={`/illustrations/${imageData.id}`} key={imageData.id}>
@@ -120,8 +120,8 @@ export default async function Ranking() {
             ))}
           </div>
           <div>
-            <p className="text-4xl font-bold text-center">コメント数</p>
-            {/* 今後いいねランキングにデータを差し替える */}
+            <p className="text-4xl font-bold text-center mb-4">コメント数</p>
+            {/* 今後コメントランキングにデータを差し替える */}
             {viewRankingData.map((imageData, index) => (
               <Link href={`/illustrations/${imageData.id}`} key={imageData.id}>
                 <ImageCard
