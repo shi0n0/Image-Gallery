@@ -23,10 +23,10 @@ interface ImageCardProps {
 }
 
 const ImageCard = ({ imageData, userData, index }: ImageCardProps) => (
-  <div
-    key={imageData.id}
-    className="max-w-sm rounded overflow-hidden shadow-lg my-8"
-  >
+  <div key={imageData.id} className="max-w-sm rounded overflow-hidden shadow-lg my-8 relative">
+    <div className="absolute top-0 left-0 bg-yellow-400 text-white font-bold py-1 px-3 rounded-br-lg z-10">
+      {index + 1}位
+    </div>
     <div className="relative aspect-square hover:opacity-95 duration-100">
       <Image
         className="object-cover"
