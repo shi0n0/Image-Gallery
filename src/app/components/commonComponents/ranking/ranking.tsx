@@ -55,7 +55,6 @@ const ImageCard = ({ imageData, userData, index }: ImageCardProps) => (
           <p className="text-gray-400 text-xs">フォロー数 200人</p>
         </div>
       </div>
-      <p className="text-gray-700 text-base">ランキング: {index + 1}位</p>
     </div>
 
     <div className="px-6 py-4">
