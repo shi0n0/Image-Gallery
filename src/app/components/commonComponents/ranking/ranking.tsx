@@ -1,7 +1,9 @@
+"use client"
 import supabase from "@/app/utils/supabase";
 import PaddingContainer from "../container/paddingCotainer";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 
 interface ImageData {
   id: number;
@@ -66,6 +68,7 @@ const ImageCard = ({ imageData, userData, index }: ImageCardProps) => (
 );
 
 export default async function Ranking() {
+  const [activeTab, setActiveTab] = useState("viewCount");
   const { data: viewRankingData, error } = await supabase
     .from("Image")
     .select("id, url, title, description, userId, viewCount")
@@ -88,50 +91,40 @@ export default async function Ranking() {
       return null;
     }
 
+
     return (
       <PaddingContainer>
+        <div className="flex justify-center mb-8">
+          <button
+            className={`px-4 py-2 rounded-l-md ${activeTab === "viewCount" ? "bg-blue-500 text-white" : "bg-gray-200"}`}
+            onClick={() => setActiveTab("viewCount")}
+          >
+            閲覧数
+          </button>
+          <button
+            className={`px-4 py-2 ${activeTab === "likeCount" ? "bg-blue-500 text-white" : "bg-gray-200"}`}
+            onClick={() => setActiveTab("likeCount")}
+          >
+            いいね数
+          </button>
+          <button
+            className={`px-4 py-2 rounded-r-md ${activeTab === "commentCount" ? "bg-blue-500 text-white" : "bg-gray-200"}`}
+            onClick={() => setActiveTab("commentCount")}
+          >
+            コメント数
+          </button>
+        </div>
         <div className="grid grid-cols-3 gap-8">
-          <div>
-            <p className="text-4xl font-bold text-center mb-4">閲覧数</p>
-            {viewRankingData.map((imageData, index) => (
-              <Link href={`/illustrations/${imageData.id}`} key={imageData.id}>
-                <ImageCard
-                  key={imageData.id}
-                  imageData={imageData}
-                  userData={userData}
-                  index={index}
-                />
-              </Link>
-            ))}
-          </div>
-          <div>
-            <p className="text-4xl font-bold text-center mb-4">いいね数</p>
-            {/* 今後いいねランキングにデータを差し替える */}
-            {viewRankingData.map((imageData, index) => (
-              <Link href={`/illustrations/${imageData.id}`} key={imageData.id}>
-                <ImageCard
-                  key={imageData.id}
-                  imageData={imageData}
-                  userData={userData}
-                  index={index}
-                />
-              </Link>
-            ))}
-          </div>
-          <div>
-            <p className="text-4xl font-bold text-center mb-4">コメント数</p>
-            {/* 今後コメントランキングにデータを差し替える */}
-            {viewRankingData.map((imageData, index) => (
-              <Link href={`/illustrations/${imageData.id}`} key={imageData.id}>
-                <ImageCard
-                  key={imageData.id}
-                  imageData={imageData}
-                  userData={userData}
-                  index={index}
-                />
-              </Link>
-            ))}
-          </div>
+          {viewRankingData.map((imageData, index) => (
+            <Link href={`/illustrations/${imageData.id}`} key={imageData.id}>
+              <ImageCard
+                key={imageData.id}
+                imageData={imageData}
+                userData={userData}
+                index={index}
+              />
+            </Link>
+          ))}
         </div>
       </PaddingContainer>
     );
