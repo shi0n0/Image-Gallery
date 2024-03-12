@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import supabase from "@/app/utils/supabase";
 import PaddingContainer from "../container/paddingCotainer";
 import Image from "next/image";
@@ -25,7 +25,10 @@ interface ImageCardProps {
 }
 
 const ImageCard = ({ imageData, userData, index }: ImageCardProps) => (
-  <div key={imageData.id} className="max-w-sm rounded overflow-hidden shadow-lg my-8 relative">
+  <div
+    key={imageData.id}
+    className="max-w-sm rounded overflow-hidden shadow-lg my-8 relative"
+  >
     <div className="absolute top-0 left-0 bg-yellow-400 text-white font-bold py-1 px-3 rounded-br-lg z-10">
       {index + 1}位
     </div>
@@ -91,24 +94,38 @@ export default async function Ranking() {
       return null;
     }
 
-
     return (
       <PaddingContainer>
+        <div className="text-center">
+          <h1 className="text-2xl font-bold text-gray-900 my-8">ランキング</h1>
+        </div>
         <div className="flex justify-center mb-8">
           <button
-            className={`px-4 py-2 rounded-l-md ${activeTab === "viewCount" ? "bg-blue-500 text-white" : "bg-gray-200"}`}
+            className={`px-4 py-2 rounded-l-md ${
+              activeTab === "viewCount"
+                ? "bg-blue-500 text-white"
+                : "bg-gray-200"
+            }`}
             onClick={() => setActiveTab("viewCount")}
           >
             閲覧数
           </button>
           <button
-            className={`px-4 py-2 ${activeTab === "likeCount" ? "bg-blue-500 text-white" : "bg-gray-200"}`}
+            className={`px-4 py-2 ${
+              activeTab === "likeCount"
+                ? "bg-blue-500 text-white"
+                : "bg-gray-200"
+            }`}
             onClick={() => setActiveTab("likeCount")}
           >
             いいね数
           </button>
           <button
-            className={`px-4 py-2 rounded-r-md ${activeTab === "commentCount" ? "bg-blue-500 text-white" : "bg-gray-200"}`}
+            className={`px-4 py-2 rounded-r-md ${
+              activeTab === "commentCount"
+                ? "bg-blue-500 text-white"
+                : "bg-gray-200"
+            }`}
             onClick={() => setActiveTab("commentCount")}
           >
             コメント数
