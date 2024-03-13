@@ -131,7 +131,7 @@ export default async function Ranking() {
             コメント数
           </button>
         </div>
-        <div className="grid grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
           {viewRankingData.map((imageData, index) => (
             <Link href={`/illustrations/${imageData.id}`} key={imageData.id}>
               <ImageCard
