@@ -96,47 +96,65 @@ export default async function UploadForm() {
   };
 
   return (
-    <form action={UploadFile} className="max-w-lg mx-auto mt-8 p-4">
-      <h1 className="text-2xl font-semibold mb-4">画像をアップロード</h1>
-      <div className="mb-4">
-        <label htmlFor="file" className="border p-2 cursor-pointer">
-          イラストを選択
-        </label>
-        <input
-          type="file"
-          name="file"
-          id="file"
-          accept="image/*"
-          className="border p-2"
-          hidden
-        />
-      </div>
-      <div className="mb-4">
-        <input
-          type="text"
-          name="title"
-          placeholder="タイトル"
-          className="border p-2 w-full"
-        />
-      </div>
-      <div className="mb-4">
-        <textarea
-          name="description"
-          placeholder="概要"
-          className="border p-2 w-full h-24"
-        />
-      </div>
-      <div className="mb-4 flex items-center justify-between">
-        <input name="tag" placeholder="タグ (空白で複数設定可能です)" className="border p-2 flex-grow" />
-        <div className="aspect-square">
-        </div>
-      </div>
-      <button
-        type="submit"
-        className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+    <div className="flex justify-center items-center h-screen bg-gray-100">
+      <form
+        action={UploadFile}
+        className="w-full max-w-lg bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
       >
-        アップロード
-      </button>
-    </form>
+        <h1 className="text-3xl font-bold mb-8 text-center">
+          画像をアップロード
+        </h1>
+        <div className="mb-6">
+          <label
+            htmlFor="file"
+            className="block text-gray-700 text-sm font-bold mb-2 cursor-pointer"
+          ></label>
+          <input
+            type="file"
+            name="file"
+            id="file"
+            accept="image/*"
+            className="hidden w-full text-sm text-gray-900 border rounded-lg cursor-pointer focus:border-blue-500"
+            hidden
+          />
+          <label
+            htmlFor="file"
+            className="flex justify-center items-center w-full px-4 py-3 bg-white text-blue-600 rounded-lg shadow-lg tracking-wide uppercase border border-blue-500 cursor-pointer hover:bg-blue-500 hover:text-white"
+          >
+            <span className="ml-2">ファイルを選択</span>
+          </label>
+        </div>
+        <div className="mb-4">
+          <input
+            type="text"
+            name="title"
+            placeholder="タイトル"
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          />
+        </div>
+        <div className="mb-6">
+          <textarea
+            name="description"
+            placeholder="概要"
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-24"
+          />
+        </div>
+        <div className="mb-6">
+          <input
+            name="tag"
+            placeholder="タグ (空白で複数設定可能です)"
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          />
+        </div>
+        <div className="flex items-center justify-between">
+          <button
+            type="submit"
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          >
+            アップロード
+          </button>
+        </div>
+      </form>
+    </div>
   );
 }
