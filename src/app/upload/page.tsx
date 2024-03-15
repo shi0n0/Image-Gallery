@@ -121,7 +121,7 @@ export default async function UploadForm() {
             htmlFor="file"
             className="flex justify-center items-center w-full px-4 py-3 bg-white text-blue-600 rounded-lg shadow-lg tracking-wide uppercase border border-blue-500 cursor-pointer hover:bg-blue-500 hover:text-white"
           >
-            <span className="ml-2">ファイルを選択</span>
+            <span className="ml-2">画像を選択</span>
           </label>
         </div>
         <div className="mb-4">
