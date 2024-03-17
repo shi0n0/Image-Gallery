@@ -54,7 +54,7 @@ export default function ProfileCard() {
                   alt={`ユーザー画像 | ${index}`}
                   objectFit="cover"
                   quality={10}
-                  className="sm:rounded-lg hover:opacity-80 duration-75"
+                  className="sm:rounded-lg hover:opacity-90 duration-75"
                   fill
                 />
                 <div className="absolute top-2 right-2">
