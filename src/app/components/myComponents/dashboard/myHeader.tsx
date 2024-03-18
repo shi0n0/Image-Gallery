@@ -176,8 +176,21 @@ function MyHeader() {
                 onChange={handleHeaderChange}
               />
               <div className="flex gap-3">
-                <button onClick={handleSave}>保存する</button>
-                <button onClick={closePopup}>キャンセル</button>
+                {/* Save Button */}
+                <button
+                  onClick={handleSave}
+                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition duration-150 ease-in-out"
+                >
+                  保存する
+                </button>
+
+                {/* Cancel Button */}
+                <button
+                  onClick={closePopup}
+                  className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded transition duration-150 ease-in-out"
+                >
+                  キャンセル
+                </button>
               </div>
             </div>
           </div>
