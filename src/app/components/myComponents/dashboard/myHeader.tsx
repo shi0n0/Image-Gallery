@@ -150,7 +150,7 @@ function MyHeader() {
         </label>
       </div>
       {isPopupOpen && (
-        <div className="fixed inset-0 flex items-center justify-center">
+        <div className="fixed inset-0 flex items-center justify-center z-50">
           {/* オーバーレイ */}
           <div
             className="fixed inset-0 bg-black opacity-60 z-20"
