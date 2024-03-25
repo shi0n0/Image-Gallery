@@ -41,7 +41,7 @@ export default function UpdatesPage() {
         </h1>
         <div className="space-y-4">
           {updatesData.map((update) => (
-            <Link href={update.href} key={update.id} passHref>
+            <Link href={`/updates/${update.href}`} key={update.id} passHref>
               <div className="block bg-white p-6 rounded-lg shadow hover:shadow-md active:scale-95 transition duration-200 ease-in-out mb-4">
                 <h2 className="text-xl font-semibold text-gray-900">
                   {update.title}
