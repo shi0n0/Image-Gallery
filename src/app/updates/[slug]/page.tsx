@@ -1,5 +1,6 @@
-"use client"
+"use client";
 import { usePathname } from "next/navigation";
+import Link from "next/link";
 
 export default function UpdateDetailPage() {
   const pathname = usePathname();
@@ -13,7 +14,8 @@ export default function UpdateDetailPage() {
       id: "1",
       title: "ダークモード",
       category: "新機能",
-      description: "より快適な夜間視聴体験のために、ダークモードに切り替えることができるようになりました。",
+      description:
+        "より快適な夜間視聴体験のために、ダークモードに切り替えることができるようになりました。",
       content: `
         ユーザーの皆様へ、
   
@@ -28,7 +30,8 @@ export default function UpdateDetailPage() {
       id: "2",
       title: "検索機能の改善",
       category: "改善",
-      description: "より正確な結果とより速い応答時間を提供するために、検索が強化されました。",
+      description:
+        "より正確な結果とより速い応答時間を提供するために、検索が強化されました。",
       content: `
         ユーザーの皆様へ、
   
@@ -43,7 +46,8 @@ export default function UpdateDetailPage() {
       id: "3",
       title: "桜の花見特集ページ開設",
       category: "開設",
-      description: "春の訪れと共に、桜の花見に最適なスポットを紹介する特集ページを開設しました。",
+      description:
+        "春の訪れと共に、桜の花見に最適なスポットを紹介する特集ページを開設しました。",
       content: `
         ユーザーの皆様へ、
   
@@ -58,7 +62,8 @@ export default function UpdateDetailPage() {
       id: "4",
       title: "新年の挨拶カード機能追加",
       category: "新機能",
-      description: "新年のご挨拶に、オリジナルの挨拶カードを作成して送ることができる新機能をリリースしました。",
+      description:
+        "新年のご挨拶に、オリジナルの挨拶カードを作成して送ることができる新機能をリリースしました。",
       content: `
         ユーザーの皆様へ、
   
@@ -70,21 +75,36 @@ export default function UpdateDetailPage() {
       href: "new-year",
     },
   ];
-  
-  const updateDetail = updatesDetail.find(detail => detail.href === href);
+
+  const updateDetail = updatesDetail.find((detail) => detail.href === href);
 
   return (
     <div className="min-h-screen bg-gray-100 py-8 px-4">
       <div className="max-w-3xl mx-auto bg-white p-6 rounded-lg shadow">
         {updateDetail ? (
           <>
-            <h1 className="text-2xl font-bold text-gray-900 mb-4">{updateDetail.title}</h1>
-            <p className="text-sm text-blue-600 mb-2">{updateDetail.category}</p>
+            <h1 className="text-2xl font-bold text-gray-900 mb-4">
+              {updateDetail.title}
+            </h1>
+            <p className="text-sm text-blue-600 mb-2">
+              {updateDetail.category}
+            </p>
             <p className="text-sm text-gray-500 mb-6">{updateDetail.date}</p>
-            <p className="text-gray-600 whitespace-pre-line">{updateDetail.content}</p>
+            <p className="text-gray-600 whitespace-pre-line">
+              {updateDetail.content}
+            </p>
           </>
         ) : (
-          <p className="text-gray-900">アップデート情報が見つかりません。</p>
+          <>
+            <p className="text-gray-900 mb-4">
+              アップデート情報が見つかりません。
+            </p>
+            <Link href="/updates" passHref>
+              <div className="inline-block bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700 transition-colors">
+                更新情報へ戻る
+              </div>
+            </Link>
+          </>
         )}
       </div>
     </div>
