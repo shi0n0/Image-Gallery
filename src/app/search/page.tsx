@@ -52,6 +52,15 @@ export default function SearchResult() {
       <div className="flex justify-center">
         <SearchBar initialValue={search || ""} />
       </div>
+      <div className="text-center my-4">
+        {search && (
+          <h1 className="text-xl md:text-2xl font-light my-4">
+            <span className="font-bold">{search}</span>を含むイラストが
+            <span className="font-bold">{imageData.length}件</span>
+            見つかりました
+          </h1>
+        )}
+      </div>
       {imageData.length === 0 && <Loading />}
       <GridContainer>
         {imageData &&
