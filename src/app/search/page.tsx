@@ -53,15 +53,21 @@ export default function SearchResult() {
         <SearchBar initialValue={search || ""} />
       </div>
       <div className="text-center my-4">
-        {search && (
+        {search && imageData.length > 0 && (
           <h1 className="text-xl md:text-2xl font-light my-4">
             <span className="font-bold">{search}</span>を含むイラストが
             <span className="font-bold">{imageData.length}件</span>
             見つかりました
           </h1>
         )}
+        {imageData.length === 0 && (
+          <h1 className="text-xl md:text-2xl font-light my-4">
+            <span className="font-bold">{search}</span>
+            を含むイラストが見つかりませんでした
+          </h1>
+        )}
       </div>
-      {imageData.length === 0 && <Loading />}
+
       <GridContainer>
         {imageData &&
           imageData.map((item) => {
