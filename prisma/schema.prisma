@@ -7,6 +7,16 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model News {
+  id          String @id @default(dbgenerated("uuid_generate_v4()"))
+  title       String
+  category    String
+  description String
+  content     String   @db.Text
+  date        DateTime
+  href        String
+}
+
 model Image {
   id          String @id @default(dbgenerated("uuid_generate_v4()"))
   url         String
