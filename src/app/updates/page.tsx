@@ -45,6 +45,17 @@ export default function UpdatesPage() {
         <h1 className="text-3xl font-bold text-center text-gray-800 mb-8">
           アップデート・お知らせ
         </h1>
+        <div className="flex flex-wrap justify-center gap-2 mb-8">
+          {updatesData.map((category, index) => (
+            <button
+              key={index}
+              className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-150 ease-in-out"
+              // onClickに絞り込みのロジックを追加
+            >
+              {category.category}
+            </button>
+          ))}
+        </div>
         <div className="space-y-4">
           {updatesData.map((update) => (
             <Link href={`/updates/${update.href}`} key={update.id} passHref>
