@@ -8,6 +8,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/react";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
+import Footer from "./components/commonComponents/navigation/footer";
 
 config.autoAddCss = false;
 
@@ -33,6 +34,7 @@ export default function RootLayout({
           <Analytics />
           <SpeedInsights />
         </NextAuthProvider>
+        <Footer />
       </body>
     </html>
   );
