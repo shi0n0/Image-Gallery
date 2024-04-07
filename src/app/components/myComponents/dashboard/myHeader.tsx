@@ -152,7 +152,7 @@ function MyHeader() {
       {isPopupOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
           <div className="bg-white p-8 rounded-lg shadow-2xl max-w-lg mx-auto">
-            <h2 className="text-xl font-bold mb-4">Update Header Image</h2>
+            <h2 className="text-xl font-bold mb-4">ヘッダー画像を更新</h2>
             <p className="text-red-500 mb-3">
               ヘッダーを更新すると前のヘッダーは完全に削除されます！
               <br />
@@ -173,13 +173,13 @@ function MyHeader() {
                 className="bg-red-600 hover:bg-red-800 text-white font-bold py-2 px-6 rounded"
                 onClick={closePopup}
               >
-                Cancel
+                キャンセル
               </button>
               <button
                 className="bg-green-600 hover:bg-green-800 text-white font-bold py-2 px-6 rounded"
                 onClick={handleSave}
               >
-                Save
+                保存
               </button>
             </div>
           </div>
