@@ -150,48 +150,37 @@ function MyHeader() {
         </label>
       </div>
       {isPopupOpen && (
-        <div className="fixed inset-0 flex items-center justify-center z-50">
-          {/* オーバーレイ */}
-          <div
-            className="fixed inset-0 bg-black opacity-60 z-20"
-            onClick={closePopup} // オーバーレイをクリックしたときにポップアップを閉じる
-          ></div>
-          <div className="bg-gray-100 w-2/3 p-6 rounded-lg shadow-xl text-center relative z-30">
-            <p className="text-6xl text-red-600">⚠️</p>
-            <p className="text-lg mb-1">
+        <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+          <div className="bg-white p-8 rounded-lg shadow-2xl max-w-lg mx-auto">
+            <h2 className="text-xl font-bold mb-4">Update Header Image</h2>
+            <p className="text-red-500 mb-3">
               ヘッダーを更新すると前のヘッダーは完全に削除されます！
-            </p>
-            <p className="text-sm mb-2">
-              前のヘッダーが必要な方は右クリックから新規ページで画像を開くからダウンロードしてください
-            </p>
-            <p className="text-sm mb-3">
+              <br />
+              前のヘッダーが必要な方は右クリックから新規ページで画像を開くからダウンロードしてください。
+              <br />
               ※ヘッダー更新後はリロードで表示されます！
             </p>
-            <div className="flex justify-center">
-              <input
-                id="fileInput"
-                type="file"
-                accept="image/*"
-                className="mb-2"
-                onChange={handleHeaderChange}
-              />
-              <div className="flex gap-3">
-                {/* Save Button */}
-                <button
-                  onClick={handleSave}
-                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition duration-150 ease-in-out"
-                >
-                  保存する
-                </button>
-
-                {/* Cancel Button */}
-                <button
-                  onClick={closePopup}
-                  className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded transition duration-150 ease-in-out"
-                >
-                  キャンセル
-                </button>
-              </div>
+            <input
+              type="file"
+              accept="image/*"
+              className="text-sm text-slate-500 file:mr-4 file:py-3 file:px-5
+                         file:rounded-full file:border-0 file:text-sm file:font-semibold
+                         file:bg-violet-50 file:text-violet-700 hover:file:bg-violet-100"
+              onChange={handleHeaderChange}
+            />
+            <div className="mt-5 flex justify-end gap-4">
+              <button
+                className="bg-red-600 hover:bg-red-800 text-white font-bold py-2 px-6 rounded"
+                onClick={closePopup}
+              >
+                Cancel
+              </button>
+              <button
+                className="bg-green-600 hover:bg-green-800 text-white font-bold py-2 px-6 rounded"
+                onClick={handleSave}
+              >
+                Save
+              </button>
             </div>
           </div>
         </div>
