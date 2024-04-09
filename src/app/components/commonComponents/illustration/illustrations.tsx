@@ -185,10 +185,8 @@ const ImageDetail = () => {
 
   if (!imageData.url) {
     return (
-
       <div className="flex justify-center items-center h-screen">
-        <Loading></Loading>
-        イラストを探しています...
+        <Loading text="画像を探しています"></Loading>
       </div>
     );
   }
