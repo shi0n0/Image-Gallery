@@ -61,10 +61,12 @@ export default function SearchResult() {
           </h1>
         )}
         {imageData.length === 0 && (
-          <h1 className="text-xl md:text-2xl font-light my-4">
-            <span className="font-bold">{search}</span>
-            を含むイラストが見つかりませんでした
-          </h1>
+          <div className="h-[60vh]">
+            <h1 className="text-xl md:text-2xl font-light my-4">
+              <span className="font-bold">{search}</span>
+              を含むイラストが見つかりませんでした
+            </h1>
+          </div>
         )}
       </div>
 
