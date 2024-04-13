@@ -69,13 +69,13 @@ export default function TopUserCard() {
           return (
             <Link key={image.id} href={`illustrations/${image.id}`}>
               <div className="sm:rounded-lg sm:p-2 duration-150 active:bg-gray-100  active:duration-0">
-                <div className="relative aspect-square">
+                <div className="relative aspect-square sm:hover:-translate-y-1.5 hover:-translate-y-1.5 transition-transform">
                   <Image
                     src={image.url}
                     alt={`ユーザー画像 | ${image.id}`}
                     objectFit="cover"
                     quality={10}
-                    className="sm:rounded-lg hover:opacity-95 duration-150 ease-in-out sm:hover:-translate-y-1.5 hover:-translate-y-1.5 transition-transform"
+                    className="sm:rounded-lg hover:opacity-95 duration-150 ease-in-out"
                     fill
                   />
 
