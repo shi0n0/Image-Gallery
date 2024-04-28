@@ -6,7 +6,11 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowUpFromBracket, faUser,faRankingStar } from "@fortawesome/free-solid-svg-icons";
+import {
+  faArrowUpFromBracket,
+  faUser,
+  faRankingStar,
+} from "@fortawesome/free-solid-svg-icons";
 import SearchBar from "./seachBar";
 import Sidebar from "./leftbar";
 
@@ -23,8 +27,7 @@ interface UserLinkProps {
 export default function Navbar() {
   const pagePath = usePathname();
   const { data: session } = useSession();
-  const userImage =
-    session?.user?.image || <FontAwesomeIcon icon={faUser}/>;
+  const userImage = session?.user?.image || <FontAwesomeIcon icon={faUser} />;
 
   return (
     <nav className="bg-white shadow-lg sticky top-0 z-40 font-sans">
@@ -33,7 +36,7 @@ export default function Navbar() {
           <div className="flex items-center">
             <Sidebar />
             <Link href={"/"} passHref>
-              <p className="text-2xl font-bold rounded text-white bg-custom-pink px-3 py-1">
+              <p className="text-2xl font-bold rounded text-white bg-custom-pink px-3 py-1 hover:brightness-105">
                 ImageGallery
               </p>
             </Link>
@@ -59,8 +62,12 @@ export default function Navbar() {
                 />
               </p>
             </Link>
-            {session && <UserLink href="/dashboard" src={userImage as string} />}
-            {!session && <UserLink href="/dashboard" src={userImage as string} />}
+            {session && (
+              <UserLink href="/dashboard" src={userImage as string} />
+            )}
+            {!session && (
+              <UserLink href="/dashboard" src={userImage as string} />
+            )}
           </div>
         </div>
       </div>

@@ -95,7 +95,7 @@ const Sidebar: React.FC = () => {
         <div>
           <div className="px-4">
             <Link href={"/"} passHref className="px-3">
-              <p className="text-2xl text-center font-bold rounded text-white bg-custom-pink px-3 py-1 mt-4">
+              <p className="text-2xl text-center font-bold rounded text-white bg-custom-pink px-3 py-1 mt-4 hover:brightness-105">
                 ImageGallery
               </p>
             </Link>
