@@ -104,7 +104,7 @@ const Sidebar: React.FC = () => {
           {/* ランキング */}
           <Link
             href="/ranking"
-            className="text-md text-gray-600 flex items-center px-4 py-2 hover:bg-gray-100 active:bg-gray-200"
+            className="text-md text-gray-600 flex items-center px-4 py-2 hover:bg-gray-100 active:bg-gray-200 active:text-gray-600"
           >
             <FontAwesomeIcon icon={faRankingStar} className="mx-2" />
             <p>ランキング</p>
@@ -112,7 +112,7 @@ const Sidebar: React.FC = () => {
           {/* ダッシュボード */}
           <Link
             href="/dashboard"
-            className="text-md text-gray-500 flex items-center px-4 py-2 mb-4 hover:bg-gray-100 active:bg-gray-200"
+            className="text-md text-gray-500 flex items-center px-4 py-2 mb-4 hover:bg-gray-100 active:bg-gray-200 active:text-gray-600"
           >
             <FontAwesomeIcon icon={faTachometerAlt} className="mx-2" />
             <p>ダッシュボード</p>
@@ -122,7 +122,7 @@ const Sidebar: React.FC = () => {
         <p className="text-sm font-semibold text-gray-500 px-5">ホーム</p>
         <Link
           href="/currentIllust"
-          className="text-md text-gray-500 flex items-center px-4 py-2 hover:bg-gray-100 active:bg-gray-200"
+          className="text-md text-gray-500 flex items-center px-4 py-2 hover:bg-gray-100 active:bg-gray-200 active:text-gray-600"
         >
           <FontAwesomeIcon icon={faFolderPlus} className="mx-2" />
           <p>最近のイラスト</p>
@@ -130,7 +130,7 @@ const Sidebar: React.FC = () => {
 
         <Link
           href="/"
-          className="text-md text-gray-500 flex items-center px-4 py-2 hover:bg-gray-100 active:bg-gray-200"
+          className="text-md text-gray-500 flex items-center px-4 py-2 hover:bg-gray-100 active:bg-gray-200 active:text-gray-600"
         >
           <FontAwesomeIcon icon={faQuestion} className="mx-2" />
           <p>穴埋め</p>
@@ -138,14 +138,14 @@ const Sidebar: React.FC = () => {
 
         <Link
           href="/"
-          className="text-md text-gray-500 flex items-center px-4 py-2 hover:bg-gray-100 active:bg-gray-200"
+          className="text-md text-gray-500 flex items-center px-4 py-2 hover:bg-gray-100 active:bg-gray-200 active:text-gray-600"
         >
           <FontAwesomeIcon icon={faQuestion} className="mx-2" />
           <p>穴埋め</p>
         </Link>
         <Link
           href="/options"
-          className="text-md text-gray-500 flex items-center px-4 py-2 bottom-3 fixed w-full hover:bg-gray-100 active:bg-gray-200"
+          className="text-md text-gray-500 flex items-center px-4 py-2 bottom-3 fixed w-full hover:bg-gray-100 active:bg-gray-200 active:text-gray-600"
         >
           <FontAwesomeIcon icon={faGear} className="mx-2" />
           <p>設定</p>
