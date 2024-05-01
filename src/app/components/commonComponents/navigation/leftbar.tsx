@@ -104,7 +104,7 @@ const Sidebar: React.FC = () => {
           {/* ランキング */}
           <Link
             href="/ranking"
-            className="text-md text-gray-600 flex items-center px-4 py-2 hover:bg-gray-100 active:bg-gray-200 active:text-gray-600"
+            className="text-md text-gray-500 flex items-center px-4 py-2 hover:bg-gray-100 active:bg-gray-200 active:text-gray-600"
           >
             <FontAwesomeIcon icon={faRankingStar} className="mx-2" />
             <p>ランキング</p>
