@@ -109,9 +109,6 @@ export default function TopUserCard() {
                           {matchingUser?.name || "Unknown"}
                         </p>
                       </div>
-                      <button>
-                        <FontAwesomeIcon icon={faHeart} size="xl" />
-                      </button>
                     </div>
                   </Link>
                 </div>
