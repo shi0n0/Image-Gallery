@@ -3,6 +3,14 @@ import { useSession } from "next-auth/react";
 import { useState, useEffect, ChangeEvent } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { comment } from "postcss";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faComment,
+  faCommentAlt,
+  faComments,
+} from "@fortawesome/free-solid-svg-icons";
+import { faCommentDots } from "@fortawesome/free-regular-svg-icons";
 
 interface CommentProps {
   imageId: string;
@@ -127,29 +135,41 @@ const CommentsComponent = ({ imageId }: CommentProps) => {
           古い順
         </button>
       </div>
-      {comments.map((comment, index) => (
-        <div key={index} className="flex p-2">
-          <div className="relative aspect-square w-10 h-10 mr-2">
-            {comment.user && (
-              <Image
-                src={comment.user.image}
-                alt="ユーザーアイコン"
-                fill
-                className="rounded-full"
-              ></Image>
-            )}
-          </div>
-          <div>
-            <div className="flex pb-1">
-              <p className="text-sm font-bold mr-1">{comment.user?.name}</p>
-              <p className="text-sm opacity-50 font-normal">
-                {new Date(comment.postedAt).toLocaleDateString()}
-              </p>
+
+      {comments.length > 0 ? (
+        comments.map((comment, index) => (
+          <div key={index} className="flex p-2">
+            <div className="relative aspect-square w-10 h-10 mr-2">
+              {comment.user && (
+                <Image
+                  src={comment.user.image}
+                  alt="ユーザーアイコン"
+                  fill
+                  className="rounded-full"
+                ></Image>
+              )}
             </div>
-            <p className="text-sm font-medium">{comment.text}</p>
+            <div>
+              <div className="flex pb-1">
+                <p className="text-sm font-bold mr-1">{comment.user?.name}</p>
+                <p className="text-sm opacity-50 font-normal">
+                  {new Date(comment.postedAt).toLocaleDateString()}
+                </p>
+              </div>
+              <p className="text-sm font-medium">{comment.text}</p>
+            </div>
           </div>
+        ))
+      ) : (
+        <div className="flex flex-col items-center p-6 bg-gray-100 rounded-lg">
+          <FontAwesomeIcon
+            className=" text-gray-700"
+            icon={faCommentDots}
+            size="2xl"
+          />
+          <p className="text-lg text-gray-600">コメントがありません</p>
         </div>
-      ))}
+      )}
     </div>
   );
 };
