@@ -5,12 +5,18 @@ import Link from "next/link";
 import PaddingContainer from "../container/paddingCotainer";
 import GridContainer from "../container/gridContainer";
 import Loading from "@/app/loading";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart } from "@fortawesome/free-regular-svg-icons";
+import { NewBadge } from "./newBadge";
 
 export default function TopUserCard() {
+  
   const [userImages, setUserImages] = useState<
-    { id: string; url: string; title: string; userId: string }[]
+    {
+      id: string;
+      url: string;
+      title: string;
+      userId: string;
+      postedAt: string;
+    }[]
   >([]);
   const [userProps, setUserProps] = useState<
     { id: string; image: string; name: string }[]
@@ -21,7 +27,7 @@ export default function TopUserCard() {
     async function fetchUserImages() {
       const { data: imagesData, error: imagesError } = await supabase
         .from("Image")
-        .select("id, url, title, userId")
+        .select("id, url, title, userId, postedAt")
         .order("postedAt", { ascending: false })
         .limit(12);
 
@@ -65,6 +71,7 @@ export default function TopUserCard() {
           const matchingUser = userProps.find(
             (user) => user.id === image.userId
           );
+          const isNew = (new Date().getTime() - new Date(image.postedAt).getTime()) < 24 * 60 * 60 * 1000; //アップロードが24時間以内かの計算
 
           return (
             <Link key={image.id} href={`illustrations/${image.id}`}>
@@ -78,12 +85,7 @@ export default function TopUserCard() {
                     className="sm:rounded-lg hover:opacity-95 duration-150 ease-in-out"
                     fill
                   />
-
-                  <div className="absolute top-2 right-2">
-                    <span className="bg-red-500 text-white py-1 px-2 rounded-full text-xs">
-                      New
-                    </span>
-                  </div>
+                  {isNew && <NewBadge />}
                 </div>
 
                 <div className="py-1 px-2">
@@ -109,9 +111,6 @@ export default function TopUserCard() {
                           {matchingUser?.name || "Unknown"}
                         </p>
                       </div>
-                      <button>
-                        <FontAwesomeIcon icon={faHeart} size="xl" />
-                      </button>
                     </div>
                   </Link>
                 </div>

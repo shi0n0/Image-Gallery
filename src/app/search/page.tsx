@@ -115,9 +115,6 @@ export default function SearchResult() {
                         </div>
                       </Link>
                     )}
-                    <button>
-                      <FontAwesomeIcon icon={faHeart} size="xl" />
-                    </button>
                   </div>
                 </div>
               </div>

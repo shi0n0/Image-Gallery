@@ -5,12 +5,11 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import supabase from "../../../utils/supabase";
 import Link from "next/link";
-import UploadComment from "./uploadComment";
-import ShowComment from "./showComment";
 import { faHeart as faHeartRegular } from "@fortawesome/free-regular-svg-icons";
 import { faHeart as faHeart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Loading from "@/app/loading";
+import CommentsComponent from "./comment";
 import { error } from "console";
 
 const ImageDetail = () => {
@@ -314,8 +313,7 @@ const ImageDetail = () => {
       </div>
 
       {/* コメントセクション */}
-      <UploadComment pagePath={pagePath} />
-      <ShowComment imageId={pagePath} />
+      <CommentsComponent imageId={pagePath} />
     </div>
   );
 };

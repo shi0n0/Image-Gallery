@@ -157,9 +157,6 @@ export default function CurrentIllust() {
                           {userProfile?.name || "Unknown"}
                         </p>
                       </div>
-                      <button>
-                        <FontAwesomeIcon icon={faHeart} size="xl" />
-                      </button>
                     </div>
                   </Link>
                 </div>
